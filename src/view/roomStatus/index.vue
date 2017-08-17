@@ -1,7 +1,7 @@
 <template>
-    <div class="order-details">
-        <h1>订单详情</h1>
-    </div>
+  <div>
+      <h1>房间状态</h1>
+  </div>
 </template>
 
 <script>
