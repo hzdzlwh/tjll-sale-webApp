@@ -11,7 +11,8 @@ Vue.use(Router);
 const routes = [].concat(
     myOrderRoute,
     orderStatusRoute,
-    topRoute, //404页面放在最下面
+    roomStatusRoute,
+    topRoute, // 404页面放在最下面
 );
 
 export default new Router({
