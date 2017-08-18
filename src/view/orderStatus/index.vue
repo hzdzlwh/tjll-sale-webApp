@@ -49,7 +49,6 @@ export default {
 <style lang="sass" scoped>
     .order
         height: 100%
-        background: #eee
 
         .order-head
             display: flex
