@@ -17,10 +17,11 @@ export default {
 };
 </script>
 
-<style lang="sass">
-    .room
-        padding-top: 10px
-
-        .room-head
-            margin-bottom: 10px
+<style lang="scss">
+    .room {
+        padding-top: 10px;
+        .room-head {
+            margin-bottom: 10px;
+        }
+    }
 </style>

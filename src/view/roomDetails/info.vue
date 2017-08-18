@@ -34,47 +34,48 @@ export default {
 };
 </script>
 
-<style lang="sass">
-    .room-section
-        background: #fff
-
-        &-title
-            display: flex
-            height: 30px
-            line-height: 30px
-            border-bottom: 1px solid rgba(204, 204, 204, 1)
-
-            .info
-                width: 80px
-
-            .number
-                flex: 1
-
-            .button
-                width: 50px
-                text-align: right
-
-        &-main
-            display: flex
-
-            .info
-                display: flex
-                align-items: center
-                width: 80px
-
-            .people
-                display: flex
-                flex-direction: column
-                flex: 1
-
-                .people-info
-                    height: 30px
-                    line-height: 30px
-
-            .button
-                display: flex
-                justify-content: flex-end
-                align-items: flex-end
-                width: 50px
-                text-align: right
+<style lang="scss">
+    .room-section {
+        background: #fff;
+        &-title {
+            display: flex;
+            height: 30px;
+            line-height: 30px;
+            border-bottom: 1px solid rgba(204, 204, 204, 1);
+            .info {
+                width: 80px;
+            }
+            .number {
+                flex: 1;
+            }
+            .button {
+                width: 50px;
+                text-align: right;
+            }
+        }
+        &-main {
+            display: flex;
+            .info {
+                display: flex;
+                align-items: center;
+                width: 80px;
+            }
+            .people {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                .people-info {
+                    height: 30px;
+                    line-height: 30px;
+                }
+            }
+            .button {
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                width: 50px;
+                text-align: right;
+            }
+        }
+    }
 </style>

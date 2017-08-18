@@ -29,29 +29,30 @@ export default {
 };
 </script>
 
-<style scoped lang="sass">
-    .list-item
-        display: flex
-        padding: 10px 5px
-        background: #fff
-
-        &.border-top
-            border-top: 1px solid rgba(204, 204, 204, 1)
-
-        &.border-bottom
-            border-bottom: 1px solid rgba(204, 204, 204, 1)
-
-        .list-item-img
-            width: 50px
-            height: 50px
-            background: #000
-            border-radius: 4px
-
-        .list-item-info
-            flex: 1
-
-        .list-item-price
-
-            .price-original
-                text-decoration: line-through
+<style scoped lang="scss">
+    .list-item {
+        display: flex;
+        padding: 10px 5px;
+        background: #fff;
+        &.border-top {
+            border-top: 1px solid rgba(204, 204, 204, 1);
+        }
+        &.border-bottom {
+            border-bottom: 1px solid rgba(204, 204, 204, 1);
+        }
+        .list-item-img {
+            width: 50px;
+            height: 50px;
+            background: #000;
+            border-radius: 4px;
+        }
+        .list-item-info {
+            flex: 1;
+        }
+        .list-item-price {
+            .price-original {
+                text-decoration: line-through;
+            }
+        }
+    }
 </style>

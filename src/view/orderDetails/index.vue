@@ -48,36 +48,36 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
-    .order
-        height: 100%
+<style lang="scss" scoped>
+    .order {
+        height: 100%;
+        .order-head {
+            display: flex;
+            justify-content: space-between;
+            height: 50px;
+            line-height: 50px;
+            background: #fff;
+            margin-bottom: 10px;
+        }
+        .order-section {
+            margin-bottom: 10px;
+            background: #fff;
+            border-top: 1px solid rgba(204, 204, 204, 1);
+            border-bottom: 1px solid rgba(204, 204, 204, 1);
+            .order-section-title {
+                height: 30px;
+                line-height: 30px;
+            }
+            .order-section-info {
 
-        .order-head
-            display: flex
-            justify-content: space-between
-            height: 50px
-            line-height: 50px
-            background: #fff
-            margin-bottom: 10px
-
-        .order-section
-            margin-bottom: 10px
-            background: #fff
-            border-top: 1px solid rgba(204, 204, 204, 1)
-            border-bottom: 1px solid rgba(204, 204, 204, 1)
-
-            .order-section-title
-                height: 30px
-                line-height: 30px
-
-            .order-section-info
-
-            .order-section-bill
-                display: flex
-                justify-content: space-between
-
-            .order-section-tatol
-                text-align: right
-
-
+            }
+            .order-section-bill {
+                display: flex;
+                justify-content: space-between;
+            }
+            .order-section-tatol {
+                text-align: right;
+            }
+        }
+    }
 </style>
