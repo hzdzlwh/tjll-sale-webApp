@@ -1,6 +1,6 @@
 <template>
     <section class="room-section">
-        <div class="room-section-title">
+        <div class="room-section-title" @click="choseRoom()">
             <p class="info">房号</p>
             <p class="number">8801</p>
             <p class="button">></p>
@@ -26,6 +26,11 @@
 
 <script>
 export default {
+    methods: {
+        choseRoom(name) {
+            this.$router.push({ name });
+        }
+    }
 };
 </script>
 
