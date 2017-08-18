@@ -6,7 +6,9 @@
         </header>
         <section class="order-section">
             <p class="order-section-title">住宿</p>
-            <order-box></order-box>
+            <order-box :bottomBorder="false"></order-box>
+            <order-box :bottomBorder="false"></order-box>
+            <order-box :bottomBorder="false"></order-box>
         </section>
         <section class="order-section">
             <p class="order-section-info">联系人： 秋丽</p>
@@ -61,8 +63,8 @@ export default {
         .order-section
             margin-bottom: 10px
             background: #fff
-            border-top: 1px solid #ccc
-            border-bottom: 1px solid #ccc
+            border-top: 1px solid rgba(204, 204, 204, 1)
+            border-bottom: 1px solid rgba(204, 204, 204, 1)
 
             .order-section-title
                 height: 30px

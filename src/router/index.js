@@ -2,16 +2,16 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import myOrderRoute from './myOrder';
-import orderStatusRoute from './orderStatus';
-import roomStatusRoute from './roomStatus';
+import orderDetailsRoute from './orderDetails';
+import roomDetailsRoute from './roomDetails';
 import topRoute from './top';
 
 Vue.use(Router);
 
 const routes = [].concat(
     myOrderRoute,
-    orderStatusRoute,
-    roomStatusRoute,
+    orderDetailsRoute,
+    roomDetailsRoute,
     topRoute, // 404页面放在最下面
 );
 

@@ -7,8 +7,8 @@
 
 export default [
     {
-        path: '/orderStatus',
-        name: 'orderStatus',
-        component: () => import('@/view/orderStatus')
+        path: '/orderDetails',
+        name: 'orderDetails',
+        component: () => import('@/view/orderDetails')
     }
 ];
