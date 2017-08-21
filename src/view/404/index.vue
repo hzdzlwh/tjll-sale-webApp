@@ -1,6 +1,7 @@
 <template>
     <div class="404">
         <h1>404</h1>
+        <router-link :to="{ name: 'myOrder', params: { id: '5' } }">xxx</router-link>
     </div>
 </template>
 

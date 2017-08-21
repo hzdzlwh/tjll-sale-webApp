@@ -1,7 +1,7 @@
 <template>
     <div class="room">
         <header class="room-head">
-            <order-box :topBorder="false"></order-box>
+            <order-box :showButton="false"></order-box>
         </header>
         <router-view></router-view>
     </div>
@@ -17,11 +17,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .room {
-        padding-top: 10px;
+        padding: 0.481rem 0 1.407rem;
         .room-head {
-            margin-bottom: 10px;
+            margin-bottom: 0.481rem;
+            background-color: #fff;
         }
     }
 </style>
