@@ -1,3 +1,27 @@
+/*
+ * 常用尺寸
+ * 10px  = 0.185rem;
+ * 12px  = 0.222rem;
+ * 16px  = 0.296rem;
+ * 22px  = 0.407rem;
+ * 24px  = 0.444rem;
+ * 25px  = 0.463rem;
+ * 28px  = 0.519rem;
+ * 32px  = 0.593rem;
+ * 40px  = 0.741rem;
+ * 48px  = 0.889rem;
+ * 58px  = 1.074rem;
+ * 76px  = 1.407rem;
+ * 88px  = 1.629rem;
+ * 92px  = 1.704rem;
+ * 94px  = 1.740rem;
+ * 112px = 2.074rem;
+ * 116px = 2.148rem;
+ * 120px = 2.222rem;
+ * 136px = 2.519rem;
+ * 320px = 5.925rem;
+ */
+
 $colorB: #333;
 $colorS: #666;
 $smallSize: 0.55rem;
@@ -19,12 +43,12 @@ body, html{
     padding: 0;
     height: 100%;
     background: #f7f9fa;
-    }
+}
 
 body{
     font-size: 14px;
     color: #666;
-    line-height: 1.5;
+    line-height: 1;
     font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
     -webkit-font-smoothing: antialiased;
 }
@@ -38,6 +62,10 @@ ul  {
 
 img {
     vertical-align: middle;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .login{

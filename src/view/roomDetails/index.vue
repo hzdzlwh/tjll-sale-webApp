@@ -22,6 +22,9 @@ export default {
         padding-top: 10px;
         .room-head {
             margin-bottom: 10px;
+            height: 35px;
+            line-height: 35px;
+            background-color: #fff;
         }
     }
 </style>

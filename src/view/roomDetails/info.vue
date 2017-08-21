@@ -1,6 +1,6 @@
 <template>
     <section class="room-section">
-        <div class="room-section-title" @click="choseRoom()">
+        <div class="room-section-title" @click="choseRoom('roomDetails_room')">
             <p class="info">房号</p>
             <p class="number">8801</p>
             <p class="button">></p>
@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .room-section {
         background: #fff;
         &-title {
