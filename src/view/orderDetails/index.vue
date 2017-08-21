@@ -39,6 +39,9 @@
                 <p>￥100.00</p>
             </div>
         </section>
+        <div class="order-button">
+            <div class="button">取消订单</div>
+        </div>
     </div>
 </template>
 
@@ -54,7 +57,7 @@ export default {
 
 <style lang="scss" scoped>
     .order {
-        height: 100%;
+        padding: 0 0 1.407rem;
         .order-head {
             display: flex;
             justify-content: space-between;
@@ -73,6 +76,7 @@ export default {
                     color:#49a5f1;
                 }
                 .countdown {
+                    margin-top: 0.074rem;
                     font-size: 0.407rem;
                     color: #bbb;
                 }
@@ -147,6 +151,19 @@ export default {
                 p {
                     color: #999;
                 }
+            }
+        }
+        .order-button {
+            padding: 0 0.593rem;
+            .button {
+                text-align: center;
+                border: 1px solid #e6e6e6;
+                border-radius: 0.148rem;
+                background-color: #fff;
+                height: 1.407rem;
+                line-height: 1.407rem;
+                font-size: 0.519rem;
+                color: #999;
             }
         }
     }
