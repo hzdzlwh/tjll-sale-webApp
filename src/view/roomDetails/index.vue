@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
     .room {
-        padding: 0.481rem 0 1.407rem;
+        padding: 0.4063rem 0 2.5938rem;
         .room-head {
             background-color: #fff;
         }
