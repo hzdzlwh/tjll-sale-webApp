@@ -3,12 +3,12 @@
 	<nav class="nav">
 	<div class="nav-container" style="opacity: 1;">
 	<span class="nav-left nav-back">
-		
+
 	</span>
 	<p class="nav-title">登录</p>
 	</div>
 	<div class="nav-padding">
-		
+
 	</div>
 	</nav>
 	<div class="telephone">
@@ -18,9 +18,9 @@
 	<div class="button disabled" disabled="">登录</div></div>
 </template>
 <style>
-	
+
 </style>
 <script>
-	export default {
-	};
+    export default {
+    };
 </script>
