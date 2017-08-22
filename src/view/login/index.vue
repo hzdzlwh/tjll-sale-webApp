@@ -9,15 +9,15 @@
     <div class="telephone loginInput">
     <label for="telephone">手机号</label>
     <input name="telephone" type="Number" maxlength="11" placeholder="请输入手机号码" v-model='phone'></div>
-    <div class="captcha-container loginInput" style="position: relative;">
+    <div class="captcha-container loginInput" v-if='phone && phone.length === 11'>
     <label for="captcha-container">图形验证码</label>
-    <input type="text" v-model='code' class="captcha" placeholder="请输入4位数验证码" name="captcha-container">
-    <img class="img-code" src="getCode()" alt="验证码"></div>
+    <input type="text" ref='code' class="captcha" placeholder="请输入4位数验证码" name="captcha-container" @input='getImgCode'>
+    <img class="img-code" :src="getCode()" alt="验证码" @click='imgClick'></div>
     <div class="code loginInput">
     <label for="code ">短信验证码</label>
     <input name="code" v-model='subCode' placeholder="请输入短信验证码" maxlength="6"><div class="getCode" @click='getSubCode'>{{codeText}}</div></div>
     <div class="loginButtom">
-    <div class="button disabled" disabled="" @click='subForm'>确定</div></div>
+    <div class="button disabled" :class='{disabled: !vaild, agree: vaild}' disabled="" @click='subForm'>确定</div></div>
     <!-- <div class="button agree" disabled="">登录</div></div> -->
         
     </div>
@@ -29,6 +29,7 @@
 import { devRoute } from '@/util/config';
 import http from '@/util/http';
 import { mapActions } from 'vuex';
+import types from '@/store/types.js';
 
 export default {
     data() {
@@ -39,19 +40,32 @@ export default {
             time: 60,
             code: '',
             subCode: '',
-            intervalId: undefined
+            intervalId: undefined,
+            t: 0
         };
     },
+    computed: {
+        vaild() {
+            return this.phone.length === 11 && this.code.length === 4 && this.subCode.length === 5;
+        }
+    },
     methods: {
-        ...mapActions([
-            'login'
-        ]),
+        ...mapActions({
+            login: types.LOGIN
+        }
+        ),
+        getImgCode(e) {
+            this.code = e.target.value;
+        },
+        imgClick() {
+            this.t = this.t + 1;
+        },
         subForm() {
             if (this.phone.length !== 11 || !this.subCode) {
                 return;
             }
             this.login({ params: {
-                code: this.code,
+                code: this.subCode,
                 phone: this.phone
             } });
         },
@@ -60,15 +74,15 @@ export default {
                 return false;
             }
             if (process.env.NODE_ENV === 'development') {
-                return `${devRoute}/ws/user/getCaptcha?phone=${this.phone}&t=${new Date().getTime()}`;
+                return `${devRoute}/ws/user/getCaptcha?phone=${this.phone}&t=${this.t}`;
             }
-            return `/ws/user/getCaptcha?phone=${this.phone}&t=${new Date().getTime()}`;
+            return `/ws/user/getCaptcha?phone=${this.phone}&t=${this.t}`;
         },
         getSubCode() {
-            if (this.phone.length !== 11 || this.code.length !== 4) {
+            if (this.phone.length !== 11 || !this.code.length) {
                 return false;
             }
-            http.get('/user/sendVerify', { captcha: this.code, origin: 1, phone: this.phone }).then(action => {
+            http.get('/user/sendVerify', { captcha: this.code, phone: this.phone }).then(action => {
                 if (action.err === '图片验证码错误') {
                     return false;
                 }

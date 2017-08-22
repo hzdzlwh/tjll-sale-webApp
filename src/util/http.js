@@ -2,11 +2,11 @@
 * @Author: lxj
 * @Date:   2017-08-17 11:17:07
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-08-22 16:17:13
+* @Last Modified time: 2017-08-22 17:46:46
 */
 /* eslint-disable */
 require('cookie');
-
+import { devRoute } from './config.js'
 import { Loading, Message } from 'element-ui';
 
 import Raven from 'raven-js';
@@ -16,7 +16,23 @@ import qs from 'qs';
 const md5 = require('md5');
 
 let logoutErr = false;
-const host = process.env.NODE_ENV === 'production' ? '/ws' : (`${process.env.serverUrl}/ws`);
+export function paramsToString(params) {
+    const paramsArray = [];
+    for (const name in params) {
+        if (params.hasOwnProperty(name)) {
+            let str = '';
+            if (params[name] !== null) {
+                str = JSON.stringify(params[name]);
+            }
+            if (typeof str === 'string' && str.substring(0, 1) === '\"' && str.substring(str.length - 1) === '\"') {
+                str = str.substring(1, str.length - 1);
+            }
+            paramsArray.push(`${name}=${str}`);
+        }
+    }
+    return paramsArray.join('&');
+}
+const host = process.env.NODE_ENV === 'production' ? '/ws' : (`${devRoute}/ws`);
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.interceptors.response.use((response) => {
     return response;
@@ -42,7 +58,7 @@ const http = {
             data = {};
         }
 
-        if (path !== 'loginUrl') {
+        if (path !== '/directNet/login') {
             data = this.getDataWithToken(data);
         }
 
@@ -58,16 +74,16 @@ const http = {
             loadingInstance = Loading.service();
         }
 
-        const url = this.getUrl(path);
+        const url = host + path;
         return axios.request({
             method,
             url,
-            config: interConfig
+            ...interConfig
         })
             .then(res => {
                 if (res.data.code !== 1) {
                     if (interConfig.notify && res.data.code !== 5) {
-                        Message.error(res.data.msg);
+                        Message.error(res.data.msg || '内部错误');
                     } else if (res.data.code === 5 && !logoutErr) {
                         logoutErr = true;
                         window.localStorage.clear();

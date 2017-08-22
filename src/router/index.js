@@ -5,11 +5,6 @@ Vue.use(Router);
 
 export default new Router({
     routes: [
-        {   // 404
-            path: '/login',
-            name: 'login',
-            component: () => import('@/view/login/index')
-        },
         {
             path: '/:id',
             component: () => import('@/components/main'),
@@ -26,6 +21,11 @@ export default new Router({
                             component: () => import('@/view/myOrder/orderList')
                         }
                     ]
+                },
+                {
+                    path: 'login',
+                    name: 'login',
+                    component: () => import('@/view/login/index')
                 },
                 {   // 订单详情
                     path: 'orderDetails',
@@ -49,7 +49,7 @@ export default new Router({
                             component: () => import('@/view/roomDetails/room')
                         }
                     ]
-                },
+                }
             ]
         },
         {   // 404
@@ -58,6 +58,11 @@ export default new Router({
             component: () => import('@/view/404')
         }
     ],
+    beforeEach: (to, from, next) => {
+        window.console.log(to);
+        window.console.log(from);
+        next();
+    },
     mode: 'history',
     scrollBehavior(to, from, savedPosition) {
         return { x: 0, y: 0 };

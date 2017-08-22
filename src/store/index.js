@@ -2,9 +2,9 @@
 * @Author: lxj
 * @Date:   2017-08-17 10:53:21
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-08-22 16:43:57
+* @Last Modified time: 2017-08-22 18:08:41
 */
-import types from './types';
+import types from './types.js';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import http from '@/util/http';
@@ -27,14 +27,14 @@ const store = new Vuex.Store({
     actions: {
         [types.LOGIN]({ commit }, { params }) {
             return new Promise((resolve, reject) => {
-                http.get('/directNet/login', ...params)
+                http.get('/directNet/login', params)
                     .then(res => {
                         if (res.code === 1) {
-                            commit(types.SET_LOGIN, { user: {
+                            commit(types.SET_LOGIN, {
                                 phone: params.phone,
                                 name: res.data.name,
                                 uuid: res.data.uuid
-                            } });
+                            });
                             resolve(res);
                         } else {
                             reject(res);
