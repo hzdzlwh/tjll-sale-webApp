@@ -5,6 +5,14 @@
                 <label class="form-label" for="name">姓名</label>
                 <input class="form-input" type="text" placeholder="请确保证与证件姓名一致">
             </div>
+            <div class="traveller-form-item">
+                <label class="form-label" for="telephone">手机号</label>
+                <input class="form-input" type="telephone" placeholder="请输入正确的手机号">
+            </div>
+            <div class="traveller-form-item">
+                <label class="form-label" for="certificate">证件号</label>
+                <input class="form-input" type="number" placeholder="请输入证件号">
+            </div>
         </div>
     </div>
 </template>
