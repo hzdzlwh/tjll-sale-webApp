@@ -1,8 +1,7 @@
 <template>
     <div class="room">
         <ul class="room-list">
-            <li class="room-list-item">8801</li>
-            <li class="room-list-item">8801</li>
+            <li class="room-list-item">8801<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon"></li>
             <li class="room-list-item">8801</li>
             <li class="room-list-item">8801</li>
         </ul>
@@ -18,11 +17,26 @@ export default {
 <style lang="scss" scoped>
     .room {
         .room-list {
+            border-top: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
             &-item {
-                height: 30px;
-                line-height: 30px;
+                position: relative;
+                padding: 0 0.593rem;
+                height: 1.407rem;
+                line-height: 1.407rem;
+                font-size: 0.519rem;
                 background: #fff;
-                border-bottom: 1px solid rgba(228, 228, 228, 1);
+                .choose-icon {
+                    position: absolute;
+                    right: 0.593rem;
+                    top: 50%;
+                    transform: translate3d(0, -50%, 0);
+                    width: 0.63rem;
+                    height: 0.444rem;
+                }
+            }
+            .room-list-item + .room-list-item {
+                border-top: 1px solid #e6e6e6;
             }
         }
         .confirm {
