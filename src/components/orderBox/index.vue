@@ -45,7 +45,7 @@ export default {
 .wrap{
     .list-item {
         display: flex;
-        padding: 0.593rem 0.593rem;
+        padding: 0.5rem 0.5rem;
         background: #fff;
         border-bottom: 1px solid #e6e6e6;
         &.border-top {
@@ -55,22 +55,22 @@ export default {
             border-bottom: 1px solid #e6e6e6;
         }
         .list-item-img {
-            width: 1.963rem;
-            height: 1.963rem;
-            border-radius: 0.148rem;
+            width: 1.6563rem;
+            height: 1.6563rem;
+            border-radius: 0.125rem;
         }
         .list-item-info {
-            padding-left: 0.296rem;
+            padding-left: 0.25rem;
             flex: 1;
             .info-top {
                 display: flex;
                 justify-content: space-between;
                 .info-top-title {
-                    font-size: 0.519rem;
+                    font-size: 0.4375rem;
                     color: #333;
                 }
                 .info-top-price {
-                    font-size: 0.519rem;
+                    font-size: 0.4375rem;
                     .price-now {
                         color: #333;
                     }
@@ -82,12 +82,12 @@ export default {
             }
             .info-bottom {
                 &-date {
-                    font-size: 0.407rem;
+                    font-size: 0.3438rem;
                     color: #666;
                 }
                 &-count {
-                    margin-top: 0.148rem;
-                    font-size: 0.407rem;
+                    margin-top: 0.125rem;
+                    font-size: 0.3438rem;
                     color: #999;
                 }
             }
@@ -99,15 +99,15 @@ export default {
     .list-button {
         display: flex;
         justify-content: flex-end;
-        padding: 0.296rem 0.593rem;
+        padding: 0.25rem 0.5rem;
         .link-button {
-            padding: 0.148rem 0.37rem;
+            padding: 0.125rem 0.3125rem;
             text-align: center;
-            border: 0.019rem solid #999;
-            border-radius: 0.074rem;
+            border: 1px solid #999;
+            border-radius: 0.0625rem;
             color: #999;
             text-decoration: none;
-            font-size: 0.444rem;
+            font-size: 0.375rem;
         }
     }
 }

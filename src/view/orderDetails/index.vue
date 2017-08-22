@@ -57,13 +57,13 @@ export default {
 
 <style lang="scss" scoped>
     .order {
-        padding: 0 0 1.407rem;
+        padding: 0 0 1.1875rem;
         .order-head {
             display: flex;
             justify-content: space-between;
-            margin: 0.463rem 0;
-            padding: 0 0.593rem;
-            height: 1.704rem;
+            margin: 0.4063rem 0;
+            padding: 0 0.5rem;
+            height: 1.4375rem;
             background: #fff;
             border-top: 1px solid #e6e6e6;
             border-bottom: 1px solid #e6e6e6;
@@ -72,63 +72,63 @@ export default {
                 flex-direction: column;
                 justify-content: center;
                 .status {
-                    font-size:0.519rem;
+                    font-size:0.4375rem;
                     color:#49a5f1;
                 }
                 .countdown {
-                    margin-top: 0.074rem;
-                    font-size: 0.407rem;
+                    margin-top: 0.0625rem;
+                    font-size: 0.3438rem;
                     color: #bbb;
                 }
             }
             &-tips {
-                font-size: 0.444rem;
-                line-height: 1.704rem;
+                font-size: 0.375rem;
+                line-height: 1.4375rem;
             }
         }
         .order-section {
-            margin-bottom: 0.463rem;
+            margin-bottom: 0.4063rem;
             background: #fff;
             border-top: 1px solid #e6e6e6;
             border-bottom: 1px solid #e6e6e6;
             .order-section-title {
-                padding: 0 0.593rem;
-                height: 1.407rem;
-                line-height: 1.407rem;
-                font-size: 0.519rem;
-                text-indent: 0.889rem;
+                padding: 0 0.5rem;
+                height: 1.1875rem;
+                line-height: 1.1875rem;
+                font-size: 0.4375rem;
+                text-indent: 0.75rem;
                 color: #333;
                 background-image: url(~assets/images/house-icon.png);
                 background-repeat: no-repeat;
-                background-position: 0.593rem center;
-                background-size: 0.593rem;
+                background-position: 0.5rem center;
+                background-size: 0.5rem;
             }
             .order-section-info {
-                padding: 0 0.593rem;
-                margin: 0.444rem 0;
-                font-size: 0.407rem;
+                padding: 0 0.5rem;
+                margin: 0.375rem 0;
+                font-size: 0.3438rem;
                 color: #999;
                 .info {
                     display: inline-block;
-                    width: 2.222rem;
+                    width: 1.875rem;
                     color: #bbb;
                 }
             }
             .order-section-bill {
-                margin: 0.296rem 0;
-                padding: 0 0.593rem;
+                margin: 0.25rem 0;
+                padding: 0 0.5rem;
                 display: flex;
                 justify-content: space-between;
-                font-size: 0.407rem;
+                font-size: 0.3438rem;
                 &:first-child {
-                    margin: 0.444rem 0 0.296rem;
+                    margin: 0.375rem 0 0.25rem;
                 }
                 &:last-child {
-                    margin: 0.296rem 0 0.444rem;
+                    margin: 0.25rem 0 0.375rem;
                 }
                 .info {
                     display: inline-block;
-                    width: 2.222rem;
+                    width: 1.875rem;
                     color: #bbb;
                 }
                 p {
@@ -136,16 +136,16 @@ export default {
                 }
             }
             .order-section-total {
-                padding: 0 0.593rem;
+                padding: 0 0.5rem;
                 display: flex;
                 justify-content: space-between;
-                height: 1.407rem;
-                line-height: 1.407rem;
-                font-size: 0.407rem;
+                height: 1.1875rem;
+                line-height: 1.1875rem;
+                font-size: 0.3438rem;
                 border-top: 1px solid #e6e6e6;
                 .info {
                     display: inline-block;
-                    width: 2.222rem;
+                    width: 1.875rem;
                     color: #bbb;
                 }
                 p {
@@ -154,15 +154,15 @@ export default {
             }
         }
         .order-button {
-            padding: 0 0.593rem;
+            padding: 0 0.5rem;
             .button {
                 text-align: center;
                 border: 1px solid #e6e6e6;
-                border-radius: 0.148rem;
+                border-radius: 0.125rem;
                 background-color: #fff;
-                height: 1.407rem;
-                line-height: 1.407rem;
-                font-size: 0.519rem;
+                height: 1.1875rem;
+                line-height: 1.1875rem;
+                font-size: 0.4375rem;
                 color: #999;
             }
         }
