@@ -5,6 +5,11 @@ Vue.use(Router);
 
 export default new Router({
     routes: [
+        {   // 404
+            path: '/login',
+            name: 'login',
+            component: () => import('@/view/login/index')
+        },
         {
             path: '/:id',
             component: () => import('@/components/main'),
@@ -46,11 +51,6 @@ export default new Router({
                     ]
                 },
             ]
-        },
-        {   // 404
-            path: '/login',
-            name: 'login',
-            component: () => import('@/view/login/index')
         },
         {   // 404
             path: '*',
