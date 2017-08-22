@@ -18,7 +18,6 @@ export default {
 
 <style lang="scss" scoped>
     .room-wrap {
-        padding: 0.4063rem 0 0;
         .room-list {
             border-top: 1px solid #e6e6e6;
             border-bottom: 1px solid #e6e6e6;

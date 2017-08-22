@@ -1,6 +1,6 @@
 <template>
     <div class="room">
-        <header class="room-head">
+        <header class="room-head" v-show="routeName !== 'roomDetails_addTraveller'">
             <order-box :showButton="false"></order-box>
         </header>
         <router-view></router-view>
@@ -13,6 +13,14 @@ import orderBox from '@/components/orderBox';
 export default {
     components: {
         orderBox
+    },
+    mounted() {
+        console.log(this.$route.name);
+    },
+    computed: {
+        routeName() {
+            return this.$route.name;
+        }
     }
 };
 </script>
@@ -22,6 +30,7 @@ export default {
         padding: 0.4063rem 0 2.5938rem;
         .room-head {
             background-color: #fff;
+            margin-bottom: 0.4063rem;
         }
     }
 </style>
