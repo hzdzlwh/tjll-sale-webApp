@@ -1,7 +1,7 @@
 <template>
     <section class="room-info">
         <div class="room-section">
-            <div class="room-section-title" @click="choseRoom('roomDetails_room')">
+            <div class="room-section-title" @click="chooseRoom('roomDetails_room')">
                 <p class="info">房号</p>
                 <p class="number">8801</p>
                 <p class="icon">已入住</p>
@@ -59,8 +59,12 @@
 
 <script>
 export default {
+    data() {
+        return {
+        };
+    },
     methods: {
-        choseRoom(name) {
+        chooseRoom(name) {
             this.$router.push({ name });
         }
     }
