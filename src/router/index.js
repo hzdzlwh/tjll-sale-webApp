@@ -48,13 +48,18 @@ export default new Router({
             ]
         },
         {   // 404
+            path: '/login',
+            name: 'login',
+            component: () => import('@/view/login/index')
+        },
+        {   // 404
             path: '*',
             name: '404',
             component: () => import('@/view/404')
         }
     ],
     mode: 'history',
-    scrollBehavior (to, from, savedPosition) {
-        return { x: 0, y: 0 }
+    scrollBehavior(to, from, savedPosition) {
+        return { x: 0, y: 0 };
     }
 });

@@ -26,11 +26,16 @@
 
 $colorB: #333;
 $colorS: #666;
-$smallSize: 0.55rem;
-$textSize: 0.6rem;
-$titleSize: 0.65rem;
-$bigTitleSize: 0.7rem;
-$biggerTitleSize: 0.8rem;
+$smallSize: 0.407407rem;
+// 22px;
+$textSize: 0.444444rem;
+// 24px
+$titleSize: 0.481481rem;
+// 26px
+$bigTitleSize: 0.518519rem;
+// 28px
+$biggerTitleSize: 0.592593rem;
+// 32px
 $red: #d95757;
 $borderColor: #e6e6e6;
 $blue: #178ce6;
@@ -80,7 +85,7 @@ img {
         height: 1.925rem;
         background: #fff;
         line-height: 1.925rem;
-        font-size: 0.6rem;
+        font-size: $bigTitleSize;
         overflow: hidden;
         border-top: 1px solid #e3e3e3;
         border-bottom: 1px solid #e3e3e3;
