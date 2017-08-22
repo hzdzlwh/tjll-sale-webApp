@@ -47,6 +47,11 @@ export default new Router({
                             name: 'roomDetails_room',
                             path: 'room',
                             component: () => import('@/view/roomDetails/room')
+                        },
+                        {
+                            name: 'roomDetails_addTraveller',
+                            path: 'addTraveller',
+                            component: () => import('@/view/roomDetails/addTraveller')
                         }
                     ]
                 }

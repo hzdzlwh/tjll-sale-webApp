@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="room-section">
-            <div class="room-section-title" @click="choseRoom('roomDetails_room')">
+            <div class="room-section-title" @click="chooseRoom('roomDetails_room')">
                 <p class="info">房号</p>
                 <p class="number">自助选房</p>
                 <p class="icon icon-choose"></p>
@@ -41,14 +41,14 @@
                     </div>
                 </div>
                 <div class="people-item">
-                    <div class="info info-add">
+                    <div class="info info-add" @click="handleTraveller('add')">
                         添加入住人
                     </div>
                 </div>
             </div>
         </div>
         <div class="room-section">
-            <div class="room-section-title" @click="choseRoom('roomDetails_room')">
+            <div class="room-section-title" @click="chooseRoom('roomDetails_room')">
                 <p class="info">房号</p>
                 <p class="number">8801</p>
                 <p class="icon icon-cancel">已入住</p>
@@ -66,6 +66,14 @@ export default {
     methods: {
         chooseRoom(name) {
             this.$router.push({ name });
+        },
+        handleTraveller(condition) {
+            if (condition === 'add') {
+                this.jumpRouter('roomDetails_addTraveller');
+            }
+        },
+        jumpRouter(name) {
+            this.$router.push({ name });
         }
     }
 };
@@ -78,7 +86,7 @@ export default {
         font-size: 0.4375rem;
         border-top: 1px solid #e6e6e6;
         border-bottom: 1px solid #e6e6e6;
-        margin: 0.4063rem 0;
+        margin-bottom: 0.4063rem;
         &-title {
             display: flex;
             padding: 0 0.5rem;
