@@ -1,10 +1,10 @@
 <template>
-    <section>
+    <section class="room-info">
         <div class="room-section">
             <div class="room-section-title" @click="choseRoom('roomDetails_room')">
                 <p class="info">房号</p>
                 <p class="number">8801</p>
-                <p class="button"></p>
+                <p class="icon">已入住</p>
             </div>
             <div class="room-section-main">
                 <div class="people-item">
@@ -15,6 +15,43 @@
                         秋丽 445************624
                     </div>
                 </div>
+                <div class="people-item">
+                    <div class="info">
+                        入住人
+                    </div>
+                    <div class="main">
+                        秋丽 445************624
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="room-section">
+            <div class="room-section-title" @click="choseRoom('roomDetails_room')">
+                <p class="info">房号</p>
+                <p class="number">自助选房</p>
+                <p class="icon icon-choose"></p>
+            </div>
+            <div class="room-section-main">
+                <div class="people-item">
+                    <div class="info info-delete">
+                        入住人
+                    </div>
+                    <div class="main">
+                        秋丽 445************624
+                    </div>
+                </div>
+                <div class="people-item">
+                    <div class="info info-add">
+                        添加入住人
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="room-section">
+            <div class="room-section-title" @click="choseRoom('roomDetails_room')">
+                <p class="info">房号</p>
+                <p class="number">8801</p>
+                <p class="icon icon-cancel">已入住</p>
             </div>
         </div>
     </section>
@@ -31,11 +68,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.room-info{
     .room-section {
         background: #fff;
         font-size: 0.519rem;
         border-top: 1px solid #e6e6e6;
         border-bottom: 1px solid #e6e6e6;
+        margin: 0.481rem 0;
         &-title {
             display: flex;
             padding: 0 0.593rem;
@@ -50,17 +89,30 @@ export default {
                 flex: 1;
                 color: #333;
             }
-            .button {
+            .icon {
+                padding-right: 0.111rem;
                 width: 1.741rem;
                 text-align: right;
                 background-image: url(~assets/images/tips@1x.png);
                 background-repeat: no-repeat;
                 background-position: center;
+                background-size: 1.741rem 0.741rem;
+                color: #fff;
+                font-size: 0.407rem;
+                &.icon-cancel {
+                    background-image: url(~assets/images/tips-gray@1x.png);
+                }
+                &.icon-choose {
+                    background-image: url(~assets/images/left-icon@1x.png);
+                    background-size: 16px 28px;
+                    background-position: center left;
+                    transform: rotateZ(180deg);
+                }
             }
         }
         &-main {
-            padding: 0 0.593rem;
             .people-item {
+                padding: 0 0.593rem;
                 display: flex;
                 height: 1.407rem;
                 line-height: 1.407rem;
@@ -68,9 +120,27 @@ export default {
                     width: 2.963rem;
                     color: #999;
                 }
+                .info-delete {
+                    background-image: url(~assets/images/delete-icon@1x.png);
+                    background-repeat: no-repeat;
+                    background-position: center left;
+                    background-size: 0.593rem 0.593rem;
+                    text-indent: 0.741rem;
+                }
+                .info-add {
+                    flex: 1;
+                    background-image: url(~assets/images/add-icon@1x.png);
+                    background-repeat: no-repeat;
+                    background-position: center left;
+                    background-size: 0.593rem 0.593rem;
+                    text-indent: 0.741rem;
+                }
                 .main {
                     flex: 1;
                 }
+            }
+            .people-item + .people-item {
+                border-top: 1px solid #e6e6e6;
             }
             .button {
                 display: flex;
@@ -81,4 +151,5 @@ export default {
             }
         }
     }
+}
 </style>

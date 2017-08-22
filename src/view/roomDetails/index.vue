@@ -21,7 +21,6 @@ export default {
     .room {
         padding: 0.481rem 0 1.407rem;
         .room-head {
-            margin-bottom: 0.481rem;
             background-color: #fff;
         }
     }
