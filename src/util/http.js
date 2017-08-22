@@ -1,9 +1,10 @@
 /*
 * @Author: lxj
 * @Date:   2017-08-17 11:17:07
-* @Last Modified by:   linxinjian
-* @Last Modified time: 2017-08-17 11:43:33
+* @Last Modified by:   lxj
+* @Last Modified time: 2017-08-22 16:17:13
 */
+/* eslint-disable */
 require('cookie');
 
 import { Loading, Message } from 'element-ui';
@@ -30,12 +31,13 @@ axios.interceptors.response.use((response) => {
 });
 
 const http = {
-    request(method, path, data, config) {
+    request(method, path, dataConfig, config) {
         const defaultConfig = {
             notify: true, // 错误提示
             loading: true
         };
-        let config = Object.assign(defaultConfig, config);
+        let data = dataConfig;
+        const interConfig = Object.assign(defaultConfig, config);
         if (!data) {
             data = {};
         }
@@ -45,14 +47,14 @@ const http = {
         }
 
         if (method === 'get') {
-            config.params = data;
+            interConfig.params = data;
         }
 
         if (method === 'post') {
-            config.data = qs.stringify(data);
+            interConfig.data = qs.stringify(data);
         }
-        const loadingInstance = undefined;
-        if (config.loading) {
+        let loadingInstance;
+        if (interConfig.loading) {
             loadingInstance = Loading.service();
         }
 
@@ -60,11 +62,11 @@ const http = {
         return axios.request({
             method,
             url,
-            ...config
+            config: interConfig
         })
             .then(res => {
                 if (res.data.code !== 1) {
-                    if (config.notify && res.data.code !== 5) {
+                    if (interConfig.notify && res.data.code !== 5) {
                         Message.error(res.data.msg);
                     } else if (res.data.code === 5 && !logoutErr) {
                         logoutErr = true;
@@ -99,7 +101,7 @@ const http = {
                 return res.data;
             })
             .finally(() => {
-                config.loading && loadingInstance.close();
+                interConfig.loading && loadingInstance.close();
             });
     },
     get(path, data, config) {
@@ -117,34 +119,34 @@ const http = {
         result.version = data.version || -1;
         result.kick = true;
         const array = [];
-        for (const key in result) {
-            array.push(result[key]);
+        for(const key in result) {
+            if (Object.prototype.hasOwnProperty.call(result, key)) {
+                array.push(result[key]);
+            }
         }
-
         array.push(localStorage.getItem('token'));
         array.sort();
         const str = array.join('');
         result.sign = md5(str);
         return result;
-    },
-    paramsToString(params) {
-        const paramsArray = [];
-        for (const name in params) {
-            if (params.hasOwnProperty(name)) {
-                let str = '';
-                if (params[name] !== null && params[name] !== undefined) {
-                    str = JSON.stringify(params[name]);
-                }
-                if (str.substring(0, 1) === '\"' && str.substring(str.length - 1) === '\"') {
-                    str = str.substring(1, str.length - 1);
-                }
-
-                paramsArray.push(`${name}=${str}`);
-            }
-        }
-
-        return paramsArray.join('&');
     }
+    // paramsToString(params) {
+    //     const paramsArray = [];
+    //     for (const name in params) {
+    //         if (params.hasOwnProperty(name)) {
+    //             let str = '';
+    //             if (params[name] !== null && params[name] !== undefined) {
+    //                 str = JSON.stringify(params[name]);
+    //             }
+    //             if (str.substring(0, 1) === '"' && str.substring(str.length - 1) === '"') {
+    //                 str = str.substring(1, str.length - 1);
+    //             }
+
+    //             paramsArray.push(`${name}=${str}`);
+    //         }
+    //     }
+
+    //     return paramsArray.join('&');
+    // }
 };
-module.exports = http;
 export default http;

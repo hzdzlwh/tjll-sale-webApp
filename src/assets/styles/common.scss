@@ -26,21 +26,22 @@
 
 $colorB: #333;
 $colorS: #666;
-$smallSize: 0.407407rem;
+$smallSize: 0.34375rem;
 // 22px;
-$textSize: 0.444444rem;
+$textSize: 0.375rem;
 // 24px
-$titleSize: 0.481481rem;
+$titleSize:0.40625rem;
 // 26px
 $bigTitleSize: 0.4375rem;
 // 28px
-$biggerTitleSize: 0.592593rem;
+$biggerTitleSize: 0.5rem;
 // 32px
 $red: #d95757;
 $borderColor: #e6e6e6;
 $blue: #178ce6;
 $grey: #a0a0a0;
-
+$disabled: #ccc;
+$agree : #49a5f1;
 *{
     box-sizing: border-box;
 }
@@ -73,28 +74,44 @@ img {
 
 ::-webkit-scrollbar {
     display: none;
-    font-size:0.21875rem;
+    font-size:$bigTitleSize
 }
-
+.button{
+    background:#49a5f1;
+    border-radius:8px;
+    height:1.1875rem;
+    color:#fff;
+    font-size:$bigTitleSize;
+    line-height:1.1875rem;
+    text-align:center;
+    cursor: pointer;
+}
+.disabled{
+    background-color: $disabled;
+}
+.agree{
+    background-color:$agree;
+}
 .login{
     ::-webkit-input-placeholder{
         color:#ccc;
     }
     input{
         border: none;
-        font-size:0.21875rem;
+        font-size:$bigTitleSize;
         color:#cccccc;
         letter-spacing:0;
-        line-height:0.21875rem;
+        line-height:$bigTitleSize;
         text-align:left;
         outline: none;
         flex:1;
+        max-width:4.4375rem;
     }
     label{
         width:2.4375rem;
         display:inline-block;
         color:#333;
-        font-size:0.21875rem;
+        font-size:$bigTitleSize;
     }
     .telephone{
         border-bottom: 1px solid #e3e3e3;
@@ -102,12 +119,12 @@ img {
     .loginInput{
         display:flex;
         flex-flow: row;
-        padding:0 0.592593rem;
+        padding:0 0.5rem;
         vertical-align:bottom;
-        height: 1.925rem;
+        height: 1.1875rem;
         background: #fff;
-        line-height: 1.925rem;
-        font-size: 0.518519rem;
+        line-height: 1.1875rem;
+        font-size: $bigTitleSize;
         border-bottom: 1px solid #e3e3e3;
     }
     .captcha-container {
@@ -118,43 +135,30 @@ img {
     .img-code {
         background:#cccccc;
         border-radius:4px;
-        width:2.518519rem;
-        height:0.851852rem;
-        position: relative;
-        top: 0.555556rem;
-        line-height:0.851852rem;
+        width:2.125rem;
+        height:0.71875rem;
+        line-height:0.71875rem;
         text-align:center;
+        align-self: center;
     }
     .code{
         .getCode{
             border-radius:4px;
-            width:2.518519rem;
-            height:0.851852rem;
-            line-height:0.592593rem;
-            position: relative;
-            top: 0.555556rem;
-            font-size:0.333333rem;
-            padding:8px;
+            width:2.125rem;
+            height:0.625rem;
+            line-height:0.625rem;
+            font-size:0.375rem;
+            // padding:8px;
             text-align: center;
             background: #1799df;
             display:inline-block;
             border: 0;
             color:#fff;
+            align-self: center;
+            // box-sizing: content-box;
         }
     }
-    .button{
-        width: 90%;
-        margin: 0.75rem auto;
-        text-align: center;
-        line-height: 1.925rem;
-        height: 1.925rem;
-        background: #1799df;
-        color: #fff;
-        font-size: 0.6rem;
-        border-radius: 0.25rem;
-        border: 0;
-    }
-    .disabled {
-        background-color: rgba($blue, 0.6);
+    .loginButtom{
+        padding: 0.75rem 0.5rem 0 
     }
 }
