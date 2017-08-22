@@ -40,7 +40,8 @@
             </div>
         </section>
         <div class="order-button">
-            <div class="button">取消订单</div>
+            <div class="order-button-cancel">取消订单</div>
+            <div class="order-button-pay">去支付</div>
         </div>
     </div>
 </template>
@@ -57,11 +58,11 @@ export default {
 
 <style lang="scss" scoped>
     .order {
-        padding: 0 0 1.1875rem;
+        padding: 0.4063rem 0 2.5938rem;
         .order-head {
             display: flex;
             justify-content: space-between;
-            margin: 0.4063rem 0;
+            margin-bottom: 0.4063rem;
             padding: 0 0.5rem;
             height: 1.4375rem;
             background: #fff;
@@ -154,8 +155,19 @@ export default {
             }
         }
         .order-button {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
             padding: 0 0.5rem;
-            .button {
+            height: 2.1875rem;
+            background-color: #fff;
+            border-top: 1px solid #e6e6e6;
+            .order-button-cancel, .order-button-pay {
+                width: 4.25rem;
                 text-align: center;
                 border: 1px solid #e6e6e6;
                 border-radius: 0.125rem;
@@ -164,6 +176,10 @@ export default {
                 line-height: 1.1875rem;
                 font-size: 0.4375rem;
                 color: #999;
+            }
+            .order-button-pay {
+                background-color: #49a5f1;
+                color: #fff;
             }
         }
     }
