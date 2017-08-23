@@ -61,16 +61,15 @@ export default {
             this.t = this.t + 1;
         },
         subForm() {
-            // if (this.phone.length !== 11 || !this.subCode) {
-            //     return;
-            // }
-            // this.login({ params: {
-            //     code: this.subCode,
-            //     phone: this.phone
-            // } }).then(() => {
-            //     this.$router.go(`/${123}/index`);
-            // });
-            this.$router.push(`/${123}/index`);
+            if (this.phone.length !== 11 || !this.subCode) {
+                return;
+            }
+            this.login({ params: {
+                code: this.subCode,
+                phone: this.phone
+            } }).then(() => {
+                this.$router.push(this.$router.query.render);
+            });
         },
         getCode() {
             if (this.phone.length !== 11) {
