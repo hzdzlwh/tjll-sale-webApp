@@ -15,14 +15,21 @@ const store = new Vuex.Store({
     state: {
         phone: '',
         uuid: '',
-        name: ''
+        name: '',
+        orderList: {},
+        campId: '54797361'
     },
     mutations: {
         [types.SET_LOGIN](state, { user }) {
             state.phone = user.phone;
             state.uuid = user.uuid;
             state.name = user.name;
+        },
+        [types.GET_ORDER_LIST](state, data) {
+            state.orderList = data;
+            console.log(state.orderList);
         }
+
     },
     actions: {
         [types.LOGIN]({ commit }, { params }) {
@@ -40,6 +47,16 @@ const store = new Vuex.Store({
                             reject(res);
                         }
                     });
+            });
+        },
+        [types.GET_ORDER_LIST]({ commit }, { campId, phone, uuid }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getOrderList', { campId, phone, uuid }).then(res => {
+                    commit(types.GET_ORDER_LIST, res.data);
+                    resolve(res.data);
+                }).catch(err => {
+                    reject(err);
+                });
             });
         }
     }
