@@ -17,7 +17,7 @@
     <label for="code ">短信验证码</label>
     <input name="code" v-model='subCode' placeholder="请输入短信验证码" maxlength="6"><div class="getCode" @click='getSubCode'>{{codeText}}</div></div>
     <div class="loginButtom">
-    <div class="button disabled" :class='{disabled: !vaild, agree: vaild}' disabled="" @click='subForm'>确定</div></div>
+    <div class="button" :class='{disabled: !vaild, agree: vaild}' disabled="" @click='subForm'>确定</div></div>
     <!-- <div class="button agree" disabled="">登录</div></div> -->
         
     </div>
@@ -46,7 +46,7 @@ export default {
     },
     computed: {
         vaild() {
-            return this.phone.length === 11 && this.code.length === 4 && this.subCode.length === 5;
+            return this.phone.length === 11 && this.code.length === 4 && this.subCode.length;
         }
     },
     methods: {
@@ -61,13 +61,16 @@ export default {
             this.t = this.t + 1;
         },
         subForm() {
-            if (this.phone.length !== 11 || !this.subCode) {
-                return;
-            }
-            this.login({ params: {
-                code: this.subCode,
-                phone: this.phone
-            } });
+            // if (this.phone.length !== 11 || !this.subCode) {
+            //     return;
+            // }
+            // this.login({ params: {
+            //     code: this.subCode,
+            //     phone: this.phone
+            // } }).then(() => {
+            //     this.$router.go(`/${123}/index`);
+            // });
+            this.$router.push(`/${123}/index`);
         },
         getCode() {
             if (this.phone.length !== 11) {

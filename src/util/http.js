@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 11:17:07
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-08-23 14:24:34
+* @Last Modified time: 2017-08-23 14:28:09
 */
 /* eslint-disable */
 require('cookie');
@@ -134,9 +134,9 @@ const http = {
         result.campId = data.campId || localStorage.getItem('campId');
         result.uid =  data.uid || localStorage.getItem('uid');
         result.phone =  data.phone || localStorage.getItem('phone');
-        // result.terminal = 1;
-        // result.version = data.version || -1;
-        // result.kick = true;
+        result.terminal = 1;
+        result.version = data.version || -1;
+        result.kick = true;
         const array = [];
         for(const key in result) {
             if (Object.prototype.hasOwnProperty.call(result, key)) {

@@ -64,8 +64,9 @@ export default new Router({
         }
     ],
     beforeEach: (to, from, next) => {
-        window.console.log(to);
-        window.console.log(from);
+        if (to.mate.auth && !window.localStorage.getItems('uuid')) {
+            next(`/${to.params}/login?render=${from.fullPath}`);
+        }
         next();
     },
     mode: 'history',
