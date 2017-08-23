@@ -6,5 +6,6 @@
 */
 export default {
     LOGIN: 'login',
-    SET_LOGIN: 'setLogin'
+    SET_LOGIN: 'setLogin',
+    GET_ORDER_LIST: 'getOrderList'
 };

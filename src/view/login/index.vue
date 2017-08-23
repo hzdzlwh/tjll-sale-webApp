@@ -19,7 +19,7 @@
     <div class="loginButtom">
     <div class="button" :class='{disabled: !vaild, agree: vaild}' disabled="" @click='subForm'>确定</div></div>
     <!-- <div class="button agree" disabled="">登录</div></div> -->
-        
+
     </div>
 </template>
 <style>
