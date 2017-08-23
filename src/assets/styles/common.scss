@@ -53,7 +53,11 @@ img {
 input {
     border: none;
     outline: none;
+    -webkit-appearance: none;
+     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+     background-color: #fff;
 }
+
 ::-webkit-input-placeholder{
     color:#ccc;
 }

@@ -7,7 +7,7 @@
             </div>
             <div class="traveller-form-item">
                 <label class="form-label" for="telephone">手机号</label>
-                <input class="form-input" type="telephone" placeholder="请输入正确的手机号">
+                <input class="form-input" v-model="tel" type="telephone" placeholder="请输入正确的手机号">
             </div>
             <div class="traveller-form-item">
                 <label class="form-label" for="certificate">证件号</label>
@@ -19,6 +19,16 @@
 
 <script>
 export default {
+    data() {
+        return {
+            tel: ''
+        };
+    },
+    watch: {
+        tel(value) {
+            this.tel = value.slice(0, 11);
+        }
+    }
 };
 </script>
 
