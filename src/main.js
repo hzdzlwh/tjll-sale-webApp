@@ -4,12 +4,13 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from '@/store/index';
+import notify from '@/components/common/notify/notify';
 // import 'normalize.css';
 
 import '@/assets/styles/common.scss';
 
 Vue.config.productionTip = false;
-
+Vue.prototype.$notify = notify;
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

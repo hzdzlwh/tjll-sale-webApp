@@ -2,13 +2,13 @@
 * @Author: lxj
 * @Date:   2017-08-17 11:17:07
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-08-22 17:46:46
+* @Last Modified time: 2017-08-23 14:24:34
 */
 /* eslint-disable */
 require('cookie');
 import { devRoute } from './config.js'
 import { Loading, Message } from 'element-ui';
-
+import notify from '@/components/common/notify/notify.js';
 import Raven from 'raven-js';
 import axios from 'axios';
 import qs from 'qs';
@@ -83,7 +83,9 @@ const http = {
             .then(res => {
                 if (res.data.code !== 1) {
                     if (interConfig.notify && res.data.code !== 5) {
-                        Message.error(res.data.msg || '内部错误');
+                        notify.warning(res.data.msg || '内部错误');
+                        // vue.notify.warning(res.data.msg || '内部错误');
+                        // Message.error(res.data.msg || '内部错误');
                     } else if (res.data.code === 5 && !logoutErr) {
                         logoutErr = true;
                         window.localStorage.clear();
@@ -128,12 +130,13 @@ const http = {
     },
     getDataWithToken(data) {
         const result = { ...data };
-        result.timestamp = (new Date()).valueOf();
+        // result.timestamp = (new Date()).valueOf();
         result.campId = data.campId || localStorage.getItem('campId');
-        result.uid = localStorage.getItem('uid');
-        result.terminal = 1;
-        result.version = data.version || -1;
-        result.kick = true;
+        result.uid =  data.uid || localStorage.getItem('uid');
+        result.phone =  data.phone || localStorage.getItem('phone');
+        // result.terminal = 1;
+        // result.version = data.version || -1;
+        // result.kick = true;
         const array = [];
         for(const key in result) {
             if (Object.prototype.hasOwnProperty.call(result, key)) {

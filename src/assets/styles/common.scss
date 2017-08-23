@@ -68,19 +68,20 @@ input {
     }
     input{
         border: none;
-        font-size:0.21875rem;
+        font-size:$bigTitleSize;
         color:#cccccc;
         letter-spacing:0;
-        line-height:0.21875rem;
+        line-height:$bigTitleSize;
         text-align:left;
         outline: none;
         flex:1;
+        max-width: 3.859375rem;
     }
     label{
         width:2.4375rem;
         display:inline-block;
         color:#333;
-        font-size:0.21875rem;
+        font-size:$bigTitleSize;
     }
     .telephone{
         border-bottom: 1px solid #e3e3e3;
@@ -93,7 +94,7 @@ input {
         height: 1.925rem;
         background: #fff;
         line-height: 1.925rem;
-        font-size: 0.518519rem;
+        font-size: $bigTitleSize;
         border-bottom: 1px solid #e3e3e3;
     }
     .captcha-container {
@@ -132,15 +133,15 @@ input {
         width: 90%;
         margin: 0.75rem auto;
         text-align: center;
-        line-height: 1.925rem;
-        height: 1.925rem;
-        background: #1799df;
+        line-height: 1.1875rem;
+        height: 1.1875rem;
+        background: #49a5f1;
         color: #fff;
-        font-size: 0.6rem;
+        font-size: $bigTitleSize;
         border-radius: 0.25rem;
         border: 0;
     }
     .disabled {
-        background-color: rgba($blue, 0.6);
+        background-color: #ccc;
     }
 }
