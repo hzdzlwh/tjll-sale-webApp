@@ -15,7 +15,6 @@ export default {
         orderBox
     },
     mounted() {
-        console.log(this.$route.name);
     },
     computed: {
         routeName() {

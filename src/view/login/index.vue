@@ -68,7 +68,8 @@ export default {
                 code: this.subCode,
                 phone: this.phone
             } }).then(() => {
-                this.$router.push(this.$router.query.render);
+                // this.$router.push(this.$router.query.render);
+                this.$router.push({ name: 'myOrder' });
             });
         },
         getCode() {

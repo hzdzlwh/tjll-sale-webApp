@@ -16,7 +16,7 @@ const store = new Vuex.Store({
         phone: '',
         uuid: '',
         name: '',
-        orderList: {},
+        orderList: [],
         campId: '54797361'
     },
     mutations: {
@@ -26,8 +26,7 @@ const store = new Vuex.Store({
             state.name = user.name;
         },
         [types.GET_ORDER_LIST](state, data) {
-            state.orderList = data;
-            console.log(state.orderList);
+            state.orderList = data.list;
         }
 
     },
