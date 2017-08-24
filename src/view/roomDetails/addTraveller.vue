@@ -65,25 +65,25 @@ export default {
         border-bottom: 1px solid #e6e6e6;
         .traveller-form-item {
             display: flex;
-            padding: 0 32px;
-            height: 76px;
-            line-height: 76px;
-            font-size: 28px;
+            padding: 0 0.5rem;
+            height: 1.1875rem;
+            line-height: 1.1875rem;
+            font-size: 0.4375rem;
             .form-label {
                 position: relative;
-                width: 160px;
+                width: 2.5rem;
                 color: #333;
-                text-indent: 22px;
+                text-indent: 0.3438rem;
                 &.form-label-required {
                     &::before {
                         content: '';
                         position: absolute;
                         left: 0;
                         top: 0;
-                        width: 22px;
+                        width: 0.3438rem;
                         height: 100%;
                         background-repeat: no-repeat;
-                        background-size: 11px 10px;
+                        background-size: 0.1719rem 0.1563rem;
                         background-position: center left;
                         background-image: url(~assets/images/star@1x.png);
                     }
@@ -98,41 +98,41 @@ export default {
         }
     }
     .traveller-control {
-        padding: 0 32px;
-        height: 60px;
-        line-height: 60px;
+        padding: 0 0.5rem;
+        height: 0.9375rem;
+        line-height: 0.9375rem;
         .traveller-control-checkbox {
             display: flex;
             justify-content: flex-end;
-            font-size: 24px;
+            font-size: 0.375rem;
             color: #666;
             &.active {
                 .icon {
                     background-color: #49a5f1;
                     background-image: url(~assets/images/choose.png);
-                    background-size: 28px 20px;
+                    background-size: 0.4375rem 0.3125rem;
                     background-position: center;
                     background-repeat: no-repeat;
                     border: none;
                 }
             }
             .icon {
-                margin-top: 12px;
-                margin-right: 12px;
-                height: 36px;
-                width: 36px;
+                margin-top: 0.1875rem;
+                margin-right: 0.1875rem;
+                height: 0.5625rem;
+                width: 0.5625rem;
                 border: 1px solid #999;
                 background-color: #fff;
-                border-radius: 8px;
+                border-radius: 0.125rem;
             }
         }
     }
     .traveller-title {
-        padding: 0 32px;
+        padding: 0 0.5rem;
         color: #666;
-        font-size: 24px;
-        height: 60px;
-        line-height: 60px;
+        font-size: 0.375rem;
+        height: 0.9375rem;
+        line-height: 0.9375rem;
     }
     .traveller-section {
         background: #fff;
@@ -140,14 +140,14 @@ export default {
         border-bottom: 1px solid #e6e6e6;
         .traveller-section-item {
             position: relative;
-            padding: 0 32px;
+            padding: 0 0.5rem;
             display: flex;
-            height: 76px;
-            line-height: 76px;
+            height: 1.1875rem;
+            line-height: 1.1875rem;
             color: #333;
-            font-size: 28px;
+            font-size: 0.4375rem;
             .name {
-                width: 100px;
+                width: 1.5625rem;
             }
             .id {
                 flex: 1;

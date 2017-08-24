@@ -1,38 +1,36 @@
 <template>
     <div class="order">
+        <div class="qrcode-box" v-if="orderDetails.qrcodeUrl">
+            <img class="qrcode-img" :src="orderDetails.qrcodeUrl" alt="qrcode">
+            <a :href="orderDetails.qrcodeUrl" :download="orderDetails.qrcodeUrl" class="qrcode-download">保存二维码</a>
+        </div>
         <header class="order-head">
             <p class="order-head-status">
-                <span class="status">等待付款</span>
-                <span class="countdown">剩余14分12秒</span>
+                <span class="status">{{ orderDetails.orderState | orderState }}</span>
+                <span class="countdown" v-if="orderDetails.orderState === -1">剩余14分12秒</span>
             </p>
             <p class="order-head-tips">计划出行：8月3日</p>
         </header>
         <section class="order-section">
             <p class="order-section-title">住宿</p>
-            <order-box :bottomBorder="false"></order-box>
-            <order-box :bottomBorder="false"></order-box>
-            <order-box :bottomBorder="false"></order-box>
+            <order-box :bottomBorder="false" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
         </section>
         <section class="order-section">
-            <p class="order-section-info"><span class="info">联系人</span>秋丽</p>
-            <p class="order-section-info"><span class="info">手机号</span>15068790698</p>
+            <p class="order-section-info"><span class="info">联系人</span>{{ orderDetails.customerName }}</p>
+            <p class="order-section-info"><span class="info">手机号</span>{{ orderDetails.customerPhone }}</p>
         </section>
         <section class="order-section">
-            <p class="order-section-info"><span class="info">订单号</span>1708080952122700907</p>
-            <p class="order-section-info"><span class="info">创建时间</span>2017-08-08 09:52:12</p>
+            <p class="order-section-info"><span class="info">订单号</span>{{ orderDetails.orderNum }}</p>
+            <p class="order-section-info"><span class="info">创建时间</span>{{ orderDetails.createDate }}</p>
         </section>
         <section class="order-section">
             <div class="order-section-bill">
                 <p class="info">金额</p>
-                <p>￥ 200.00</p>
+                <p>￥ {{ orderDetails.payment.total }}</p>
             </div>
-            <div class="order-section-bill">
-                <p class="info">星球币</p>
-                <p>-￥ 50.00</p>
-            </div>
-            <div class="order-section-bill">
-                <p class="info">余额</p>
-                <p>-￥ 50.00</p>
+            <div class="order-section-bill" v-for="paid in orderDetails.payment.paid">
+                <p class="info">{{ paid.name }}</p>
+                <p>-￥{{ paid.fee }}</p>
             </div>
             <div class="order-section-total">
                 <p class="info">微信付款</p>
@@ -48,10 +46,23 @@
 
 <script>
 import orderBox from '@/components/orderBox';
+import { mapState } from 'vuex';
+import { orderState } from '@/util/filters';
 
 export default {
+    asyncData({ store, route }) {
+        return store.dispatch('getOrderDetail', route.params.orderId);
+    },
+    computed: {
+        ...mapState([
+            'orderDetails'
+        ])
+    },
     components: {
         orderBox
+    },
+    filters: {
+        orderState
     }
 };
 </script>
@@ -180,6 +191,31 @@ export default {
             .order-button-pay {
                 background-color: #49a5f1;
                 color: #fff;
+            }
+        }
+        .qrcode-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .qrcode-img {
+                width: 5.1563rem;
+                height: 5.1563rem;
+                border-radius: 0.1563rem;
+                margin-bottom: 0.4063rem;
+            }
+            .qrcode-download {
+                display: block;
+                text-decoration: none;
+                font-size: 0.375rem;
+                text-align: center;
+                line-height: 0.875rem;
+                height: 0.875rem;
+                width: 3.375rem;
+                border: 1px solid #49a5f1;
+                color: #49a5f1;
+                background: #fff;
+                border-radius: 0.125rem;
+                margin-bottom: 0.4063rem;
             }
         }
     }

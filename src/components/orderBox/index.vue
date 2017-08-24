@@ -1,18 +1,18 @@
 <template>
     <div class="wrap">
         <div class="list-item" :class="{ 'border-top': topBorder, 'border-bottom': bottomBorder }">
-            <img class="list-item-img" src="~assets/images/Mask@1x.png" alt="bg">
+            <img class="list-item-img" :src="data.imgUrl" alt="bg">
             <div class="list-item-info">
                 <div class="info-top">
-                    <p class="info-top-title">西湖国宾馆</p>
+                    <p class="info-top-title">{{ data.name }}</p>
                     <div class="info-top-price">
-                        <p class="price-now">￥100.00</p>
+                        <p class="price-now">￥{{ data.price }}</p>
                         <p class="price-original">￥150.00</p>
                     </div>
                 </div>
                 <div class="info-bottom">
-                    <p class="info-bottom-date">2017-08-03~2017-08-04</p>
-                    <p class="info-bottom-count">1晚 2间</p>
+                    <p class="info-bottom-date">{{ data.startDate }} ~ {{ data.endDate }}</p>
+                    <p class="info-bottom-count">1晚 {{ data.num }}{{ data.unit }}</p>
                 </div>
             </div>
         </div>
@@ -36,6 +36,10 @@ export default {
         showButton: {
             type: Boolean, // 控制按钮显示
             default: true
+        },
+        data: {
+            type: Object,
+            required: true
         }
     }
 };
@@ -71,6 +75,7 @@ export default {
                 }
                 .info-top-price {
                     font-size: 0.4375rem;
+                    text-align: right;
                     .price-now {
                         color: #333;
                     }

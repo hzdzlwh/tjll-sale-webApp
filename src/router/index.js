@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '@/store';
 
 Vue.use(Router);
 
@@ -28,7 +29,7 @@ const router = new Router({
                     component: () => import('@/view/login/index')
                 },
                 {   // 订单详情
-                    path: 'orderDetails',
+                    path: 'orderDetails/:orderId',
                     name: 'orderDetails',
                     component: () => import('@/view/orderDetails')
                 },
@@ -69,13 +70,26 @@ const router = new Router({
     }
 });
 
+router.beforeResolve((to, from, next) => {
+    const matched = router.getMatchedComponents(to);
+    const asyncDataHooks = matched.map(c => c.asyncData).filter(_ => _);
+    if (!asyncDataHooks.length) {
+        next();
+    } else {
+        Promise.all(asyncDataHooks.map(hook => hook({ route: to, store }))).then(() => {
+            next();
+        }).catch(() => {
+            next();
+        });
+    }
+});
+
 router.beforeEach((to, from, next) => {
-    let routerPath;
+    // let routerPath;
     // if (to.mate.auth && !window.localStorage.getItems('uuid')) {
     //     next(`/${to.params}/login?render=${from.fullPath}`);
     // }
-    console.log('ok');
-    next();
-})
+    return next();
+});
 
 export default router;

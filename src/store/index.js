@@ -17,7 +17,7 @@ const store = new Vuex.Store({
         uuid: '',
         name: '',
         orderList: [],
-        campId: '54797361',
+        campId: '',
         orderDetails: {}
     },
     mutations: {
@@ -28,6 +28,7 @@ const store = new Vuex.Store({
             localStorage.uuid = user.uuid;
             localStorage.phone = user.phone;
             localStorage.name = user.name;
+            localStorage.campId = '54797361';
         },
         [types.GET_ORDER_LIST](state, data) {
             state.orderList = data.list;
@@ -54,9 +55,9 @@ const store = new Vuex.Store({
                     });
             });
         },
-        [types.GET_ORDER_LIST]({ commit }, { campId }) {
+        [types.GET_ORDER_LIST]({ commit }) {
             return new Promise((resolve, reject) => {
-                http.get('/directNet/getOrderList', { campId }).then(res => {
+                http.get('/directNet/getOrderList').then(res => {
                     commit(types.GET_ORDER_LIST, res.data);
                     resolve(res.data);
                 }).catch(err => {
@@ -64,10 +65,11 @@ const store = new Vuex.Store({
                 });
             });
         },
-        [types.GET_ORDER_DETAIL]({ commit }, { campId, orderId }) {
+        [types.GET_ORDER_DETAIL]({ commit }, orderId) {
             return new Promise((resolve, reject) => {
-                http.get('/directNet/getOrderDetail', { campId, orderId }).then(res => {
-                    commit(types.GET_ORDER_LIST, res.data);
+                http.get('/directNet/getOrderDetail', { orderId }).then(res => {
+                    commit(types.GET_ORDER_DETAIL, res.data);
+                    resolve(res);
                 }).catch(err => {
                     reject(err);
                 });

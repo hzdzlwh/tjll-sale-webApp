@@ -55,10 +55,50 @@ export const secondsFormat = (time) => {
 }
 /**
  * 字符串长度格式化
- * @param  {string} str    
+ * @param  {string} str
  * @param  {number} length 需要的长度
  * @return {string}        格式化后的字符串
  */
 export const strLengthFormat = (str, length) => {
 	return str.substr(0,length)
+}
+
+/**
+ * 订单状态格式化
+ * @param  {string} state
+ * @return {string}
+ */
+export const orderState = (state) => {
+    let str;
+    switch (state) {
+        case -1:
+            str = '未支付'
+            break;
+        case 0:
+            str = '待处理'
+            break;
+        case 1:
+            str = '已拒绝'
+            break;
+        case 2:
+            str = '已预订'
+            break;
+        case 3:
+            str = '进行中'
+            break;
+        case 4:
+            str = '已取消'
+            break;
+        case 5:
+            str = '已完成'
+            break;
+        default:
+            str = 'error'
+    }
+    return str;
+}
+
+export const payState = (state) => {
+    let str;
+
 }
