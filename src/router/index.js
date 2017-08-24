@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     routes: [
         {
             path: '/:id',
@@ -63,14 +63,19 @@ export default new Router({
             component: () => import('@/view/404')
         }
     ],
-    beforeEach: (to, from, next) => {
-        if (to.mate.auth && !window.localStorage.getItems('uuid')) {
-            next(`/${to.params}/login?render=${from.fullPath}`);
-        }
-        next();
-    },
     mode: 'history',
     scrollBehavior(to, from, savedPosition) {
         return { x: 0, y: 0 };
     }
 });
+
+router.beforeEach((to, from, next) => {
+    let routerPath;
+    // if (to.mate.auth && !window.localStorage.getItems('uuid')) {
+    //     next(`/${to.params}/login?render=${from.fullPath}`);
+    // }
+    console.log('ok');
+    next();
+})
+
+export default router;

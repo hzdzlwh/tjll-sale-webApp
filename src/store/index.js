@@ -13,22 +13,28 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        phone: '',
+        phone: '17764526709',
         uuid: '',
         name: '',
         orderList: [],
-        campId: '54797361'
+        campId: '54797361',
+        orderDetails: {}
     },
     mutations: {
         [types.SET_LOGIN](state, { user }) {
             state.phone = user.phone;
             state.uuid = user.uuid;
             state.name = user.name;
+            localStorage.uuid = user.uuid;
+            localStorage.phone = user.phone;
+            localStorage.name = user.name;
         },
         [types.GET_ORDER_LIST](state, data) {
             state.orderList = data.list;
+        },
+        [types.GET_ORDER_DETAIL](state, data) {
+            state.orderDetails = data;
         }
-
     },
     actions: {
         [types.LOGIN]({ commit }, { params }) {
@@ -48,11 +54,20 @@ const store = new Vuex.Store({
                     });
             });
         },
-        [types.GET_ORDER_LIST]({ commit }, { campId, phone, uuid }) {
+        [types.GET_ORDER_LIST]({ commit }, { campId }) {
             return new Promise((resolve, reject) => {
-                http.get('/directNet/getOrderList', { campId, phone, uuid }).then(res => {
+                http.get('/directNet/getOrderList', { campId }).then(res => {
                     commit(types.GET_ORDER_LIST, res.data);
                     resolve(res.data);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_ORDER_DETAIL]({ commit }, { campId, orderId }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getOrderDetail', { campId, orderId }).then(res => {
+                    commit(types.GET_ORDER_LIST, res.data);
                 }).catch(err => {
                     reject(err);
                 });

@@ -5,8 +5,8 @@
 * @Last Modified time: 2017-08-23 14:28:09
 */
 /* eslint-disable */
-require('cookie');
-import { devRoute } from './config.js'
+// import cookie from 'js-cookie';
+import { devRoute } from './config.js';
 import { Loading, Message } from 'element-ui';
 import notify from '@/components/common/notify/notify.js';
 import Raven from 'raven-js';
@@ -132,7 +132,7 @@ const http = {
         const result = { ...data };
         // result.timestamp = (new Date()).valueOf();
         result.campId = data.campId || localStorage.getItem('campId');
-        result.uid =  data.uid || localStorage.getItem('uid');
+        result.uuid =  data.uuid || localStorage.getItem('uuid');
         result.phone =  data.phone || localStorage.getItem('phone');
         result.terminal = 1;
         result.version = data.version || -1;

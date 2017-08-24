@@ -53,6 +53,12 @@ export const secondsFormat = (time) => {
 	s = s < 10 ? '0' + s : s
 	return `${h}:${m}:${s}`
 }
+/**
+ * 字符串长度格式化
+ * @param  {string} str    
+ * @param  {number} length 需要的长度
+ * @return {string}        格式化后的字符串
+ */
 export const strLengthFormat = (str, length) => {
 	return str.substr(0,length)
 }

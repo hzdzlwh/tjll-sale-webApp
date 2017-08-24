@@ -1,6 +1,6 @@
 <template>
     <ul class="order-list">
-        <li class="list-item" v-for="order in orderList">
+        <li class="list-item" @click="openDetail(order.orderId)" v-for="order in orderList">
             <div class="list-item-head">
                 <p class="date">{{ order.insuranceStart | dateFormat('YYYY-MM-DD') }} - {{ order.insuranceEnd | dateFormat('YYYY-MM-DD') }}</p>
                 <p class="status">{{ order.orderState }}</p>
@@ -27,24 +27,29 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 import { dateFormat } from '@/util/filters';
-// import moment from 'moment';
-
 
 export default {
     computed: {
         ...mapState([
-            'orderList'
+            'orderList',
+            'uuid',
+            'phone',
+            'campId'
         ])
     },
     methods: {
         ...mapActions({
             getOrderList: 'getOrderList'
-        })
+        }),
+        openDetail(orderId) {
+            this.jumpRouter('orderDetails', { orderId });
+        },
+        jumpRouter(name, params) {
+            this.$router.push({ name, params });
+        }
     },
     created() {
-        this.getOrderList({ campId: '54797361', phone: '17764526709', uuid: '876cb07810ac46f1b835072fd36941b3' }).then(() => {
-            console.log(this.orderList);
-        });
+        this.getOrderList({ campId: this.campId, phone: this.phone, uuid: this.uuid });
     },
     filters: {
         dateFormat
