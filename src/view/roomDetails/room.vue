@@ -13,6 +13,9 @@
 
 <script>
 export default {
+    title() {
+        return '自助选房';
+    }
 };
 </script>
 

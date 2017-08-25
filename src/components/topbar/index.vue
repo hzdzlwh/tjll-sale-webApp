@@ -1,5 +1,6 @@
 <template>
     <header class="title-bar">
+        <i @click="goBack" class="go-back"></i>
         <p>{{ title }}</p>
     </header>
 </template>
@@ -12,6 +13,11 @@ export default {
         ...mapState([
             'title'
         ])
+    },
+    methods: {
+        goBack() {
+            this.$router.go(-1);
+        }
     }
 };
 </script>
@@ -28,5 +34,18 @@ export default {
         background:#4a6074;
         color: #fff;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        .go-back {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -0.625rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            background-repeat: no-repeat;
+            background-image: url(~assets/images/goBack.png);
+            background-position: center;
+        }
     }
 </style>

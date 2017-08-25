@@ -1,7 +1,7 @@
 <template>
     <div class="room">
         <header class="room-head" v-show="routeName !== 'roomDetails_addTraveller'">
-            <order-box :showButton="false"></order-box>
+            <order-box :showButton="false" :data="{}"></order-box>
         </header>
         <router-view></router-view>
     </div>
@@ -11,6 +11,9 @@
 import orderBox from '@/components/orderBox';
 
 export default {
+    title() {
+        return '房间详情';
+    },
     components: {
         orderBox
     },

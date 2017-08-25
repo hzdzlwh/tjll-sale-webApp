@@ -36,6 +36,9 @@
 
 <script>
 export default {
+    title() {
+        return '入住人';
+    },
     data() {
         return {
             tel: '',

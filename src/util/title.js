@@ -12,8 +12,6 @@ const titleMixin = {
         const title = getTitle(this);
         if (title) {
             store.commit('setTitle', title);
-        } else {
-            store.commit('setTitle', '微官网');
         }
     }
 }

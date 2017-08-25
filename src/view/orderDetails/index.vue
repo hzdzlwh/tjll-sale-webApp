@@ -53,6 +53,9 @@ export default {
     asyncData({ store, route }) {
         return store.dispatch('getOrderDetail', route.params.orderId);
     },
+    title() {
+        return '订单详情';
+    },
     computed: {
         ...mapState([
             'orderDetails'

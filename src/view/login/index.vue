@@ -32,6 +32,9 @@ import { mapActions } from 'vuex';
 import types from '@/store/types.js';
 
 export default {
+    title() {
+        return '微官网 - 登录';
+    },
     data() {
         return {
             devRoute,

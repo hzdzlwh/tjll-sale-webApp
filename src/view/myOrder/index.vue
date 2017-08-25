@@ -16,6 +16,9 @@
 
 <script>
 export default {
+    title() {
+        return '我的订单';
+    },
     data() {
         return {
         };

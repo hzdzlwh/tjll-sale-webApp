@@ -59,6 +59,9 @@
 
 <script>
 export default {
+    title() {
+        return '房间详情';
+    },
     data() {
         return {
         };
