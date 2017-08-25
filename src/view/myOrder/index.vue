@@ -35,7 +35,7 @@ export default {
     .topbar {
         position: fixed;
         left: 0;
-        top: 0;
+        top: 1.25rem;
         width: 100%;
         background-color: #fff;
         overflow: hidden;

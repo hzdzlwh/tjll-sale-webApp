@@ -9,7 +9,7 @@
                 <span class="status">{{ orderDetails.orderState | orderState }}</span>
                 <span class="countdown" v-if="orderDetails.orderState === -1">剩余14分12秒</span>
             </p>
-            <p class="order-head-tips">计划出行：8月3日</p>
+            <p class="order-head-tips">计划出行：{{ orderDetails.startDate | dateFormat('YYYY-MM-DD') }}</p>
         </header>
         <section class="order-section">
             <p class="order-section-title">住宿</p>
@@ -37,7 +37,7 @@
                 <p>￥100.00</p>
             </div>
         </section>
-        <div class="order-button">
+        <div class="order-button" v-if="orderDetails.orderState === -1">
             <div class="order-button-cancel">取消订单</div>
             <div class="order-button-pay">去支付</div>
         </div>
@@ -47,7 +47,7 @@
 <script>
 import orderBox from '@/components/orderBox';
 import { mapState } from 'vuex';
-import { orderState } from '@/util/filters';
+import { orderState, dateFormat } from '@/util/filters';
 
 export default {
     asyncData({ store, route }) {
@@ -62,7 +62,8 @@ export default {
         orderBox
     },
     filters: {
-        orderState
+        orderState,
+        dateFormat
     }
 };
 </script>

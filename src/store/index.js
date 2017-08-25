@@ -1,8 +1,8 @@
 /*
 * @Author: lxj
 * @Date:   2017-08-17 10:53:21
-* @Last Modified by:   lxj
-* @Last Modified time: 2017-08-23 14:36:31
+* @Last Modified by:   chuxiao
+* @Last Modified time: 2017-08-25 14:06:27
 */
 import types from './types.js';
 import Vue from 'vue';
@@ -13,6 +13,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
+        title: '',
         phone: '17764526709',
         uuid: '',
         name: '',
@@ -21,6 +22,9 @@ const store = new Vuex.Store({
         orderDetails: {}
     },
     mutations: {
+        setTitle(state, title) {
+            state.title = title;
+        },
         [types.SET_LOGIN](state, { user }) {
             state.phone = user.phone;
             state.uuid = user.uuid;

@@ -7,7 +7,11 @@ import store from '@/store/index';
 import notify from '@/components/common/notify/notify';
 // import 'normalize.css';
 
+import titleMixin from '@/util/title';
+
 import '@/assets/styles/common.scss';
+
+Vue.mixin(titleMixin);
 
 Vue.config.productionTip = false;
 Vue.prototype.$notify = notify;

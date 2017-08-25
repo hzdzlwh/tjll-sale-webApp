@@ -10,6 +10,29 @@ const router = new Router({
             path: '/:id',
             component: () => import('@/components/main'),
             children: [
+                {   // 首页
+                    path: 'overview',
+                    name: 'overview',
+                    redirect: { name: 'overview_home' },
+                    component: () => import('@/view/overview'),
+                    children: [
+                        {
+                            path: 'home',
+                            name: 'overview_home',
+                            component: () => import('@/view/overview/home')
+                        },
+                        {
+                            path: 'cart',
+                            name: 'overview_cart',
+                            component: () => import('@/view/overview/cart')
+                        },
+                        {
+                            path: 'center',
+                            name: 'overview_center',
+                            component: () => import('@/view/overview/center')
+                        }
+                    ]
+                },
                 {   // 我的订单
                     path: 'myOrder',
                     name: 'myOrder',
