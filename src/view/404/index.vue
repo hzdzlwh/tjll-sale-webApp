@@ -8,6 +8,9 @@
 
 <script>
 export default {
+    title() {
+        return '未知的地方';
+    }
 };
 </script>
 
