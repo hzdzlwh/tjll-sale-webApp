@@ -34,9 +34,10 @@ const store = new Vuex.Store({
             state.phone = user.phone;
             state.uuid = user.uuid;
             state.name = user.name;
-            localStorage.setItem('uuid', user.uuid);
-            localStorage.setItem('phone', user.phone);
-            localStorage.setItem('name', user.name);
+            localStorage.uuid = user.uuid;
+            localStorage.phone = user.phone;
+            localStorage.name = user.name;
+            localStorage.campId = '54797361';
         },
         [types.GET_ORDER_LIST](state, data) {
             state.orderList = data.list;
