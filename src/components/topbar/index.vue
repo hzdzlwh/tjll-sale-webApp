@@ -36,6 +36,7 @@ export default {
         text-align: center;
         display: flex;
         justify-content: center;
+        z-index: 100;
         .go-back {
             position: absolute;
             left: 0;

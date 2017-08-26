@@ -14,25 +14,29 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         title: '',
-        phone: '17764526709',
+        phone: '',
         uuid: '',
         name: '',
         orderList: [],
-        campId: '',
+        campId: '54797361',
         orderDetails: {}
     },
     mutations: {
         setTitle(state, title) {
             state.title = title;
         },
+        getAuthorization(state) {
+            state.uuid = localStorage.uuid;
+            state.phone = localStorage.phone;
+            state.name = localStorage.name;
+        },
         [types.SET_LOGIN](state, { user }) {
             state.phone = user.phone;
             state.uuid = user.uuid;
             state.name = user.name;
-            localStorage.uuid = user.uuid;
-            localStorage.phone = user.phone;
-            localStorage.name = user.name;
-            localStorage.campId = '54797361';
+            localStorage.setItem('uuid', user.uuid);
+            localStorage.setItem('phone', user.phone);
+            localStorage.setItem('name', user.name);
         },
         [types.GET_ORDER_LIST](state, data) {
             state.orderList = data.list;
@@ -81,4 +85,12 @@ const store = new Vuex.Store({
         }
     }
 });
+
 export default store;
+
+export const getAuthorization = () => {
+    if (!store.state.uuid) {
+        store.commit('getAuthorization');
+    }
+    return store.state.uuid;
+};

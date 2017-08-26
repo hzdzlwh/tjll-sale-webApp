@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { getAuthorization } from '@/store';
 import store from '@/store';
 
 Vue.use(Router);
@@ -13,6 +14,7 @@ const router = new Router({
                 {   // 首页
                     path: 'overview',
                     name: 'overview',
+                    meta: { requiresAuth: true },
                     redirect: { name: 'overview_home' },
                     component: () => import('@/view/overview'),
                     children: [
@@ -37,6 +39,7 @@ const router = new Router({
                     path: 'myOrder',
                     name: 'myOrder',
                     redirect: { name: 'myOrder_list' },
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/myOrder'),
                     children: [
                         {
@@ -54,12 +57,14 @@ const router = new Router({
                 {   // 订单详情
                     path: 'orderDetails/:orderId',
                     name: 'orderDetails',
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/orderDetails')
                 },
                 {   // 房间详情
                     path: 'roomDetails',
                     name: 'roomDetails',
                     redirect: { name: 'roomDetails_info' },
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/roomDetails'),
                     children: [
                         {
@@ -107,12 +112,20 @@ router.beforeResolve((to, from, next) => {
     }
 });
 
-router.beforeEach((to, from, next) => {
-    // let routerPath;
-    // if (to.mate.auth && !window.localStorage.getItems('uuid')) {
-    //     next(`/${to.params}/login?render=${from.fullPath}`);
-    // }
-    return next();
+router.beforeEach(async (to, from, next) => {
+    let routerPath;
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+    const isLogin = getAuthorization();
+    if (requiresAuth) {
+        if (!isLogin) {
+            routerPath = { name: 'login', params: { id: store.state.campId }, query: { redirect: to.fullPath } };
+        } else {
+            // TODO:
+        }
+    } else {
+        // TODO:
+    }
+    next(routerPath);
 });
 
 export default router;

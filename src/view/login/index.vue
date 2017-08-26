@@ -30,10 +30,18 @@ import { devRoute } from '@/util/config';
 import http from '@/util/http';
 import { mapActions } from 'vuex';
 import types from '@/store/types.js';
+import { getAuthorization } from '@/store';
 
 export default {
     title() {
         return '微官网 - 登录';
+    },
+    beforeRouteEnter(to, from, next) {
+        const isLogin = getAuthorization();
+        if (isLogin) {
+            next({ name: 'overview', params: to.params });
+        }
+        next();
     },
     data() {
         return {
@@ -71,8 +79,7 @@ export default {
                 code: this.subCode,
                 phone: this.phone
             } }).then(() => {
-                // this.$router.push(this.$router.query.render);
-                this.$router.push({ name: 'overview' });
+                this.$router.push(this.$route.query.redirect || { name: 'overview' });
             });
         },
         getCode() {
