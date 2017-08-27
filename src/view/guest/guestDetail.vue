@@ -17,27 +17,26 @@
                 <label class="form-label form-label-required" for="certificate">证件号</label>
                 <input class="form-input" v-model="id" type="number" placeholder="请输入证件号">
             </div>
+
         </div>
-        <div class="traveller-control">
-            <div class="traveller-control-checkbox active">
-                <div class="icon"></div>
-                保存为常客
+        <div class="button agree"  @click='subForm'>确定</div>
+        <div class="buttonList">
+            <div class="button danger">
+                删除
+            </div>
+            <div class="button agree">
+                确定
             </div>
         </div>
-        <p class="traveller-title">选择常客</p>
-        <ul class="traveller-section">
-            <li class="traveller-section-item active">
-                <p class="name">秋丽</p>
-                <p class="id">330111111111111111<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon"></p>
-            </li>
-        </ul>
+        </div>
+        
     </div>
 </template>
 
 <script>
 export default {
     title() {
-        return '入住人';
+        return '新增常用旅客';
     },
     data() {
         return {
@@ -61,4 +60,5 @@ export default {
 </script>
 
 <style lang="scss">
+
 </style>

@@ -83,6 +83,17 @@ const router = new Router({
                             component: () => import('@/view/roomDetails/addTraveller')
                         }
                     ]
+                },
+                {
+                    path: 'guest',
+                    meta: { requiresAuth: true },
+                    redirect: { path: 'guestlist' }
+                }, {
+                    path: 'guestlist',
+                    component: () => import('@/view/guest/guestList')
+                }, {
+                    path: 'guestDetail/:id',
+                    component: () => import('@/view/guest/guestDetail')
                 }
             ]
         },

@@ -135,6 +135,8 @@ a {
             color:#fff;
         }
     }
+
+}
     .button{
         width: 90%;
         margin: 0.75rem auto;
@@ -147,10 +149,129 @@ a {
         border-radius: 0.25rem;
         border: 0;
     }
+    .buttonList{
+        display:flex;
+        justify-content:between;
+        padding:0 0.5rem;
+        .button{
+            width:45%
+        }
+    }
+
     .disabled {
         background-color: #ccc;
     }
     .agree{
         background-color: #49a5f1;
+    }
+    .danger{
+        background-color: #f27979;
+    }
+.addTraveller {
+    .traveller-form {
+        background: #fff;
+        border-top: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+        .traveller-form-item {
+            display: flex;
+            padding: 0 0.5rem;
+            height: 1.1875rem;
+            line-height: 1.1875rem;
+            font-size: 0.4375rem;
+            .form-label {
+                position: relative;
+                width: 2.5rem;
+                color: #333;
+                text-indent: 0.3438rem;
+                &.form-label-required {
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 0.3438rem;
+                        height: 100%;
+                        background-repeat: no-repeat;
+                        background-size: 0.1719rem 0.1563rem;
+                        background-position: center left;
+                        background-image: url(~assets/images/star@1x.png);
+                    }
+                }
+            }
+            .form-input {
+                flex: 1;
+            }
+        }
+        .traveller-form-item + .traveller-form-item {
+            border-top: 1px solid #e6e6e6;
+        }
+    }
+    .traveller-control {
+        padding: 0 0.5rem;
+        height: 0.9375rem;
+        line-height: 0.9375rem;
+        .traveller-control-checkbox {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 0.375rem;
+            color: #666;
+            &.active {
+                .icon {
+                    background-color: #49a5f1;
+                    background-image: url(~assets/images/choose.png);
+                    background-size: 0.4375rem 0.3125rem;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    border: none;
+                }
+            }
+            .icon {
+                margin-top: 0.1875rem;
+                margin-right: 0.1875rem;
+                height: 0.5625rem;
+                width: 0.5625rem;
+                border: 1px solid #999;
+                background-color: #fff;
+                border-radius: 0.125rem;
+            }
+        }
+    }
+    .traveller-title {
+        padding: 0 0.5rem;
+        color: #666;
+        font-size: 0.375rem;
+        height: 0.9375rem;
+        line-height: 0.9375rem;
+    }
+    .traveller-section {
+        background: #fff;
+        border-top: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+        .traveller-section-item {
+            position: relative;
+            padding: 0 0.5rem;
+            display: flex;
+            height: 1.1875rem;
+            line-height: 1.1875rem;
+            color: #333;
+            font-size: 0.4375rem;
+            .name {
+                width: 1.5625rem;
+            }
+            .id {
+                flex: 1;
+            }
+            .choose-icon {
+                position: absolute;
+                right: 0.5rem;
+                top: 50%;
+                transform: translate3d(0, -50%, 0);
+                width: 0.5313rem;
+                height: 0.375rem;
+            }
+        }
+        .traveller-section-item + .traveller-section-item {
+            border-top: 1px solid #e6e6e6;
+        }
     }
 }
