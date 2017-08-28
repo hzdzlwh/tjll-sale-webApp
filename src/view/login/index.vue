@@ -31,6 +31,7 @@ import http from '@/util/http';
 import { mapActions } from 'vuex';
 import types from '@/store/types.js';
 import { getAuthorization } from '@/store';
+import confirmModal from '@/components/common/confirm';
 
 export default {
     title() {
@@ -72,15 +73,18 @@ export default {
             this.t = this.t + 1;
         },
         subForm() {
-            if (this.phone.length !== 11 || !this.subCode) {
-                return;
-            }
-            this.login({ params: {
-                code: this.subCode,
-                phone: this.phone
-            } }).then(() => {
-                this.$router.push(this.$route.query.redirect || { name: 'overview' });
-            });
+            const callback = function() {
+                if (this.phone.length !== 11 || !this.subCode) {
+                    return;
+                }
+                this.login({ params: {
+                    code: this.subCode,
+                    phone: this.phone
+                } }).then(() => {
+                    this.$router.push(this.$route.query.redirect || { name: 'overview' });
+                });
+            }.bind(this);
+            confirmModal({ message: 'adasdasd', duration: 1000000 }, callback);
         },
         getCode() {
             if (this.phone.length !== 11) {
