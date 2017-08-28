@@ -100,5 +100,4 @@ export const orderState = (state) => {
 
 export const payState = (state) => {
     let str;
-
 }

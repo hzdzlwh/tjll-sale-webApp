@@ -22,16 +22,23 @@
 </template>
 
 <script>
+/**
+ * 旅客from组件
+ * 使用v-model传入value
+ * value格式必须是
+ * {
+ *    phone: '123456',
+ *    idCardNum: '',
+ *    name: '',
+ *    idCardType: ''
+ * }
+ */
 export default {
     props: {
         value: {
             type: Object,
             required: true
         }
-    },
-    data() {
-        return {
-        };
     },
     methods: {
         onChange($event, key) {

@@ -14,7 +14,6 @@
                 <p class="id">330111111111111111<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon"></p>
             </li>
         </ul>
-        <button type="button" @click="log">ddd</button>
     </div>
 </template>
 
@@ -28,7 +27,7 @@ export default {
     data() {
         return {
             formData: {
-                phone: '123456',
+                phone: '',
                 idCardNum: '',
                 name: '',
                 idCardType: ''
@@ -39,9 +38,6 @@ export default {
         travellerForm
     },
     methods: {
-        log() {
-            console.log(this.formData);
-        }
     }
 };
 </script>
