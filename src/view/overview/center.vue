@@ -2,7 +2,7 @@
     <div class="center">
         <div class="center-personal">
             <div class="center-personal-name">萧远山</div>
-            <div class="center-personal-phone">13999999999</div>
+            <div class="center-personal-phone">{{ phone }}</div>
             <i class="next-icon"></i>
         </div>
         <div class="center-entry">
@@ -63,12 +63,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
     title() {
         return '个人中心';
     },
     asyncData({ store, route }) {
         return store.dispatch('getMember', route.params.orderId);
+    },
+    computed: {
+        ...mapState([
+            'phone'
+        ])
     }
 };
 </script>
