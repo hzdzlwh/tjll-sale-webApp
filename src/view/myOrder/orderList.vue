@@ -29,6 +29,9 @@ import { mapActions, mapState } from 'vuex';
 import { dateFormat } from '@/util/filters';
 
 export default {
+    asyncData({ store, route }) {
+        return store.dispatch('getOrderList', route.params.orderId);
+    },
     computed: {
         ...mapState([
             'orderList',
@@ -47,9 +50,6 @@ export default {
         jumpRouter(name, params) {
             this.$router.push({ name, params });
         }
-    },
-    created() {
-        this.getOrderList({ campId: this.campId, phone: this.phone, uuid: this.uuid });
     },
     filters: {
         dateFormat

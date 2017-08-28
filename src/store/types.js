@@ -8,5 +8,6 @@ export default {
     LOGIN: 'login',
     SET_LOGIN: 'setLogin',
     GET_ORDER_LIST: 'getOrderList',
-    GET_ORDER_DETAIL: 'getOrderDetail'
+    GET_ORDER_DETAIL: 'getOrderDetail',
+    GET_MEMBER: 'getMember'
 };

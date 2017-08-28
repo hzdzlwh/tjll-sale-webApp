@@ -43,7 +43,7 @@
             </li>
         </ul>
         <div class="center-entry">
-            <router-link :to="{ name: '', params: {} }" class="center-entry-item">
+            <router-link :to="{ name: 'myOrder', params: {} }" class="center-entry-item">
                 <i class="item-icon item-icon-order"></i>
                 <p class="item-name">我的订单</p>
                 <i class="item-next"></i>
@@ -66,30 +66,33 @@
 export default {
     title() {
         return '个人中心';
+    },
+    asyncData({ store, route }) {
+        return store.dispatch('getMember', route.params.orderId);
     }
 };
 </script>
 
 <style lang="scss" scoped>
 .center {
-    padding-bottom: 200px;
+    padding-bottom: 3.125rem;
     .center-personal {
         position: relative;
-        padding: 32px;
+        padding: 0.5rem;
         background-image:linear-gradient(-180deg, #298dea 4%, #4bb0ff 100%);
         color: #fff;
         &-name {
-            font-size: 36px;
-            margin-bottom: 16px;
+            font-size: 0.5625rem;
+            margin-bottom: 0.25rem;
         }
         &-phone {
-            font-size: 24px;
+            font-size: 0.375rem;
         }
         .next-icon {
             top: 50%;
-            right: 32px;
-            width: 16px;
-            height: 28px;
+            right: 0.5rem;
+            width: 0.25rem;
+            height: 0.4375rem;
             position: absolute;
             background-image: url(~assets/images/next-icon.png);
             transform: translateY(-50%);
@@ -99,25 +102,25 @@ export default {
         border-top: 1px solid #e6e6e6;
         border-bottom: 1px solid #e6e6e6;
         background: #fff;
-        font-size: 28px;
+        font-size: 0.4375rem;
         color: #333;
-        margin-bottom: 26px;
+        margin-bottom: 0.4063rem;
         &-item {
             display: block;
-            padding: 0 32px;
+            padding: 0 0.5rem;
             display: flex;
             align-items: center;
-            height: 76px;
-            line-height: 76px;
+            height: 1.1875rem;
+            line-height: 1.1875rem;
             .item-phone {
-                font-size: 28px;
+                font-size: 0.4375rem;
                 color: #999;
                 text-align: right;
             }
             .item-icon {
-                margin-right: 16px;
-                width: 36px;
-                height: 36px;
+                margin-right: 0.25rem;
+                width: 0.5625rem;
+                height: 0.5625rem;
                 background-repeat: no-repeat;
                 background-size: cover;
                 &.item-icon-vip {
@@ -134,8 +137,8 @@ export default {
                 }
             }
             .item-next {
-                width: 16px;
-                height: 28px;
+                width: 0.25rem;
+                height: 0.4375rem;
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-image: url(~assets/images/next.png);
@@ -155,13 +158,13 @@ export default {
         flex-wrap: wrap;
         border-top: 1px solid #e6e6e6;
         border-bottom: 1px solid #e6e6e6;
-        margin-bottom: 26px;
+        margin-bottom: 0.4063rem;
         &-item {
-            padding-left: 32px;
+            padding-left: 0.5rem;
             width: 50%;
             display: flex;
             align-items: center;
-            height: 112px;
+            height: 1.75rem;
             &:nth-of-type(1) {
                 border-bottom: 1px solid #e6e6e6;
             }
@@ -169,20 +172,20 @@ export default {
                 border-bottom: 1px solid #e6e6e6;
             }
             .item-icon {
-                width: 56px;
-                height: 56px;
+                width: 0.875rem;
+                height: 0.875rem;
                 background-repeat: no-repeat;
                 background-size: cover;
-                margin-right: 20px;
+                margin-right: 0.3125rem;
             }
             .item-info {
                 line-height: 1.3;
                 &-key {
-                    font-size: 24px;
+                    font-size: 0.375rem;
                     color: #666;
                 }
                 &-value {
-                    font-size: 32px;
+                    font-size: 0.5rem;
                 }
             }
             &.account {

@@ -19,7 +19,8 @@ const store = new Vuex.Store({
         name: '',
         orderList: [],
         campId: '54797361',
-        orderDetails: {}
+        orderDetails: {},
+        member: {}
     },
     mutations: {
         setTitle(state, title) {
@@ -44,6 +45,9 @@ const store = new Vuex.Store({
         },
         [types.GET_ORDER_DETAIL](state, data) {
             state.orderDetails = data;
+        },
+        [types.GET_MEMBER](state, data) {
+            state.member = data;
         }
     },
     actions: {
@@ -78,6 +82,16 @@ const store = new Vuex.Store({
             return new Promise((resolve, reject) => {
                 http.get('/directNet/getOrderDetail', { orderId }).then(res => {
                     commit(types.GET_ORDER_DETAIL, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_MEMBER]({ commit }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/personalCenterPage').then(res => {
+                    commit(types.GET_MEMBER, res.data);
                     resolve(res);
                 }).catch(err => {
                     reject(err);

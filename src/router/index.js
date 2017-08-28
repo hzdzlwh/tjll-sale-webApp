@@ -92,7 +92,7 @@ const router = new Router({
                     path: 'guestlist',
                     component: () => import('@/view/guest/guestList')
                 }, {
-                    path: 'guestDetail/:id',
+                    path: 'guestDetail/:guestId',
                     component: () => import('@/view/guest/guestDetail')
                 }
             ]
