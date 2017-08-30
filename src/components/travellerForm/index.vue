@@ -9,7 +9,7 @@
                 <label class="form-label" for="telephone">手机号</label>
                 <input class="form-input" :value="value.phone" @input="onChange($event, 'phone')" type="number" placeholder="请输入正确的手机号">
             </div>
-            <div class="traveller-form-item">
+            <div class="traveller-form-item" v-clickoutside="closeBox">
                 <label class="form-label form-label-required" for="certificate">证件类型</label>
                 <input @click="toggleBox" class="form-input" type="text" readonly :value="value.idCardType | idCardType">
                 <i class="form-icon"></i>
@@ -93,6 +93,9 @@ export default {
         selectType($event) {
             const idType = $event.target.getAttribute('label');
             this.formData.idCardType = idType;
+            this.showBox = false;
+        },
+        closeBox() {
             this.showBox = false;
         }
     },
