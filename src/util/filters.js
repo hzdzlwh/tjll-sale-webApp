@@ -12,7 +12,7 @@ import moment from 'moment'
  * @param {number} value 数值
  * @returns {number} 格式化后的字符串
  */
-export const numberFormat = (value) => {
+const numberFormat = (value) => {
 	if (value >= 10000) {
 		return Math.round(value / 100) / 100 + 'W';
 	} else {
@@ -25,7 +25,7 @@ export const numberFormat = (value) => {
  * @param {string} fmt 格式
  * @returns {string} 格式化后的字符串
  */
-export const dateFormat = (date, fmt) => {
+const dateFormat = (date, fmt) => {
 	return moment(date).format(fmt);
 }
 /**
@@ -33,7 +33,7 @@ export const dateFormat = (date, fmt) => {
  * @param {number} money 价格
  * @return {string} 格式化后的字符串
  */
-export const moneyFormat = (money) => {
+const moneyFormat = (money) => {
 	return `￥${ (money/100).toFixed(2) }`;
 }
 /**
@@ -41,7 +41,7 @@ export const moneyFormat = (money) => {
  * @param {number} second 秒
  * @return {string} 格式化后的字符串
  */
-export const secondsFormat = (time) => {
+const secondsFormat = (time) => {
 	time = time || 0
 	let [h, m, s] = [
 		parseInt(time / 3600),
@@ -68,8 +68,8 @@ export const strLengthFormat = (str, length) => {
  * @param  {string} state
  * @return {string}
  */
-export const orderState = (state) => {
-    let str;
+const orderState = (state) => {
+    let str
     switch (state) {
         case -1:
             str = '未支付'
@@ -100,4 +100,49 @@ export const orderState = (state) => {
 
 export const payState = (state) => {
     let str;
+}
+
+const idCardType = (state) => {
+    let number = parseInt(state);
+    let str;
+    switch (number) {
+        case 0:
+            str = '身份证'
+            break;
+        case 1:
+            str = '军官证'
+            break;
+        case 2:
+            str = '通行证'
+            break;
+        case 3:
+            str = '护照'
+            break;
+        case 4:
+            str = '其他'
+            break;
+    }
+    return str;
+}
+export const coverFormat = (str) => {
+    const header = str.slice(0, 3);
+    const footer = str.slice(-4);
+    const bodyLength = str.length - 7;
+    let body = '';
+    for (let i = 0; i < bodyLength; i++) {
+        body += '*'
+    }
+    return `${header}${body}${footer}`;
+}
+
+export default {
+    numberFormat,
+    dateFormat,
+    moneyFormat,
+    secondsFormat,
+    strLengthFormat,
+    orderState,
+    payState,
+    idCardType,
+    coverFormat
 }

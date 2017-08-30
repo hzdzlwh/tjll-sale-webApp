@@ -53,6 +53,10 @@ export default {
                 this.id = value.substring(0, 18);
             }
         }
+    },
+    methods: {
+        subForm() {
+        }
     }
 };
 </script>

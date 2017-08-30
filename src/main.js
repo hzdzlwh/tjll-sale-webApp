@@ -6,10 +6,18 @@ import router from './router';
 import store from '@/store/index';
 import notify from '@/components/common/notify/notify';
 // import 'normalize.css';
+import filters from '@/util/filters';
 
 import titleMixin from '@/util/title';
+import clickoutside from '@/util/clickoutside';
 
 import '@/assets/styles/common.scss';
+
+Object.keys(filters).forEach(key => {
+    Vue.filter(key, filters[key]);
+});
+
+Vue.use(clickoutside);
 
 Vue.mixin(titleMixin);
 

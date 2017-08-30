@@ -20,7 +20,13 @@ const store = new Vuex.Store({
         orderList: [],
         campId: '54797361',
         orderDetails: {},
-        member: {}
+        personalCenter: {
+            isVip: false,
+            storePhone: '',
+            vipUser: {
+                accountList: []
+            }
+        }
     },
     mutations: {
         setTitle(state, title) {
@@ -47,7 +53,7 @@ const store = new Vuex.Store({
             state.orderDetails = data;
         },
         [types.GET_MEMBER](state, data) {
-            state.member = data;
+            state.personalCenter = data;
         }
     },
     actions: {

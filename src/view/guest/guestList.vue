@@ -50,6 +50,9 @@
 <script>
 
 export default {
+    title() {
+        return '常用旅客';
+    },
     data() {
         return {
 

@@ -1,15 +1,15 @@
 $colorB: #333;
 $colorS: #666;
 $smallSize: 0.407407rem;
-// 22px;
+// 0.3438rem;
 $textSize: 0.444444rem;
-// 24px
+// 0.375rem
 $titleSize: 0.481481rem;
-// 26px
+// 0.4063rem
 $bigTitleSize: 0.4375rem;
-// 28px
+// 0.4375rem
 $biggerTitleSize: 0.592593rem;
-// 32px
+// 0.5rem
 $red: #d95757;
 $borderColor: #e6e6e6;
 $blue: #178ce6;
@@ -28,7 +28,7 @@ body, html{
 }
 
 body{
-    font-size: 14px;
+    font-size: 0.2188rem;
     color: #666;
     line-height: 1;
     font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
@@ -110,7 +110,7 @@ a {
     }
     .img-code {
         background:#cccccc;
-        border-radius:4px;
+        border-radius:0.0625rem;
         width:2.518519rem;
         height:0.851852rem;
         position: relative;
@@ -120,14 +120,14 @@ a {
     }
     .code{
         .getCode{
-            border-radius:4px;
+            border-radius:0.0625rem;
             width:2.518519rem;
             height:0.851852rem;
             line-height:0.592593rem;
             position: relative;
             top: 0.555556rem;
             font-size:0.333333rem;
-            padding:8px;
+            padding:0.125rem;
             text-align: center;
             background: #1799df;
             display:inline-block;
@@ -173,6 +173,7 @@ a {
         border-top: 1px solid #e6e6e6;
         border-bottom: 1px solid #e6e6e6;
         .traveller-form-item {
+            position: relative;
             display: flex;
             padding: 0 0.5rem;
             height: 1.1875rem;
@@ -200,6 +201,39 @@ a {
             }
             .form-input {
                 flex: 1;
+            }
+            .select-list {
+                position: absolute;
+                left: 3rem;
+                top: 1.1875rem;
+                background: #fff;
+                z-index: 10;
+                border: 1px solid #d1dbe5;
+                box-shadow: 0 0.0313rem 0.0625rem rgba(0,0,0,.12), 0 0 0.0938rem rgba(0,0,0,.04);
+                width: 60%;
+                padding: 0.1875rem 0;
+                border-radius: 0.0625rem;
+                overflow: hidden;
+                &-item {
+                    padding: 0 0.25rem;
+                    height: 0.8438rem;
+                    line-height: 0.8438rem;
+                    font-size: 0.3438rem;
+                    &.active {
+                        background-color: #49a5f1;
+                        color: #fff;
+                    }
+                }
+            }
+            .form-icon {
+                position: absolute;
+                right: 0.5rem;
+                height: 100%;
+                width: 0.25rem;
+                background-image: url(~assets/images/next.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 0.25rem 0.4375rem;
             }
         }
         .traveller-form-item + .traveller-form-item {
@@ -273,5 +307,161 @@ a {
         .traveller-section-item + .traveller-section-item {
             border-top: 1px solid #e6e6e6;
         }
+    }
+    .addTraveller-confirm {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        height: 2.1875rem;
+        width: 100%;
+        background: #fff;
+        padding: 0.5rem;
+        &-button {
+            display: block;
+            background: #49a5f1;
+            height: 1.1875rem;
+            width: 100%;
+            border-radius: 0.125rem;
+            color: #fff;
+            font-size: 0.4375rem;
+            line-height: 1.1875rem;
+            text-align: center;
+        }
+    }
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .1s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
+
+.entry {
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background: #fff;
+    font-size: 0.4375rem;
+    color: #333;
+    margin-bottom: 0.4063rem;
+    &-item {
+        display: block;
+        padding: 0 0.5rem;
+        display: flex;
+        align-items: center;
+        height: 1.1875rem;
+        line-height: 1.1875rem;
+        .item-phone {
+            color: #999;
+            text-align: right;
+        }
+        .item-label {
+            width: 160px;
+        }
+        .item-icon {
+            margin-right: 0.25rem;
+            width: 0.5625rem;
+            height: 0.5625rem;
+            background-repeat: no-repeat;
+            background-size: cover;
+            &.item-icon-vip {
+                background-image: url(~assets/images/vip-icon.png);
+            }
+            &.item-icon-order {
+                background-image: url(~assets/images/order-icon.png);
+            }
+            &.item-icon-people {
+                background-image: url(~assets/images/people-icon.png);
+            }
+            &.item-icon-phone {
+                background-image: url(~assets/images/phone-icon.png);
+            }
+        }
+        .item-next {
+            width: 0.25rem;
+            height: 0.4375rem;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url(~assets/images/next.png);
+        }
+        .item-name {
+            flex: 1;
+        }
+    }
+    .entry-item + .entry-item {
+        border-top: 1px solid #e6e6e6;
+    }
+}
+.table {
+    display: flex;
+    background: #fff;
+    width: 100%;
+    flex-wrap: wrap;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 0.4063rem;
+    &-item {
+        padding-left: 0.5rem;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        height: 1.75rem;
+        &:nth-of-type(1) {
+            border-bottom: 1px solid #e6e6e6;
+        }
+        &:nth-of-type(2) {
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .item-icon {
+            width: 0.875rem;
+            height: 0.875rem;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-right: 0.3125rem;
+        }
+        .item-info {
+            line-height: 1.3;
+            &-key {
+                font-size: 0.375rem;
+                color: #666;
+            }
+            &-value {
+                font-size: 0.5rem;
+            }
+        }
+        &.status0 {
+            .item-icon {
+                background-image: url(~assets/images/account-icon.png);
+            }
+            .item-info {
+                color: #e57677;
+            }
+        }
+        &.status1 {
+            .item-icon {
+                background-image: url(~assets/images/coin-icon.png);
+            }
+            .item-info {
+                color: #f59a26;
+            }
+        }
+        &.status2 {
+            .item-icon {
+                background-image: url(~assets/images/vipcard-icon.png);
+            }
+            .item-info {
+                color: #49a5f1;
+            }
+        }
+        &.status3 {
+            .item-icon {
+                background-image: url(~assets/images/coupon-icon.png);
+            }
+            .item-info {
+                color: #49b19e;
+            }
+        }
+    }
+    .table-item + .table-item {
+        border-left: 1px solid #e6e6e6;
     }
 }

@@ -1,59 +1,41 @@
 <template>
     <div class="center">
-        <div class="center-personal">
-            <div class="center-personal-name">萧远山</div>
-            <div class="center-personal-phone">{{ phone }}</div>
+        <div class="personal">
+            <div class="personal-name">萧远山</div>
+            <div class="personal-phone">{{ phone }}</div>
             <i class="next-icon"></i>
         </div>
-        <div class="center-entry">
-            <router-link :to="{ name: '', params: {} }" class="center-entry-item">
+        <div class="entry">
+            <router-link :to="{ name: '', params: {} }" class="entry-item">
                 <i class="item-icon item-icon-vip"></i>
                 <p class="item-name">会员中心</p>
                 <i class="item-next"></i>
             </router-link>
         </div>
-        <ul class="center-table">
-            <li class="center-table-item account">
+        <ul class="table" v-if="personalCenter.isVip">
+            <li
+             v-for="item in personalCenter.vipUser.accountList"
+             class="table-item"
+             :class="[[`status${item.type}`]]">
                 <i class="item-icon"></i>
                 <ul class="item-info">
-                    <li class="item-info-key">储值账户</li>
-                    <li class="item-info-value">￥3000.00</li>
-                </ul>
-            </li>
-            <li class="center-table-item coin">
-                <i class="item-icon"></i>
-                <ul class="item-info">
-                    <li class="item-info-key">王者金币</li>
-                    <li class="item-info-value">￥3000.00</li>
-                </ul>
-            </li>
-            <li class="center-table-item vip">
-                <i class="item-icon"></i>
-                <ul class="item-info">
-                    <li class="item-info-key">会员卡</li>
-                    <li class="item-info-value vip">3张</li>
-                </ul>
-            </li>
-            <li class="center-table-item coupon">
-                <i class="item-icon"></i>
-                <ul class="item-info">
-                    <li class="item-info-key">优惠券</li>
-                    <li class="item-info-value">10张</li>
+                    <li class="item-info-key">{{ item.accountName }}</li>
+                    <li class="item-info-value">{{ item.balance }}</li>
                 </ul>
             </li>
         </ul>
-        <div class="center-entry">
-            <router-link :to="{ name: 'myOrder', params: {} }" class="center-entry-item">
+        <div class="entry">
+            <router-link :to="{ name: 'myOrder', params: {} }" class="entry-item">
                 <i class="item-icon item-icon-order"></i>
                 <p class="item-name">我的订单</p>
                 <i class="item-next"></i>
             </router-link>
-            <router-link :to="{ name: '', params: {} }" class="center-entry-item">
+            <router-link :to="{ name: 'guestList', params: {} }" class="entry-item">
                 <i class="item-icon item-icon-people"></i>
                 <p class="item-name">常用旅客</p>
                 <i class="item-next"></i>
             </router-link>
-            <a href="tel:17777777777" class="center-entry-item">
+            <a href="tel:17777777777" class="entry-item">
                 <i class="item-icon item-icon-phone"></i>
                 <p class="item-name">联系我们</p>
                 <i class="item-phone">17777777777</i>
@@ -74,7 +56,8 @@ export default {
     },
     computed: {
         ...mapState([
-            'phone'
+            'phone',
+            'personalCenter'
         ])
     }
 };
@@ -83,7 +66,7 @@ export default {
 <style lang="scss" scoped>
 .center {
     padding-bottom: 3.125rem;
-    .center-personal {
+    .personal {
         position: relative;
         padding: 0.5rem;
         background-image:linear-gradient(-180deg, #298dea 4%, #4bb0ff 100%);
@@ -103,133 +86,6 @@ export default {
             position: absolute;
             background-image: url(~assets/images/next-icon.png);
             transform: translateY(-50%);
-        }
-    }
-    .center-entry {
-        border-top: 1px solid #e6e6e6;
-        border-bottom: 1px solid #e6e6e6;
-        background: #fff;
-        font-size: 0.4375rem;
-        color: #333;
-        margin-bottom: 0.4063rem;
-        &-item {
-            display: block;
-            padding: 0 0.5rem;
-            display: flex;
-            align-items: center;
-            height: 1.1875rem;
-            line-height: 1.1875rem;
-            .item-phone {
-                font-size: 0.4375rem;
-                color: #999;
-                text-align: right;
-            }
-            .item-icon {
-                margin-right: 0.25rem;
-                width: 0.5625rem;
-                height: 0.5625rem;
-                background-repeat: no-repeat;
-                background-size: cover;
-                &.item-icon-vip {
-                    background-image: url(~assets/images/vip-icon.png);
-                }
-                &.item-icon-order {
-                    background-image: url(~assets/images/order-icon.png);
-                }
-                &.item-icon-people {
-                    background-image: url(~assets/images/people-icon.png);
-                }
-                &.item-icon-phone {
-                    background-image: url(~assets/images/phone-icon.png);
-                }
-            }
-            .item-next {
-                width: 0.25rem;
-                height: 0.4375rem;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-image: url(~assets/images/next.png);
-            }
-            .item-name {
-                flex: 1;
-            }
-        }
-        .center-entry-item + .center-entry-item {
-            border-top: 1px solid #e6e6e6;
-        }
-    }
-    .center-table {
-        display: flex;
-        background: #fff;
-        width: 100%;
-        flex-wrap: wrap;
-        border-top: 1px solid #e6e6e6;
-        border-bottom: 1px solid #e6e6e6;
-        margin-bottom: 0.4063rem;
-        &-item {
-            padding-left: 0.5rem;
-            width: 50%;
-            display: flex;
-            align-items: center;
-            height: 1.75rem;
-            &:nth-of-type(1) {
-                border-bottom: 1px solid #e6e6e6;
-            }
-            &:nth-of-type(2) {
-                border-bottom: 1px solid #e6e6e6;
-            }
-            .item-icon {
-                width: 0.875rem;
-                height: 0.875rem;
-                background-repeat: no-repeat;
-                background-size: cover;
-                margin-right: 0.3125rem;
-            }
-            .item-info {
-                line-height: 1.3;
-                &-key {
-                    font-size: 0.375rem;
-                    color: #666;
-                }
-                &-value {
-                    font-size: 0.5rem;
-                }
-            }
-            &.account {
-                .item-icon {
-                    background-image: url(~assets/images/account-icon.png);
-                }
-                .item-info {
-                    color: #e57677;
-                }
-            }
-            &.coin {
-                .item-icon {
-                    background-image: url(~assets/images/coin-icon.png);
-                }
-                .item-info {
-                    color: #f59a26;
-                }
-            }
-            &.vip {
-                .item-icon {
-                    background-image: url(~assets/images/vipcard-icon.png);
-                }
-                .item-info {
-                    color: #49a5f1;
-                }
-            }
-            &.coupon {
-                .item-icon {
-                    background-image: url(~assets/images/coupon-icon.png);
-                }
-                .item-info {
-                    color: #49b19e;
-                }
-            }
-        }
-        .center-table-item + .center-table-item {
-            border-left: 1px solid #e6e6e6;
         }
     }
 }

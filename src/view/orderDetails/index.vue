@@ -47,7 +47,6 @@
 <script>
 import orderBox from '@/components/orderBox';
 import { mapState } from 'vuex';
-import { orderState, dateFormat } from '@/util/filters';
 
 export default {
     asyncData({ store, route }) {
@@ -63,10 +62,6 @@ export default {
     },
     components: {
         orderBox
-    },
-    filters: {
-        orderState,
-        dateFormat
     }
 };
 </script>

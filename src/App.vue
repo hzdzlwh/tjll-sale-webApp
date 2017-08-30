@@ -4,7 +4,6 @@
         <router-view class="app-view"></router-view>
     </div>
 </template>
-
 <script>
 import topbar from '@/components/topbar';
 
@@ -20,7 +19,7 @@ export default {
 #app {
     height: 100%;
     width: 100%;
-    background: #f7f9fa;
+    background:#f7f9fa;
     padding-top: 1.25rem;
 }
 </style>

@@ -26,7 +26,6 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import { dateFormat } from '@/util/filters';
 
 export default {
     asyncData({ store, route }) {
@@ -50,9 +49,6 @@ export default {
         jumpRouter(name, params) {
             this.$router.push({ name, params });
         }
-    },
-    filters: {
-        dateFormat
     }
 };
 </script>
