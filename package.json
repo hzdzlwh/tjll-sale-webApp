@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "js-cookie": "^2.1.4",
+    "mint-ui": "^2.2.9",
     "moment": "^2.18.1",
     "vue": "^2.3.3",
     "vue-router": "^2.6.0"

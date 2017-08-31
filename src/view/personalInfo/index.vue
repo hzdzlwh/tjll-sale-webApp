@@ -1,36 +1,45 @@
 <template>
     <div class="personalInfo">
         <div class="entry">
-            <router-link :to="{ name: '', params: {} }" class="entry-item">
+            <router-link :to="{ name: 'fixInfo', params: { key: 'name' } }" class="entry-item">
                 <p class="item-label">姓名</p>
-                <p class="item-name">王广允</p>
+                <p class="item-name">{{ user.name || '未填写' }}</p>
                 <i class="item-next"></i>
             </router-link>
-            <router-link :to="{ name: '', params: {} }" class="entry-item">
+            <router-link :to="{ name: 'fixInfo', params: { key: 'phone' } }" class="entry-item">
                 <p class="item-label">手机号</p>
-                <p class="item-name">{{ '17764526709' | coverFormat }}</p>
+                <p class="item-name">{{ user.phone || '未填写' | coverFormat }}</p>
             </router-link>
-            <router-link :to="{ name: '', params: {} }" class="entry-item">
+            <router-link :to="{ name: 'fixInfo', params: { key: 'idCard' } }" class="entry-item">
                 <p class="item-label">身份证</p>
-                <p class="item-name">{{ '330182199412120015' | coverFormat }}</p>
+                <p class="item-name">{{ user.phone || '未填写' | coverFormat }}</p>
                 <i class="item-next"></i>
             </router-link>
-            <router-link :to="{ name: '', params: {} }" class="entry-item">
+            <router-link :to="{ name: 'fixInfo', params: { key: 'more' } }" class="entry-item">
                 <p class="item-label">更多信息</p>
                 <p class="item-name"></p>
                 <i class="item-next"></i>
             </router-link>
         </div>
-        <div class="change-password">
-            <router-link class="change-password-button" :to="{ name: '', params: {} }">
-                修改密码
-            </router-link>
-        </div>
+         <common-button class="fixInfo-button" containt="修改密码"></common-button>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
+    title() {
+        return '个人资料';
+    },
+    asyncData({ store }) {
+        return store.dispatch('getUser');
+    },
+    computed: {
+        ...mapState([
+            'user'
+        ])
+    }
 };
 </script>
 
@@ -39,18 +48,18 @@ export default {
     padding: 0.41rem 0 1.56rem;
     height: 100%;
     .change-password {
-        padding: 0 36px;
-        font-size: 28px;
+        padding: 0 0.56rem;
+        font-size: 0.44rem;
         color: #999;
         &-button {
             display: block;
             background: #ffffff;
             border: 1px solid #999999;
-            border-radius: 8px;
+            border-radius: 0.13rem;
             width: 100%;
-            height: 76px;
+            height: 1.19rem;
             text-align: center;
-            line-height: 76px;
+            line-height: 1.19rem;
         }
     }
 }

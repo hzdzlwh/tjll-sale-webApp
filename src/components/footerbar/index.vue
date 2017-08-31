@@ -31,8 +31,8 @@ export default {
         &-item {
             flex: 1;
             text-align: center;
-            height: 100px;
-            font-size: 20px;
+            height: 1.56rem;
+            font-size: 0.31rem;
             // color: #4ea6ee;
             color: #999;
             text-decoration: none;
@@ -41,11 +41,11 @@ export default {
             justify-content: center;
             align-items: center;
             &-icon {
-                width: 42px;
-                height: 42px;
+                width: 0.66rem;
+                height: 0.66rem;
                 background-size: cover;
                 background-repeat: no-repeat;
-                margin-bottom: 8px;
+                margin-bottom: 0.13rem;
                 &.home {
                     background-image: url(~assets/images/home.png);
                 }
@@ -64,8 +64,8 @@ export default {
                 position: absolute;
                 left: 0;
                 top: 50%;
-                margin-top: -20px;
-                height: 40px;
+                margin-top: -0.31rem;
+                height: 0.63rem;
                 width: 1px;
                 background-color: #e6e6e6;
             }

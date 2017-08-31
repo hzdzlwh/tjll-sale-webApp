@@ -125,6 +125,8 @@ const idCardType = (state) => {
     return str;
 }
 export const coverFormat = (str) => {
+    if (!str) return;
+    if (!parseInt(str)) return str;
     const header = str.slice(0, 3);
     const footer = str.slice(-4);
     const bodyLength = str.length - 7;
@@ -133,6 +135,13 @@ export const coverFormat = (str) => {
         body += '*'
     }
     return `${header}${body}${footer}`;
+}
+
+export const labelToValue = (label, list) => {
+    if (label === undefined) return;
+    if (!list) throw '过滤器出错，请传入list';
+    const result = list.filter((item) => item.label === label)[0];
+    if (result) return result.value;
 }
 
 export default {
@@ -144,5 +153,6 @@ export default {
     orderState,
     payState,
     idCardType,
-    coverFormat
+    coverFormat,
+    labelToValue
 }

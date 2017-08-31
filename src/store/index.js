@@ -26,6 +26,9 @@ const store = new Vuex.Store({
             vipUser: {
                 accountList: []
             }
+        },
+        user: {
+
         }
     },
     mutations: {
@@ -54,6 +57,9 @@ const store = new Vuex.Store({
         },
         [types.GET_MEMBER](state, data) {
             state.personalCenter = data;
+        },
+        [types.GET_USER](state, data) {
+            state.user = data || {};
         }
     },
     actions: {
@@ -98,6 +104,26 @@ const store = new Vuex.Store({
             return new Promise((resolve, reject) => {
                 http.get('/directNet/personalCenterPage').then(res => {
                     commit(types.GET_MEMBER, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_USER]({ commit }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getUserProp').then(res => {
+                    commit(types.GET_USER, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.SET_USER]({ commit }, { phone, name, idCardType, idCardNum, gender, email, area, birthday, province }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/updateUserProp', { phone, name, idCardType, idCardNum, gender, email, area, birthday, province }).then(res => {
+                    commit(types.GET_USER, res.data);
                     resolve(res);
                 }).catch(err => {
                     reject(err);

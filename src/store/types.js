@@ -9,5 +9,7 @@ export default {
     SET_LOGIN: 'setLogin',
     GET_ORDER_LIST: 'getOrderList',
     GET_ORDER_DETAIL: 'getOrderDetail',
-    GET_MEMBER: 'getMember'
+    GET_MEMBER: 'getMember',
+    GET_USER: 'getUser',
+    SET_USER: 'setUser'
 };

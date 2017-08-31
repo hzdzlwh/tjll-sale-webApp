@@ -10,6 +10,7 @@ const router = new Router({
         {
             path: '/:id',
             component: () => import('@/components/main'),
+            redirect: { name: 'overview' },
             children: [
                 {   // 首页
                     path: 'overview',
@@ -102,6 +103,11 @@ const router = new Router({
                     path: 'personalInfo',
                     name: 'personalInfo',
                     component: () => import('@/view/personalInfo')
+                },
+                {
+                    path: 'fixInfo/:key',
+                    name: 'fixInfo',
+                    component: () => import('@/view/personalInfo/fixInfo')
                 }
             ]
         },

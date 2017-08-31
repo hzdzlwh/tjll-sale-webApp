@@ -1,10 +1,10 @@
 <template>
     <div class="center">
-        <div class="personal">
+        <router-link :to="{ name: 'personalInfo', params: {} }" class="personal">
             <div class="personal-name">萧远山</div>
             <div class="personal-phone">{{ phone }}</div>
             <i class="next-icon"></i>
-        </div>
+        </router-link>
         <div class="entry">
             <router-link :to="{ name: '', params: {} }" class="entry-item">
                 <i class="item-icon item-icon-vip"></i>
@@ -16,7 +16,7 @@
             <li
              v-for="item in personalCenter.vipUser.accountList"
              class="table-item"
-             :class="[[`status${item.type}`]]">
+             :class="[`status${item.type}`]">
                 <i class="item-icon"></i>
                 <ul class="item-info">
                     <li class="item-info-key">{{ item.accountName }}</li>
@@ -71,6 +71,7 @@ export default {
         padding: 0.5rem;
         background-image:linear-gradient(-180deg, #298dea 4%, #4bb0ff 100%);
         color: #fff;
+        display: block;
         &-name {
             font-size: 0.5625rem;
             margin-bottom: 0.25rem;
@@ -82,10 +83,11 @@ export default {
             top: 50%;
             right: 0.5rem;
             width: 0.25rem;
-            height: 0.4375rem;
+            height: 0.44rem;
             position: absolute;
             background-image: url(~assets/images/next-icon.png);
             transform: translateY(-50%);
+            background-size: 0.25rem 0.44rem;
         }
     }
 }
