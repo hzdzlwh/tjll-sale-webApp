@@ -25,7 +25,8 @@ const numberFormat = (value) => {
  * @param {string} fmt 格式
  * @returns {string} 格式化后的字符串
  */
-const dateFormat = (date, fmt) => {
+export const dateFormat = (date, fmt) => {
+    if (date === undefined) return '';
 	return moment(date).format(fmt);
 }
 /**

@@ -47,6 +47,7 @@ export default {
             background-repeat: no-repeat;
             background-image: url(~assets/images/goBack.png);
             background-position: center;
+            background-size: 0.25rem 0.44rem;
         }
     }
 </style>

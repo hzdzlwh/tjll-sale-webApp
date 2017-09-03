@@ -19,9 +19,13 @@ import clickoutside from '@/util/clickoutside';
 
 import '@/assets/styles/common.scss';
 
-import commonButton from '@/components/commonButton';
+import ddButton from '@/components/dd-button';
+import ddFormInput from '@/components/dd-form-control/input';
+import ddFormSelect from '@/components/dd-form-control/select';
 
-Vue.component('common-button', commonButton);
+Vue.component('dd-button', ddButton);
+Vue.component('dd-form-input', ddFormInput);
+Vue.component('dd-form-select', ddFormSelect);
 
 Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key]);

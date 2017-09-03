@@ -1,7 +1,7 @@
 <template>
     <div class="common-button-wrap">
         <div @click="onClick" class="common-button" :class="[ className ]">
-            {{ containt }}
+            {{ value }}
         </div>
     </div>
 </template>
@@ -9,7 +9,7 @@
 <script>
 export default {
     props: {
-        containt: {
+        value: {
             type: String,
             default: '确定'
         },

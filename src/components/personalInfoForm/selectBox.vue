@@ -81,4 +81,3 @@ export default {
     background-size: 0.25rem 0.4375rem;
 }
 </style>
-

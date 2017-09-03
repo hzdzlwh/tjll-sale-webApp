@@ -1,27 +1,42 @@
 <template>
     <div class="personalInfo">
         <div class="entry">
-            <router-link :to="{ name: 'fixInfo', params: { key: 'name' } }" class="entry-item">
-                <p class="item-label">姓名</p>
-                <p class="item-name">{{ user.name || '未填写' }}</p>
-                <i class="item-next"></i>
-            </router-link>
-            <router-link :to="{ name: 'fixInfo', params: { key: 'phone' } }" class="entry-item">
-                <p class="item-label">手机号</p>
-                <p class="item-name">{{ user.phone || '未填写' | coverFormat }}</p>
-            </router-link>
-            <router-link :to="{ name: 'fixInfo', params: { key: 'idCard' } }" class="entry-item">
-                <p class="item-label">身份证</p>
-                <p class="item-name">{{ user.phone || '未填写' | coverFormat }}</p>
-                <i class="item-next"></i>
-            </router-link>
-            <router-link :to="{ name: 'fixInfo', params: { key: 'more' } }" class="entry-item">
-                <p class="item-label">更多信息</p>
-                <p class="item-name"></p>
-                <i class="item-next"></i>
-            </router-link>
+            <dd-form-input
+            readonly
+            label="姓名"
+            icon
+            :value="user.name"
+            placeholder="未填写"
+            @click="jumpRoute('fixInfo', 'name')"
+            >
+            </dd-form-input>
+            <dd-form-input
+            readonly
+            label="手机号"
+            :value="user.phone"
+            placeholder="未填写"
+            >
+            </dd-form-input>
+            <dd-form-input
+            readonly
+            label="身份证"
+            icon
+            :value="user.idCardNum"
+            placeholder="未填写"
+            @click="jumpRoute('fixInfo', 'idCard')"
+            >
+            </dd-form-input>
+            <dd-form-input
+            readonly
+            label="更多信息"
+            icon
+            :value="user.idCardNum"
+            placeholder="未填写"
+            @click="jumpRoute('fixInfo', 'more')"
+            >
+            </dd-form-input>
         </div>
-         <common-button class="fixInfo-button" containt="修改密码"></common-button>
+         <dd-button class="fixInfo-button" value="修改密码"></dd-button>
     </div>
 </template>
 
@@ -39,6 +54,11 @@ export default {
         ...mapState([
             'user'
         ])
+    },
+    methods: {
+        jumpRoute(name, key) {
+            this.$router.push({ name, params: { key } });
+        }
     }
 };
 </script>
@@ -64,4 +84,3 @@ export default {
     }
 }
 </style>
-

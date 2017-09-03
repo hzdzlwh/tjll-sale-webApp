@@ -11,7 +11,7 @@
         <template v-if="key === 'idCard'">
             <div class="info-form-item">
                 <label class="form-label" for="certificate">证件类型</label>
-                <select-box @select="onSelect" class="form-input" :selectList="cardList" :label="value.idCardType"></select-box>
+                <select-box @select="onIdCardType" class="form-input" :selectList="cardList" :label="value.idCardType"></select-box>
                 <i class="form-icon"></i>
             </div>
             <div class="info-form-item">
@@ -27,8 +27,14 @@
             </div>
             <div class="info-form-item">
                 <label class="form-label" for="birthday">生日</label>
-                <input class="form-input" readonly :value="value.birthday" @input="onChange($event, 'idCardNum')" type="number" placeholder="2017-01-01">
+                <input class="form-input" @click="onBirthday" readonly :value="birthday" @input="onChange($event, 'idCardNum')" type="text" placeholder="2017-01-01">
                 <i class="form-icon"></i>
+                <mt-datetime-picker
+                 ref="picker"
+                 type="date"
+                 @confirm="confirmBirthday"
+                 v-model="formData.birthday">
+                </mt-datetime-picker>
             </div>
             <div class="info-form-item">
                 <label class="form-label" for="email">邮箱</label>
@@ -55,7 +61,7 @@
  *    idCardType: ''
  * }
  */
-import { strLengthFormat } from '@/util/filters';
+import { strLengthFormat, dateFormat } from '@/util/filters';
 import selectBox from './selectBox';
 
 export default {
@@ -107,14 +113,20 @@ export default {
         init() {
             this.formData = Object.assign({}, this.value);
         },
-        onSelect({ label }) {
+        onIdCardType({ label }) {
             this.formData.idCardType = label;
-        },
-        emitData() {
-            this.$emit('input', this.formData);
         },
         onGender({ label }) {
             this.formData.gender = label;
+        },
+        onBirthday() {
+            this.$refs.picker.open();
+        },
+        confirmBirthday(value) {
+            this.formData.birthday = dateFormat(value, 'YYYY-MM-DD');
+        },
+        emitData() {
+            this.$emit('input', this.formData);
         }
     },
     watch: {
@@ -128,6 +140,9 @@ export default {
     computed: {
         key() {
             return this.$route.params.key;
+        },
+        birthday() {
+            return this.formData.birthday || '未选择';
         }
     },
     components: {
