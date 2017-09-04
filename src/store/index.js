@@ -42,6 +42,7 @@ const store = new Vuex.Store({
             balance: 0
         },
         vipCardList: [],
+        cardDetail: {},
         vipCardDetail: {}
     },
     mutations: {
@@ -92,8 +93,16 @@ const store = new Vuex.Store({
         [types.GET_VIPCARD_LIST](state, data) {
             state.vipCardList = data.list;
         },
+        getCardDetail(state, params) {
+            params = parseInt(params);
+            state.vipCardList.forEach(item => {
+                if (item.id === params) {
+                    state.cardDetail = item;
+                }
+            });
+        },
         [types.GET_VIPCARD_DETAIL](state, data) {
-            state.vipCardDetail = data.list;
+            state.vipCardDetail = data;
         }
     },
     actions: {

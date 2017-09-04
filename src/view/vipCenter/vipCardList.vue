@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="card">
         <ul class="card-list">
-            <router-link :to="{ name:'vipCardDetail', params: { vipCardId: item.id, vipCardDetail: item } }" :key="item.cardNum" v-for="item in usableList" class="card-list-item">
+            <router-link :to="{ name:'vipCardDetail', params: { vipCardId: item.id, card: item } }" :key="item.cardNum" v-for="item in usableList" class="card-list-item">
                 <ul class="left">
                     <li class="left-name">{{ item.name }}</li>
                     <li class="left-number">{{ item.cardNum }}</li>
@@ -65,10 +65,10 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-    padding-bottom: 100px;
-    padding-top: 26px;
+    padding-bottom: 1.5625rem;
+    padding-top: 0.4063rem;
     &-list {
-        padding: 32px;
+        padding: 0.5rem;
         background-color: #fff;
         border-top: 1px solid #e6e6e6;
         border-bottom: 1px solid #e6e6e6;
@@ -78,10 +78,10 @@ export default {
         &-item {
             display: block;
             background-image: linear-gradient(90deg, #f2bd64 0%, #ffcb76 100%);
-            border-radius: 16px;
-            height: 120px;
+            border-radius: 0.25rem;
+            height: 1.875rem;
             display: flex;
-            padding: 0 32px;
+            padding: 0 0.5rem;
             color: #fff;
             .left {
                 display: flex;
@@ -89,23 +89,23 @@ export default {
                 flex-direction: column;
                 flex: 1;
                 &-name {
-                    font-size: 32px;
+                    font-size: 0.5rem;
                 }
                 &-number {
-                    margin-top: 12px;
-                    font-size: 24px;
+                    margin-top: 0.1875rem;
+                    font-size: 0.375rem;
                 }
             }
             .right {
-                font-size: 28px;
-                line-height: 120px;
+                font-size: 0.4375rem;
+                line-height: 1.875rem;
             }
             &:nth-of-type(even) {
                 background-image: linear-gradient(90deg, #eb7d7d 0%, #ff9d9d 100%);
             }
         }
         &-item + &-item {
-            margin-top: 24px;
+            margin-top: 0.375rem;
         }
     }
     &-title {
