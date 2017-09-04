@@ -350,7 +350,7 @@ a {
         align-items: center;
         height: 1.1875rem;
         line-height: 1.1875rem;
-        .item-phone {
+        .item-text {
             color: #999;
             text-align: right;
         }
@@ -377,6 +377,7 @@ a {
             }
         }
         .item-next {
+            margin-left: 0.25rem;
             width: 0.25rem;
             height: 0.4375rem;
             background-repeat: no-repeat;

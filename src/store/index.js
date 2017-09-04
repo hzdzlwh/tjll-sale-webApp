@@ -28,8 +28,21 @@ const store = new Vuex.Store({
             }
         },
         user: {
-
-        }
+        },
+        vipSchemeList: {
+        },
+        nextVipLevelInfo: {},
+        vipCenterData: {},
+        accountDetail: {
+            recordList: [],
+            balance: 0
+        },
+        virDetail: {
+            recordList: [],
+            balance: 0
+        },
+        vipCardList: [],
+        vipCardDetail: {}
     },
     mutations: {
         setTitle(state, title) {
@@ -60,6 +73,27 @@ const store = new Vuex.Store({
         },
         [types.GET_USER](state, data) {
             state.user = data || {};
+        },
+        [types.GET_VIPSCHEME_LIST](state, data) {
+            state.vipSchemeList = data;
+        },
+        [types.GET_NEXTVIPLEVELINFO](state, data) {
+            state.nextVipLevelInfo = data;
+        },
+        [types.GET_VIPCENTTER_DATA](state, data) {
+            state.vipCenterData = data;
+        },
+        [types.GET_VIPACCOUNT_DETAIL](state, data) {
+            state.accountDetail = data;
+        },
+        [types.GET_VIRACCOUNT_DETAIL](state, data) {
+            state.virDetail = data;
+        },
+        [types.GET_VIPCARD_LIST](state, data) {
+            state.vipCardList = data.list;
+        },
+        [types.GET_VIPCARD_DETAIL](state, data) {
+            state.vipCardDetail = data.list;
         }
     },
     actions: {
@@ -124,6 +158,76 @@ const store = new Vuex.Store({
             return new Promise((resolve, reject) => {
                 http.get('/directNet/updateUserProp', { phone, name, idCardType, idCardNum, gender, email, area, birthday, province }).then(res => {
                     commit(types.GET_USER, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_VIPSCHEME_LIST]({ commit }, vipId) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getVipSchemeList', { vipId }).then(res => {
+                    commit(types.GET_VIPSCHEME_LIST, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_NEXTVIPLEVELINFO]({ commit }, { vipId, vipLevelId }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getNextVipLevelInfo', { vipId, vipLevelId }).then(res => {
+                    commit(types.GET_NEXTVIPLEVELINFO, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_VIPCENTTER_DATA]({ commit }, vipId) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getVipCenterData', { vipId }).then(res => {
+                    commit(types.GET_VIPCENTTER_DATA, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_VIPACCOUNT_DETAIL]({ commit }, { vipId }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getVipAccountDetail', { vipId }).then(res => {
+                    commit(types.GET_VIPACCOUNT_DETAIL, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_VIRACCOUNT_DETAIL]({ commit }, { vipId }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getVirAccountDetail', { vipId }).then(res => {
+                    commit(types.GET_VIRACCOUNT_DETAIL, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_VIPCARD_LIST]({ commit }, { vipId }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getVipCardList', { vipId }).then(res => {
+                    commit(types.GET_VIPCARD_LIST, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_VIPCARD_DETAIL]({ commit }, vipCardId) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getVipCardDescription', { vipCardId }).then(res => {
+                    commit(types.GET_VIPCARD_DETAIL, res.data);
                     resolve(res);
                 }).catch(err => {
                     reject(err);

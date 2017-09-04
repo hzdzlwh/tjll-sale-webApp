@@ -1,12 +1,12 @@
 <template>
     <div class="center">
         <router-link :to="{ name: 'personalInfo', params: {} }" class="personal">
-            <div class="personal-name">萧远山</div>
+            <div class="personal-name">萧远山 <i v-if="personalCenter.isVip" class="vip-tip"><img src="~assets/images/v-icon.png" alt="v">至尊星耀</i></div>
             <div class="personal-phone">{{ phone }}</div>
             <i class="next-icon"></i>
         </router-link>
         <div class="entry">
-            <router-link :to="{ name: '', params: {} }" class="entry-item">
+            <router-link :to="{ name: 'vipCenter', params: {} }" class="entry-item">
                 <i class="item-icon item-icon-vip"></i>
                 <p class="item-name">会员中心</p>
                 <i class="item-next"></i>
@@ -73,8 +73,27 @@ export default {
         color: #fff;
         display: block;
         &-name {
+            position: relative;
             font-size: 0.5625rem;
             margin-bottom: 0.25rem;
+            .vip-tip {
+                display: inline-block;
+                font-size: 0.375rem;
+                color: #3392e9;
+                background-color: #ffebb8;
+                border-radius: 1.5625rem;
+                width: 2.3125rem;
+                height: 0.4688rem;
+                line-height: 0.4688rem;
+                vertical-align: top;
+                padding-left: 0.18rem;
+                img {
+                    margin-top: 0.0469rem;
+                    height: 0.3594rem;
+                    width: 0.3594rem;
+                    vertical-align: top;
+                }
+            }
         }
         &-phone {
             font-size: 0.375rem;

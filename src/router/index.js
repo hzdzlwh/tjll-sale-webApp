@@ -36,6 +36,42 @@ const router = new Router({
                         }
                     ]
                 },
+                {
+                    path: 'vipCenter',
+                    name: 'vipCenter',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/vipCenter')
+                },
+                {
+                    path: 'nextLevel',
+                    name: 'nextLevel',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/vipCenter/nextLevel')
+                },
+                {
+                    path: 'accountDetail',
+                    name: 'accountDetail',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/vipCenter/accountDetail')
+                },
+                {
+                    path: 'virDetail',
+                    name: 'virDetail',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/vipCenter/virDetail')
+                },
+                {
+                    path: 'vipCardList',
+                    name: 'vipCardList',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/vipCenter/vipCardList')
+                },
+                {
+                    path: 'vipCardDetail/:vipCardId',
+                    name: 'vipCardDetail',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/vipCenter/vipCardDetail')
+                },
                 {   // 我的订单
                     path: 'myOrder',
                     name: 'myOrder',

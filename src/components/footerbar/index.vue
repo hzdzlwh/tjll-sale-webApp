@@ -28,6 +28,7 @@ export default {
         width: 100%;
         display: flex;
         background-color: #fff;
+        border-top: 1px solid #e6e6e6;
         &-item {
             flex: 1;
             text-align: center;
