@@ -11,6 +11,11 @@ export default {
     },
     asyncData({ store, route }) {
         return store.dispatch('getVipCardDescription', route.params.vipCardId);
+    },
+    computed: {
+        cardDetail() {
+            return this.$router.params.vipCardDetail;
+        }
     }
 };
 </script>

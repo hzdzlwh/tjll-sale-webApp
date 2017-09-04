@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="card">
         <ul class="card-list">
-            <router-link :to="{ name:'vipCardDetail', params: { vipCardId: item.id } }" :key="item.cardNum" v-for="item in usableList" class="card-list-item">
+            <router-link :to="{ name:'vipCardDetail', params: { vipCardId: item.id, vipCardDetail: item } }" :key="item.cardNum" v-for="item in usableList" class="card-list-item">
                 <ul class="left">
                     <li class="left-name">{{ item.name }}</li>
                     <li class="left-number">{{ item.cardNum }}</li>

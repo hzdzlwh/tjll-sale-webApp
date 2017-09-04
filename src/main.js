@@ -5,12 +5,14 @@ import App from './App';
 import router from './router';
 import store from '@/store/index';
 import notify from '@/components/common/notify/notify';
-import { DatetimePicker, Popup, Picker } from 'mint-ui';
+import { DatetimePicker, Popup, Picker, Swipe, SwipeItem } from 'mint-ui';
 import 'mint-ui/lib/style.css';
 
 Vue.component(DatetimePicker.name, DatetimePicker);
 Vue.component(Popup.name, Popup);
 Vue.component(Picker.name, Picker);
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 // import 'normalize.css';
 import filters from '@/util/filters';
 
