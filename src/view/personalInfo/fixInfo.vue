@@ -99,14 +99,12 @@ export default {
                 gender: '',
                 phone: '',
                 email: ''
-            },
-            date: ''
+            }
         };
     },
     created() {
         this.getUser().then(() => {
-            // this.form = Object.assign({}, this.user);
-            // this.form.birthday = '';
+            this.form = Object.assign({}, this.user);
         });
     },
     methods: {

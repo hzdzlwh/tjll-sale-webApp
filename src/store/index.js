@@ -24,15 +24,19 @@ const store = new Vuex.Store({
             isVip: false,
             storePhone: '',
             vipUser: {
-                accountList: []
+                accountList: [],
+                name: ''
             }
         },
         user: {
         },
-        vipSchemeList: {
-        },
+        vipSchemeList: [],
         nextVipLevelInfo: {},
-        vipCenterData: {},
+        vipCenterData: {
+            vipSchemeId: 0,
+            vipScheme: '',
+            vipLevel: ''
+        },
         accountDetail: {
             recordList: [],
             balance: 0
@@ -47,6 +51,22 @@ const store = new Vuex.Store({
         vipCardAccountDetail: {
             recordList: [],
             balance: 0
+        },
+        consumerList: []
+    },
+    getters: {
+        GvipSchemeList(state) {
+            const arr = [];
+            const vipSchemeId = state.vipCenterData.vipSchemeId;
+            state.vipSchemeList.forEach(item => {
+                if (item.vipSchemeId === vipSchemeId) {
+                    item.default = true;
+                } else {
+                    item.default = false;
+                }
+                arr.push(item);
+            });
+            return arr;
         }
     },
     mutations: {
@@ -80,7 +100,7 @@ const store = new Vuex.Store({
             state.user = data || {};
         },
         [types.GET_VIPSCHEME_LIST](state, data) {
-            state.vipSchemeList = data;
+            state.vipSchemeList = data.list;
         },
         [types.GET_NEXTVIPLEVELINFO](state, data) {
             state.nextVipLevelInfo = data;
@@ -110,6 +130,9 @@ const store = new Vuex.Store({
         },
         [types.GET_VIPCARDACCOUNT_DETAIL](state, data) {
             state.vipCardAccountDetail = data;
+        },
+        [types.GET_CONSUMERUSER](state, data) {
+            state.consumerList = data.list;
         }
     },
     actions: {
@@ -254,6 +277,36 @@ const store = new Vuex.Store({
             return new Promise((resolve, reject) => {
                 http.get('/directNet/getVipCardAccountDetail', { vipCardId }).then(res => {
                     commit(types.GET_VIPCARDACCOUNT_DETAIL, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.SET_VIPSCHEME]({ commit }, { vipId, vipSchemeId }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/modifyVipScheme', { vipId, vipSchemeId }).then(res => {
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_CONSUMERUSER]({ commit }) {
+            const oprType = 0;
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/updateConsumerUser', { oprType }).then(res => {
+                    commit(types.GET_CONSUMERUSER, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.SET_CONSUMERUSER]({ commit }, consumerInfo) {
+            const oprType = 1;
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/updateConsumerUser', { consumerInfo, oprType }).then(res => {
                     resolve(res);
                 }).catch(err => {
                     reject(err);

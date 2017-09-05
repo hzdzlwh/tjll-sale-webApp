@@ -1,11 +1,17 @@
 <template>
     <div class="center">
-        <router-link :to="{ name: 'personalInfo', params: {} }" class="personal">
-            <div class="personal-name">萧远山 <i v-if="personalCenter.isVip" class="vip-tip"><img src="~assets/images/v-icon.png" alt="v">至尊星耀</i></div>
+        <router-link v-if="personalCenter.isVip" :to="{ name: 'personalInfo', params: {} }" class="personal">
+            <div class="personal-name">
+                {{ personalCenter.vipUser.name }}
+                <i class="vip-tip">
+                    <img src="~assets/images/v-icon.png" alt="v">
+                    <p>{{ personalCenter.vipUser.vipLevel }}</p>
+                </i>
+            </div>
             <div class="personal-phone">{{ phone }}</div>
             <i class="next-icon"></i>
         </router-link>
-        <div class="entry">
+        <div class="entry" v-if="personalCenter.isVip">
             <router-link :to="{ name: 'vipCenter', params: {} }" class="entry-item">
                 <i class="item-icon item-icon-vip"></i>
                 <p class="item-name">会员中心</p>
@@ -14,6 +20,7 @@
         </div>
         <ul class="table" v-if="personalCenter.isVip">
             <li
+             @click="jumpRoute(item.type)"
              v-for="item in personalCenter.vipUser.accountList"
              class="table-item"
              :class="[`status${item.type}`]">
@@ -59,6 +66,28 @@ export default {
             'phone',
             'personalCenter'
         ])
+    },
+    methods: {
+        jumpRoute(type) {
+            let name;
+            switch (type) {
+                case 0:
+                    name = 'accountDetail';
+                    break;
+                case 1:
+                    name = 'virDetail';
+                    break;
+                case 2:
+                    name = 'vipCardList';
+                    break;
+                case 3:
+                    name = 'accountDetail';
+                    break;
+                default:
+                    break;
+            }
+            this.$router.push({ name });
+        }
     }
 };
 </script>
@@ -76,22 +105,30 @@ export default {
             position: relative;
             font-size: 0.5625rem;
             margin-bottom: 0.25rem;
+            line-height: 0.5625rem;
+            display: flex;
             .vip-tip {
                 display: inline-block;
                 font-size: 0.375rem;
                 color: #3392e9;
                 background-color: #ffebb8;
                 border-radius: 1.5625rem;
-                width: 2.3125rem;
+                display: flex;
                 height: 0.4688rem;
                 line-height: 0.4688rem;
-                vertical-align: top;
-                padding-left: 0.18rem;
+                padding: 0 0.1875rem;
+                align-items: center;
+                margin-left: 0.25rem;
+                margin-top: 0.0469rem;
                 img {
-                    margin-top: 0.0469rem;
                     height: 0.3594rem;
                     width: 0.3594rem;
                     vertical-align: top;
+                }
+                p {
+                    flex: 1;
+                    min-width: 0.8rem;
+                    text-align: center;
                 }
             }
         }

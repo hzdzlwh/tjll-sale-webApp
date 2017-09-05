@@ -30,7 +30,7 @@
             readonly
             label="更多信息"
             icon
-            :value="user.idCardNum"
+            :value="' '"
             placeholder="未填写"
             @click="jumpRoute('fixInfo', 'more')"
             >

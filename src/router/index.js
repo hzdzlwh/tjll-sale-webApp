@@ -43,6 +43,12 @@ const router = new Router({
                     component: () => import('@/view/vipCenter')
                 },
                 {
+                    path: 'defaultVipCard',
+                    name: 'defaultVipCard',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/vipCenter/defaultVipCard')
+                },
+                {
                     path: 'nextLevel',
                     name: 'nextLevel',
                     meta: { requiresAuth: true },
@@ -77,6 +83,12 @@ const router = new Router({
                     name: 'vipCardAccountDetail',
                     meta: { requiresAuth: true },
                     component: () => import('@/view/vipCenter/vipCardAccountDetail')
+                },
+                {
+                    path: 'vipCardDesc/:vipCardId',
+                    name: 'vipCardDesc',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/vipCenter/vipCardDesc')
                 },
                 {   // 我的订单
                     path: 'myOrder',
@@ -136,6 +148,12 @@ const router = new Router({
                     path: 'guestList',
                     name: 'guestList',
                     component: () => import('@/view/guest/guestList')
+                },
+                {
+                    path: 'guestAdd',
+                    name: 'guestAdd',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/guest/guestAdd')
                 },
                 {
                     path: 'guestDetail/:guestId',
