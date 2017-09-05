@@ -18,6 +18,6 @@ export default {
 <style lang="scss">
 .overview {
     padding-bottom: 1.5625rem;
-    height: 100%;
+    // height: 100%;
 }
 </style>

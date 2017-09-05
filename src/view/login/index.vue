@@ -73,18 +73,15 @@ export default {
             this.t = this.t + 1;
         },
         subForm() {
-            const callback = function() {
-                if (this.phone.length !== 11 || !this.subCode) {
-                    return;
-                }
-                this.login({ params: {
-                    code: this.subCode,
-                    phone: this.phone
-                } }).then(() => {
-                    this.$router.push(this.$route.query.redirect || { name: 'overview' });
-                });
-            }.bind(this);
-            confirmModal({ message: 'adasdasd', duration: 1000000 }, callback);
+            if (this.phone.length !== 11 || !this.subCode) {
+                return;
+            }
+            this.login({ params: {
+                code: this.subCode,
+                phone: this.phone
+            } }).then(() => {
+                this.$router.push(this.$route.query.redirect || { name: 'overview' });
+            });
         },
         getCode() {
             if (this.phone.length !== 11) {

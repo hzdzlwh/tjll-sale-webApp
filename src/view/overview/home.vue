@@ -1,5 +1,8 @@
 <template>
-    <h1>首页</h1>
+<div>
+<headNav></headNav>
+<indexList></indexList>
+</div>
 </template>
 
 <script>
@@ -12,3 +15,14 @@ export default {
 
 <style lang="css">
 </style>
+<script>
+    import headNav from '@/components/nav';
+    import indexList from '@/components/nav/indexList';
+    
+    export default {
+        components: {
+            headNav,
+            indexList
+        }
+    };
+</script>
