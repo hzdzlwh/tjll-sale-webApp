@@ -43,7 +43,11 @@ const store = new Vuex.Store({
         },
         vipCardList: [],
         cardDetail: {},
-        vipCardDetail: {}
+        vipCardDetail: {},
+        vipCardAccountDetail: {
+            recordList: [],
+            balance: 0
+        }
     },
     mutations: {
         setTitle(state, title) {
@@ -103,6 +107,9 @@ const store = new Vuex.Store({
         },
         [types.GET_VIPCARD_DETAIL](state, data) {
             state.vipCardDetail = data;
+        },
+        [types.GET_VIPCARDACCOUNT_DETAIL](state, data) {
+            state.vipCardAccountDetail = data;
         }
     },
     actions: {
@@ -237,6 +244,16 @@ const store = new Vuex.Store({
             return new Promise((resolve, reject) => {
                 http.get('/directNet/getVipCardDescription', { vipCardId }).then(res => {
                     commit(types.GET_VIPCARD_DETAIL, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_VIPCARDACCOUNT_DETAIL]({ commit }, { vipCardId }) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getVipCardAccountDetail', { vipCardId }).then(res => {
+                    commit(types.GET_VIPCARDACCOUNT_DETAIL, res.data);
                     resolve(res);
                 }).catch(err => {
                     reject(err);

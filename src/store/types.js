@@ -19,5 +19,6 @@ export default {
     GET_VIPACCOUNT_DETAIL: 'getVipAccountDetail',
     GET_VIRACCOUNT_DETAIL: 'getVirAccountDetail',
     GET_VIPCARD_LIST: 'getVipCardList',
-    GET_VIPCARD_DETAIL: 'getVipCardDescription'
+    GET_VIPCARD_DETAIL: 'getVipCardDescription',
+    GET_VIPCARDACCOUNT_DETAIL: 'getVipCardAccountDetail'
 };

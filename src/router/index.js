@@ -72,6 +72,12 @@ const router = new Router({
                     meta: { requiresAuth: true },
                     component: () => import('@/view/vipCenter/vipCardDetail')
                 },
+                {
+                    path: 'vipCardAccountDetail/:vipCardId',
+                    name: 'vipCardAccountDetail',
+                    meta: { requiresAuth: true },
+                    component: () => import('@/view/vipCenter/vipCardAccountDetail')
+                },
                 {   // 我的订单
                     path: 'myOrder',
                     name: 'myOrder',
