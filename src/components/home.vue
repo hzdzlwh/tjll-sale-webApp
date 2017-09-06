@@ -1,38 +1,35 @@
 <template>
   <div class="home">
-    <div class="block">
-      <el-carousel height="400px">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3>{{ item }}</h3>
-        </el-carousel-item>
-      </el-carousel>
-    </div>
+    <carousel></carousel>
+    <div class="process"></div>
   </div>
 </template>
 
 <script>
+import carousel from './carousel';
 export default {
-  name: 'home',
-  data () {
-    return {
+    name: 'home',
+    data() {
+        return {
+        };
+    },
+    components: {
+        carousel
     }
-  }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 400px;
-  margin: 0;
-}
-.el-carousel__item:nth-child(2n) {
-   background-color: #99a9bf;
-}
-.el-carousel__item:nth-child(2n+1) {
-   background-color: #d3dce6;
+.home{
+  position: relative;
+  .process{
+    width: 100%;
+    height: 159px;
+    position: absolute;
+    top: 660px;
+    z-index: 999;
+    background: url('../assets/images/process.png');
+  }
 }
 </style>
