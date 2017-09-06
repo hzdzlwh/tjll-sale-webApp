@@ -31,7 +31,7 @@ import http from '@/util/http';
 import { mapActions } from 'vuex';
 import types from '@/store/types.js';
 import { getAuthorization } from '@/store';
-import confirmModal from '@/components/common/confirm';
+// import confirmModal from '@/components/common/confirm';
 
 export default {
     title() {

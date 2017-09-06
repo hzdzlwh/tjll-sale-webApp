@@ -37,6 +37,10 @@ const router = new Router({
                     ]
                 },
                 {
+                    path: 'detail/:nodeId',
+                    component: () => import('@/view/detail/index')
+                },
+                {
                     path: 'vipCenter',
                     name: 'vipCenter',
                     meta: { requiresAuth: true },

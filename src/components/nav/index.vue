@@ -37,25 +37,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.headNav-swipe{
-    height:7.5rem;
-    position: relative;
-    .headNav-picture-num{
-        text-align:center;
-        font-size: 0.3125rem;
-        display: inline-flex;
-        align-items: center;
-        position: absolute;
-        right: .6rem;
-        bottom: .5rem;
-        color: #fff;
-        // width: 1.171875rem;
-        padding: 0 0.125rem;
-        height: 0.5rem;
-        border-radius: 2.5rem;
-        background: rgba(0,0,0,.4);
-    }
-}
 .campInfo {
   position: relative;
   .campInfo-container {

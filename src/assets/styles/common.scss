@@ -67,7 +67,44 @@ a {
 ::-webkit-input-placeholder{
     color:#ccc;
 }
-
+.mint-swipe-indicator{
+    width:0.3125rem!important;
+    height:0.3125rem!important;
+    background-color: rgba(0,0,0,0.2)
+}
+.mint-swipe-indicators{
+   .is-active{
+    background-color: rgb(23,140,230)!important;
+    opacity: 0.75!important;
+} 
+}
+.discount-tag{
+    height:0.5625rem;
+    line-height:0.5625rem;
+    padding : 0 3px;
+    color:#fff;
+    background-color:#f06d6d;
+    font-size:0.4375rem;
+}
+.headNav-swipe{
+    height:7.5rem;
+    position: relative;
+    .headNav-picture-num{
+        text-align:center;
+        font-size: 0.3125rem;
+        display: inline-flex;
+        align-items: center;
+        position: absolute;
+        right: .6rem;
+        bottom: .5rem;
+        color: #fff;
+        // width: 1.171875rem;
+        padding: 0 0.125rem;
+        height: 0.5rem;
+        border-radius: 2.5rem;
+        background: rgba(0,0,0,.4);
+    }
+}
 .login{
     ::-webkit-input-placeholder{
         color:#ccc;
