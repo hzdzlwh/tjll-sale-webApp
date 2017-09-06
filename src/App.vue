@@ -21,5 +21,8 @@ export default {
     width: 100%;
     background:#f7f9fa;
     padding-top: 1.25rem;
+    .app-view {
+        height: 100%;
+    }
 }
 </style>

@@ -23,5 +23,6 @@ export default {
     GET_VIPCARDACCOUNT_DETAIL: 'getVipCardAccountDetail',
     SET_VIPSCHEME: 'setVipScheme',
     GET_CONSUMERUSER: 'getConsumerUser',
-    SET_CONSUMERUSER: 'setConsumerUser'
+    SET_CONSUMERUSER: 'setConsumerUser',
+    DELETE_CONSUMERUSER: 'deleteConsumerUser'
 };

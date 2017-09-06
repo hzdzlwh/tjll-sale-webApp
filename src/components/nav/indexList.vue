@@ -73,7 +73,7 @@
 <script>
 import { TabContainer, TabContainerItem } from 'mint-ui';
 
-export default{
+export default {
     data() {
         return {
             active: 'room'

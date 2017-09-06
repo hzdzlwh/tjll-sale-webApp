@@ -312,6 +312,17 @@ const store = new Vuex.Store({
                     reject(err);
                 });
             });
+        },
+        [types.DELETE_CONSUMERUSER]({ commit }, userId) {
+            console.log(userId);
+            const oprType = 2;
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/updateConsumerUser', { oprType, userId }).then(res => {
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
         }
     }
 });

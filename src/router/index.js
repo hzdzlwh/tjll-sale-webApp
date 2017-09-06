@@ -160,6 +160,11 @@ const router = new Router({
                     component: () => import('@/view/guest/guestAdd')
                 },
                 {
+                    path: 'guestUpdate/:guestId',
+                    name: 'guestUpdate',
+                    component: () => import('@/view/guest/guestUpdate')
+                },
+                {
                     path: 'guestDetail/:guestId',
                     component: () => import('@/view/guest/guestDetail')
                 },

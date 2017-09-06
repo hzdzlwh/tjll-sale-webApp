@@ -1,14 +1,14 @@
 <template>
-    <div>
-        <div class="gustList" v-if="consumerList.length !== 0">
-            <div class="gustItem">
-                <div class="gustItem-name">王广允</div>
-                <div class="gustItem-phOrca">
-                    <div><span class="gustItem-label">手机号</span><span>152*****182</span></div>
+    <div class="guest-list">
+        <div class="guestList" v-if="consumerList.length !== 0">
+            <div class="guestItem" @click="jumpRoute('guestUpdate', { guestId: item.id })" v-for="item in consumerList">
+                <div class="guestItem-name">{{ item.name }}</div>
+                <div class="guestItem-phOrca">
+                    <div><span class="guestItem-label">手机号</span><span>{{ item.phone }}</span></div>
                     <div class="right-travel">></div>
                 </div>
-                <div class="gustItem-phOrca">
-                    <div><span class="gustItem-label">身份证</span><span>4403***********111</span></div>
+                <div class="guestItem-phOrca">
+                    <div><span class="guestItem-label">{{ item.idCardType | idCardType }}</span><span>{{ item.idCardNum }}</span></div>
                 </div>
             </div>
         </div>
@@ -44,8 +44,8 @@ export default {
         ...mapActions([
             'getConsumerUser'
         ]),
-        jumpRoute(name) {
-            this.$router.push({ name });
+        jumpRoute(name, params) {
+            this.$router.push({ name, params });
         }
     }
 };
@@ -55,8 +55,11 @@ export default {
 .right-travel{
     transform: scaleY(2) scaleX(1);
 }
-.gustList{
-    .gustItem{
+.guest-list {
+    padding-bottom: 2.5rem;
+}
+.guestList{
+    .guestItem{
         margin-top:0.390625rem;
         padding: 0.5rem 0.5rem 0.25rem;
         font-size:0.34375rem;
@@ -67,15 +70,15 @@ export default {
         div{
             margin-bottom: 0.25rem;
         }
-        .gustItem-name{
+        .guestItem-name{
             font-size:0.4375rem;
             color:#333;
             line-height:0.4375rem;
         }
-        .gustItem-phOrca{
+        .guestItem-phOrca{
             display: flex;
             justify-content: space-between;
-            .gustItem-label{
+            .guestItem-label{
                 display: inline-block;
                 width: 1.40625rem;
             }
@@ -89,6 +92,6 @@ export default {
     left: 0;
     width: 100%;
     background-color: #fff;
-    padding: 32px 0;
+    padding: 0.5rem 0;
 }
 </style>

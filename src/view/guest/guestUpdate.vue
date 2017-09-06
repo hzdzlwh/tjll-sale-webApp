@@ -21,43 +21,42 @@
             :maxlength="18"
             label="证件号"></dd-form-input>
         </div>
-        <div class="button agree"  @click='subForm'>确定</div>
-        <!-- <div class="buttonList">
-            <div class="button danger">
+        <!-- <div class="button agree"  >确定</div> -->
+        <div class="buttonList">
+            <div class="button danger" @click="deleteForm">
                 删除
             </div>
-            <div class="button agree">
-                确定
+            <div class="button agree" @click='subForm'>
+                修改
             </div>
-        </div> -->
+        </div>
         </div>
     </div>
 </template>
 
 <script>
 import { idCardList } from '@/util/data';
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import { guestForm } from '@/util/form-rule';
-// import { Toast } from 'mint-ui';
 import Notification from '@/components/common/notify/notify.js';
 
 export default {
     title() {
-        return '新增常用旅客';
+        return '修改常用旅客';
+    },
+    asyncData({ store }) {
+        return store.dispatch('getConsumerUser');
     },
     data() {
         return {
-            form: {
-                idCardNum: '',
-                idCardType: 0,
-                name: '',
-                phone: ''
-            }
+            form: {}
         };
     },
     methods: {
         ...mapActions([
-            'setConsumerUser'
+            'setConsumerUser',
+            'getConsumerUser',
+            'deleteConsumerUser'
         ]),
         subForm() {
             const res = guestForm(this.form);
@@ -73,14 +72,32 @@ export default {
                 });
             }
         },
+        deleteForm() {
+            this.deleteConsumerUser(this.form.id).then(() => {
+                this.jumpRoute('guestList');
+            });
+        },
         jumpRoute(name) {
             this.$router.push({ name });
         }
     },
+    created() {
+        this.getConsumerUser().then(res => {
+            res.data.list.forEach(item => {
+                const id = parseInt(this.$route.params.guestId);
+                if (id === item.id) {
+                    this.form = item;
+                }
+            });
+        });
+    },
     computed: {
         idCardList() {
             return idCardList;
-        }
+        },
+        ...mapState([
+            'consumerList'
+        ])
     }
 };
 </script>
