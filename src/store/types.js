@@ -20,5 +20,8 @@ export default {
     GET_VIRACCOUNT_DETAIL: 'getVirAccountDetail',
     GET_VIPCARD_LIST: 'getVipCardList',
     GET_VIPCARD_DETAIL: 'getVipCardDescription',
-    GET_VIPCARDACCOUNT_DETAIL: 'getVipCardAccountDetail'
+    GET_VIPCARDACCOUNT_DETAIL: 'getVipCardAccountDetail',
+    SET_VIPSCHEME: 'setVipScheme',
+    GET_CONSUMERUSER: 'getConsumerUser',
+    SET_CONSUMERUSER: 'setConsumerUser'
 };

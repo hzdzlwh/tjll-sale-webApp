@@ -17,9 +17,10 @@
                 <p class="item-label">会员卡明细</p>
                 <i class="item-next"></i>
             </router-link>
-            <div :to="{ name: '', params: {} }" class="entry-item">
+            <router-link :to="{ name: 'vipCardDesc', params: {} }" class="entry-item">
                 <p class="item-label">详细说明</p>
-            </div>
+                <i class="item-next"></i>
+            </router-link>
         </div>
     </div>
 </template>

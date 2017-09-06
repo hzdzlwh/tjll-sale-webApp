@@ -25,11 +25,11 @@
         </div>
         <div class="vipCenter-title">设置</div>
         <div class="entry">
-            <div class="entry-item">
+            <router-link :to="{ name: 'defaultVipCard' }" class="entry-item">
                 <p class="item-name">默认会员方案</p>
-                <p class="item-text">至尊星耀</p>
+                <p class="item-text">{{ vipCenterData.vipScheme }}</p>
                 <i class="item-next"></i>
-            </div>
+            </router-link>
         </div>
     </div>
 </template>

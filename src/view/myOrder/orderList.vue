@@ -60,8 +60,8 @@ export default {
         .list-item-head {
             display: flex;
             justify-content: space-between;
-            height: 35px;
-            line-height: 35px;
+            height: 0.5469rem;
+            line-height: 0.5469rem;
         }
         .list-item-section {
             display: flex;
