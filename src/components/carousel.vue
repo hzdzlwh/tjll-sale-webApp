@@ -29,6 +29,6 @@
     background-color: #d3dce6;
 }
 .el-carousel__indicators{
-    top: 600px;
+    top: 550px;
 }
 </style>
