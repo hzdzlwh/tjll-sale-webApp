@@ -153,9 +153,10 @@ const store = new Vuex.Store({
                     });
             });
         },
-        [types.GET_ORDER_LIST]({ commit }) {
+        [types.GET_ORDER_LIST]({ commit }, orderStatus) {
+            orderStatus = orderStatus === 'all' ? '' : orderStatus;
             return new Promise((resolve, reject) => {
-                http.get('/directNet/getOrderList').then(res => {
+                http.get('/directNet/getOrderList', { orderStatus }).then(res => {
                     commit(types.GET_ORDER_LIST, res.data);
                     resolve(res.data);
                 }).catch(err => {
@@ -314,10 +315,9 @@ const store = new Vuex.Store({
             });
         },
         [types.DELETE_CONSUMERUSER]({ commit }, userId) {
-            console.log(userId);
             const oprType = 2;
             return new Promise((resolve, reject) => {
-                http.get('/directNet/updateConsumerUser', { oprType, userId }).then(res => {
+                http.post('/directNet/updateConsumerUser', { oprType, userId }).then(res => {
                     resolve(res);
                 }).catch(err => {
                     reject(err);

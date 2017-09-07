@@ -32,7 +32,7 @@
             </li>
         </ul>
         <div class="entry">
-            <router-link :to="{ name: 'myOrder', params: {} }" class="entry-item">
+            <router-link :to="{ name: 'myOrder', params: { orderStatus: 'all' } }" class="entry-item">
                 <i class="item-icon item-icon-order"></i>
                 <p class="item-name">我的订单</p>
                 <i class="item-next"></i>

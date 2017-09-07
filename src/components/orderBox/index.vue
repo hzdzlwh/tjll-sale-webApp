@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap">
+    <div class="wrap" @click="emit">
         <div class="list-item" :class="{ 'border-top': topBorder, 'border-bottom': bottomBorder }">
             <img class="list-item-img" :src="data.imgUrl" alt="bg">
             <div class="list-item-info">
@@ -40,6 +40,11 @@ export default {
         data: {
             type: Object,
             required: true
+        }
+    },
+    methods: {
+        emit() {
+            this.$emit('click');
         }
     }
 };

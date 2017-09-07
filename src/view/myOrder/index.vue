@@ -2,13 +2,14 @@
     <div class="my-order">
         <nav class="topbar">
             <ul class="nav-list">
-                <li class="nav-list-item active">全部</li>
-                <li class="nav-list-item">出行中</li>
-                <li class="nav-list-item">等待付款</li>
-                <li class="nav-list-item">等待出行</li>
-                <li class="nav-list-item">旅途结束</li>
-                <li class="nav-list-item">已取消</li>
+                <li @click="handleState('all')" class="nav-list-item" :class="{ active: status === 'all'  }">全部</li>
+                <li @click="handleState(3)" class="nav-list-item" :class="{ active: status == 3  }">出行中</li>
+                <li @click="handleState(-1)" class="nav-list-item" :class="{ active: status == -1  }">等待付款</li>
+                <li @click="handleState(2)" class="nav-list-item" :class="{ active: status == 2  }">等待出行</li>
+                <li @click="handleState(0)" class="nav-list-item" :class="{ active: status == 0  }">旅途结束</li>
+                <li @click="handleState(1)" class="nav-list-item" :class="{ active: status == 1  }">已取消</li>
             </ul>
+            <span class="line"></span>
         </nav>
         <router-view></router-view>
     </div>
@@ -24,43 +25,60 @@ export default {
         };
     },
     methods: {
+        handleState(orderStatus) {
+            this.$router.push({ name: 'myOrder_list', params: { orderStatus } });
+        }
     },
     computed: {
-        // navActive() {
-        // }
+        status() {
+            return this.$route.params.orderStatus;
+        }
     }
 };
 </script>
 
 <style lang="scss">
 .my-order {
-    padding-top: 46px;
+    padding-top: 1.0625rem;
     .topbar {
         position: fixed;
         left: 0;
         top: 1.25rem;
         width: 100%;
         background-color: #fff;
-        overflow: hidden;
+        // overflow: hidden;
+        .line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background-color: #e6e6e6;
+        }
         .nav-list {
+            position: relative;
             width: 100%;
             height: 100%;
-            font-size: 0;
+            display: flex;
+            overflow-x: scroll;
             overflow-y: hidden;
-            overflow-x: auto;
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
             overflow-scrolling: touch;
             &-item {
                 position: relative;
                 display: inline-block;
-                padding: 12px 14px;
-                font-size: 14px;
-                border-bottom: 1px solid rgb(215, 215, 215);
+                padding: 0 0.375rem;
+                text-align: center;
+                height: 1.0625rem;
                 transition: border .2s ease-in;
-                &.active {
-                    border-bottom: 1px solid #178ce6;
-                }
+                font-size: 0.375rem;
+                line-height: 1.0625rem;
+                z-index: 1;
+            }
+            .active {
+                color: #098AE8;
+                border-bottom: 1px solid #098AE8;
             }
         }
     }

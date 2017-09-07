@@ -97,12 +97,12 @@ const router = new Router({
                 {   // 我的订单
                     path: 'myOrder',
                     name: 'myOrder',
-                    redirect: { name: 'myOrder_list' },
+                    redirect: { path: 'myOrder/all' },
                     meta: { requiresAuth: true },
                     component: () => import('@/view/myOrder'),
                     children: [
                         {
-                            path: 'list',
+                            path: ':orderStatus',
                             name: 'myOrder_list',
                             component: () => import('@/view/myOrder/orderList')
                         }

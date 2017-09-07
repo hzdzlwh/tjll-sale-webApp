@@ -73,7 +73,10 @@ export default {
             }
         },
         deleteForm() {
-            this.deleteConsumerUser(this.form.id).then(() => {
+            let arr = [];
+            arr.push(this.form.id);
+            arr = JSON.stringify(arr);
+            this.deleteConsumerUser(arr).then(() => {
                 this.jumpRoute('guestList');
             });
         },

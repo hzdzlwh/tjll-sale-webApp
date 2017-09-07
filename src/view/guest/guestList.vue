@@ -56,9 +56,10 @@ export default {
     transform: scaleY(2) scaleX(1);
 }
 .guest-list {
-    padding-bottom: 2.5rem;
+
 }
 .guestList{
+    padding-bottom: 2.5rem;
     .guestItem{
         margin-top:0.390625rem;
         padding: 0.5rem 0.5rem 0.25rem;
