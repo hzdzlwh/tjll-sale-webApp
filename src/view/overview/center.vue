@@ -94,7 +94,7 @@ export default {
 
 <style lang="scss" scoped>
 .center {
-    padding-bottom: 3.125rem;
+    padding-bottom: 1rem;
     .personal {
         position: relative;
         padding: 0.5rem;
