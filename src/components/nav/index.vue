@@ -6,8 +6,6 @@
     <div class="headNav-swipe">
        <Swipe :show-indicators="false" @change="handleChange">
       <SwipeItem v-for='(item, index) in data.imgUrl' :key='index'><img :src="`${item}?imageView2/1/q/50/w/640/h/480`" width='100%'></SwipeItem>
-      <!-- <SwipeItem><img src="http://static.dingdandao.com/661959c68a1b248dd2b70d752225a8f5?imageView2/1/q/50/w/640/h/480" width='640px'></SwipeItem>
-      <SwipeItem><img src="http://static.dingdandao.com/6fd796d57b2811c62da5509fbf462843?imageView2/1/q/50/w/640/h/480" width='640px'></SwipeItem> -->
     </Swipe>
     <span class="headNav-picture-num">{{index + 1}}/{{data.imgUrl.length}}</span>
     </div>

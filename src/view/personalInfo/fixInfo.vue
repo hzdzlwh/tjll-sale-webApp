@@ -102,7 +102,7 @@ export default {
             }
         };
     },
-    created() {
+    async created() {
         this.getUser().then(() => {
             this.form = Object.assign({}, this.user);
         });

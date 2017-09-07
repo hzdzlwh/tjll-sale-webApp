@@ -1,6 +1,6 @@
 <template>
     <transition name="scale-fade">
-        <div class="dd-notification-mask" v-show="visible">
+        <div class="dd-notification-mask" v-show="visible" ref="notify">
             <div class="dd-notification">
                 <div class="dd-notification-main">
                     <span :class="[ typeClass ]" v-if="type"></span>

@@ -90,7 +90,7 @@ import util from '@/util/util.js';
 import http from '@/util/http.js';
 import { mapState } from 'vuex';
 
-export default{
+export default {
     data() {
         return {
             active: 'room',

@@ -13,7 +13,7 @@
             <dd-form-input
             readonly
             label="手机号"
-            :value="user.phone"
+            :value="user.phone | coverFormat"
             placeholder="未填写"
             >
             </dd-form-input>
@@ -21,7 +21,7 @@
             readonly
             label="身份证"
             icon
-            :value="user.idCardNum"
+            :value="user.idCardNum  | coverFormat"
             placeholder="未填写"
             @click="jumpRoute('fixInfo', 'idCard')"
             >

@@ -97,12 +97,12 @@ const router = new Router({
                 {   // 我的订单
                     path: 'myOrder',
                     name: 'myOrder',
-                    redirect: { name: 'myOrder_list' },
+                    redirect: { path: 'myOrder/all' },
                     meta: { requiresAuth: true },
                     component: () => import('@/view/myOrder'),
                     children: [
                         {
-                            path: 'list',
+                            path: ':orderStatus',
                             name: 'myOrder_list',
                             component: () => import('@/view/myOrder/orderList')
                         }
@@ -166,6 +166,11 @@ const router = new Router({
                     name: 'guestAdd',
                     meta: { requiresAuth: true },
                     component: () => import('@/view/guest/guestAdd')
+                },
+                {
+                    path: 'guestUpdate/:guestId',
+                    name: 'guestUpdate',
+                    component: () => import('@/view/guest/guestUpdate')
                 },
                 {
                     path: 'guestDetail/:guestId',

@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 10:59:33
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-09-07 17:16:23
+* @Last Modified time: 2017-09-07 20:06:08
 */
 export default {
     LOGIN: 'login',
@@ -24,6 +24,5 @@ export default {
     SET_VIPSCHEME: 'setVipScheme',
     GET_CONSUMERUSER: 'getConsumerUser',
     SET_CONSUMERUSER: 'setConsumerUser',
-    SET_SUBORDER: 'setSubOrder',
-    SET_SUBORDERPARMS: 'setSubOrderParms'
+    DELETE_CONSUMERUSER: 'deleteConsumerUser'
 };

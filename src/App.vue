@@ -15,11 +15,15 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #app {
     height: 100%;
     width: 100%;
     background:#f7f9fa;
     padding-top: 1.25rem;
+    .app-view {
+        height: 100%;
+        overflow: scroll;
+    }
 }
 </style>

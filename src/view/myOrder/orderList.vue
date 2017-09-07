@@ -1,5 +1,6 @@
 <template>
     <ul class="order-list">
+        <h1>订单列表</h1>
         <li class="list-item" @click="openDetail(order.orderId)" v-for="order in orderList">
             <div class="list-item-head">
                 <p class="date">{{ order.insuranceStart | dateFormat('YYYY-MM-DD') }} - {{ order.insuranceEnd | dateFormat('YYYY-MM-DD') }}</p>
@@ -29,7 +30,7 @@ import { mapActions, mapState } from 'vuex';
 
 export default {
     asyncData({ store, route }) {
-        return store.dispatch('getOrderList', route.params.orderId);
+        return store.dispatch('getOrderList', route.params.orderStatus);
     },
     computed: {
         ...mapState([

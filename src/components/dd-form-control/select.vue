@@ -16,16 +16,18 @@
         >
         <i class="dd-form-icon"></i>
         <transition name="fade">
-            <ul v-show="showList" class="dd-form-select">
-                <li
-                 @click="updateValue(item.value)"
-                 v-for="item in list"
-                 class="select-item"
-                 :class="{ active: item.value === value }"
-                >
-                    {{ item.key }}
-                </li>
-            </ul>
+            <div v-show="showList" class="scrollWrap" ref="scrollWrap">
+                <ul class="dd-form-select">
+                    <li
+                     @click="updateValue(item.value)"
+                     v-for="item in list"
+                     class="select-item"
+                     :class="{ active: item.value === value }"
+                    >
+                        {{ item.key }}
+                    </li>
+                </ul>
+            </div>
         </transition>
     </div>
 </template>
@@ -74,6 +76,8 @@ export default {
         toggleList() {
             this.showList = !this.showList;
         }
+    },
+    mounted() {
     }
 };
 </script>

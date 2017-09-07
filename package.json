@@ -11,6 +11,8 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "better-scroll": "^1.2.6",
+    "iscroll": "^5.2.0",
     "js-cookie": "^2.1.4",
     "mint-ui": "^2.2.9",
     "moment": "^2.18.1",
