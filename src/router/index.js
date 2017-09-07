@@ -109,6 +109,14 @@ const router = new Router({
                     ]
                 },
                 {
+                    path: 'payment/:orderId',
+                    component: () => import('@/view/payment/index')
+                },
+                {
+                    path: 'addOrder/:orderId',
+                    component: () => import('@/view/orderDetails/addOrder')
+                },
+                {
                     path: 'login',
                     name: 'login',
                     component: () => import('@/view/login/index')

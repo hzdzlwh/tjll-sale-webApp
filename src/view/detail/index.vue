@@ -2,39 +2,59 @@
 <div class="detail">
       <div class="headNav-swipe">
        <Swipe @change="handleChange">
-      <SwipeItem><img src="http://static.dingdandao.com/99e55621082d8ad94ea34f0eefee0ae9?imageView2/1/q/50/w/640/h/480" width='100%'></SwipeItem>
-      <SwipeItem><img src="http://static.dingdandao.com/661959c68a1b248dd2b70d752225a8f5?imageView2/1/q/50/w/640/h/480" width='100%'></SwipeItem>
-      <SwipeItem><img src="http://static.dingdandao.com/6fd796d57b2811c62da5509fbf462843?imageView2/1/q/50/w/640/h/480" width='100%'></SwipeItem>
+      <SwipeItem v-for='(item, index) in data.detailImgUrl' :key='index'><img :src="`${item}?imageView2/1/q/50/w/640/h/480`" width='100%'></SwipeItem>
+      <!-- <SwipeItem><img src="http://static.dingdandao.com/661959c68a1b248dd2b70d752225a8f5?imageView2/1/q/50/w/640/h/480" width='100%'></SwipeItem>
+      <SwipeItem><img src="http://static.dingdandao.com/6fd796d57b2811c62da5509fbf462843?imageView2/1/q/50/w/640/h/480" width='100%'></SwipeItem> -->
     </Swipe>
 
     </div>
-        <div class="title"><div class="desc"><h3><div class="detail-discountInfo-container"><span>微官网排房</span><span class="discount-tag">会员优惠7折</span></div><div class="detail-discountInfo-container"><span class="price"><!-- react-text: 27 -->￥<!-- /react-text --><b><!-- react-text: 29 -->0.00<!-- /react-text --><!-- react-text: 30 -->/晚<!-- /react-text --></b></span></div></h3><h4><span></span><span class="descIcon"><img src="https://static.dingdandao.com/sale-website/image/fitNum.png"><span><!-- react-text: 36 -->可住<!-- /react-text --><!-- react-text: 37 -->2<!-- /react-text --><!-- react-text: 38 -->人<!-- /react-text --></span></span><span class="descLine"></span><span class="descIcon"><img src="https://static.dingdandao.com/sale-website/image/bedType.png"><span>大床</span></span><span class="descLine"></span><span class="descIcon"><img src="https://static.dingdandao.com/sale-website/image/roomType.png"><span>60m²</span></span><span></span></h4></div></div>
+        <div class="title">
+        <div class="desc">
+        <h3>
+        <div class="detail-discountInfo-container">
+        <span>{{data.name}}</span>
+        <span class="discount-tag" v-if='data.showDiscount'>{{data.showDiscount}}</span>
+        </div>
+        <div class="detail-discountInfo-container">
+        <span class="price">￥<b>{{data.price}}/晚</b></span></div>
+        </h3>
+        <h4 v-if='data.type === 0'>
+        <span>
+            
+        </span>
+        <span class="descIcon"><img src="https://static.dingdandao.com/sale-website/image/fitNum.png"><span>可住{{data.fitNum}}人</span></span><span class="descLine"></span><span class="descIcon"><img src="https://static.dingdandao.com/sale-website/image/bedType.png"><span>{{data.bedType}}</span></span><span class="descLine"></span><span class="descIcon"><img src="https://static.dingdandao.com/sale-website/image/roomType.png"><span>{{data.area}}m²</span></span><span></span></h4>
+        <h4 v-if='data.type !== 0'>
+        <span>
+        </span>
+        <span class="descIcon"><img src="https://static.dingdandao.com/sale-website/image/fitNum.png"><span>适用{{data.fitNum}}人</span></span><span></span></h4>
+        </div></div>
         <div class="detail-info">
-        <div><span class="orderDetail-label">到达时间</span><span class="detail-info-data" @click='openStartDate()'>{{dateFormatMAndD(startValue)}}</span>{{startWeek}}</div>
-        <div><span class="orderDetail-label" >离开时间</span><span class="detail-info-data" @click='openEndDate()'>{{dateFormatMAndD(endValue)}}</span>{{endWeek}}共{{DateDiff()}}晚</div>
-        <div><span class="orderDetail-label">购买数量</span><counte  @numChange='numChange'></counte></div>
+        <div><span class="orderDetail-label">{{data.type === 0 ? '到达' : ''}}时间</span><span class="detail-info-data" @click='openStartDate()'>{{(data.type === 1 || data.type === 4) ?dateFormatMRHM(startValue) : dateFormatMAndD(startValue)}}</span>{{startWeek}}</div>
+        <div v-if='data.type === 0'><span class="orderDetail-label" >离开时间</span><span class="detail-info-data" @click='openEndDate()'>{{dateFormatMAndD(endValue)}}</span>{{endWeek}}共{{DateDiff()}}晚</div>
+        <div><span class="orderDetail-label">购买数量（{{data.unit}}）</span><counte  @numChange='numChange' :max='inventories'></counte><span v-if='this.num >= this.inventories' style="color:red;margin-left:0.46875rem;">已无多余库存</span></div>
+        <div v-if='data.chargeUnitTime'><span class="orderDetail-label">时长({{data.chargeUnit}})</span><counte  v-model='chargeUnitTime' @numChange='numSetpChange' :step=2></counte></div>
         </div>
         <div style="padding-bottom:1.375rem">
-            <div><h5>房间介绍</h5><div class="description content-container"><article>暂无介绍</article></div>
+            <div><h5>{{data.type === 0 ? '房间' : '商品'}}介绍</h5><div class="description content-container"><article>{{data.remark || '暂无说明'}}</article></div>
             </div>
-            <div>
-            <h5>配套设施</h5><div class="equipment content-container" style="padding-bottom: 0px;"><span class="equipItem">暂无说明</span></div>
+            <div v-if='data.type === 0'>
+            <h5>配套设施</h5><div class="equipment content-container" style="padding-bottom: 0px;">
+            <span class="equipItem" v-if='!data.facilities.length'>暂无说明</span>
+            <span v-for='(item, key, index) in data.facilities' v-if='item.status'><img src="https://static.dingdandao.com/sale-website/image/checkedIcon.png">{{facilitiesMap[key]}}:{{item}}</span></div>
             </div>
-            <div>
-            <h5>相关政策</h5><div class="content-container">暂无说明</div>
+            <div v-if='data.type === 0'>
+            <h5>相关政策</h5><div class="content-container"><span></span>{{data.policy || '暂无说明'}}</div>
             </div>
-            <div>
+            <!-- <div>
                 <h5>商品介绍</h5>
-                <div className="description content-container">
-                    <article>
-                        {remark}
-                    </article>
+                <div class="description content-container">
+                        {{data.remark || '暂无说明'}}
                 </div>
-            </div>
+            </div> -->
         </div>
-        <div class="bottom-button"><ul><li>加入购物车</li><li>立即预订</li></ul></div>
+        <div class="bottom-button"><ul><li @click='addShopCar()'>加入购物车</li><li @click='subOrder()'>立即预订</li></ul></div>
         <DatetimePicker ref="detailStart"
-    type="date"
+    :type="(data.type === 1 || data.type === 4) ? 'datetime' : 'date'"
     v-model="startValue" year-format="{value} 年"
     :startDate = 'new Date()'
   month-format="{value} 月"
@@ -53,14 +73,27 @@
 import { Swipe, SwipeItem, DatetimePicker } from 'mint-ui';
 import counte from '@/components/common/count/index';
 import util from '@/util/util.js';
+import http from '@/util/http';
 
 export default {
     data() {
         return {
             index: 1,
             num: 1,
-            startValue: new Date(),
-            endValue: new Date(new Date().valueOf())
+            startValue: new Date(this.$route.query.startValue),
+            endValue: new Date(this.$route.query.endValue),
+            data: {},
+            equipItem: [],
+            chargeUnitTime: undefined,
+            inventories: 1,
+            facilitiesMap: {
+                bathroom: '浴室',
+                breakfast: '早餐',
+                hotWater: '热水',
+                manager: '管理员',
+                network: '网络',
+                toilet: '厕所'
+            }
         };
     },
     components: {
@@ -77,7 +110,55 @@ export default {
             return this.getDate(this.endValue);
         }
     },
+    created() {
+        this.fetchDate();
+    },
     methods: {
+        numSetpChange(type, id, val) {
+            this.chargeUnitTime = val;
+        },
+        subOrder() {
+            const params = { orderItems: JSON.stringify([{
+                endDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.endValue) : util.dateFormat(this.endValue),
+                startDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.startValue) : util.dateFormat(this.startValue),
+                itemId: this.$route.params.nodeId,
+                num: this.num,
+                timeAmount: this.chargeUnitTime,
+                type: this.data.type
+            }])
+            };
+            http.get('/directNet/preDirectOrder', params).then(res => {
+                this.$router.push(`/${this.$route.params.id}/addOrder/${res.data.serialNum}`);
+            });
+        },
+        addShopCar() {
+            http.get('/directNet/addToShoppingCart', {
+                endDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.endValue) : util.dateFormat(this.endValue),
+                startDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.startValue) : util.dateFormat(this.startValue),
+                itemId: this.$route.params.nodeId,
+                num: this.num,
+                timeAmount: this.chargeUnitTime,
+                type: this.data.type
+            }).then(() => {
+                this.$notify.success('成功加入购物车');
+            });
+        },
+        fetchDate() {
+            const params = {
+                categoryId: this.$route.params.nodeId,
+                endDate: this.$route.query.endValue,
+                startDate: this.$route.query.startValue
+            };
+            http.get('/directNet/getCategoryDetail', params).then(res => {
+                this.data = res.data;
+                this.chargeUnitTime = res.data.chargeUnitTime;
+                // this.equipment = res.data.facilities.filter(el => el.status);
+            });
+            http.get('/directNet/getCategoryInventories', params).then(res => {
+                this.inventories = res.data.inventories;
+                // this.equipment = res.data.facilities.filter(el => el.status);
+            });
+        },
         startDateConfirm() {
             if (this.startValue.valueOf() <= this.endValue.valueOf()) {
                 this.endValue = new Date(this.startValue.valueOf() + (1000 * 60 * 60 * 24));
@@ -89,6 +170,9 @@ export default {
         dateFormatMAndD(val) {
             return util.dateFormatMAndD(val);
         },
+        dateFormatMRHM(val) {
+            return util.dateFormatMRHM(val);
+        },
         getDate(val) {
             if (util.isSameDay(val, new Date())) {
                 return '今天';
@@ -97,10 +181,11 @@ export default {
             const dateList = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
             return dateList[day];
         },
+        // minix
         handleChange(index) {
             this.index = index;
         },
-        numChange(type, id, val, orderId) {
+        numChange(type, id, val) {
             this.num = val;
         },
         openStartDate() {
@@ -124,6 +209,7 @@ export default {
         display: inline-flex;
         align-items: center;
         width: 50%;
+        font-size: 0.375rem;
     }
     .time{
         background-image: url("http://7xsrk6.com2.z0.glb.qiniucdn.com/arrow.png");
@@ -202,7 +288,8 @@ export default {
                 color: #333;
             }
             .orderDetail-label{
-                margin-right:1.25rem;
+                width: 2.8125rem;
+                display: inline-block;
             }
         }
         
@@ -213,6 +300,7 @@ export default {
             border-top: 1px solid #e3e3e3;
             border-bottom: 1px solid #e3e3e3;
             color: #666;
+            font-size: 0.375rem;
         }
         &>div>div>h5{
             display: flex;

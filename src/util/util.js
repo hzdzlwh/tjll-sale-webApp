@@ -28,6 +28,29 @@ const util = {
         s = s < 10 ? '0' + s : s;
         return y + '-' + m + '-' + d + ' ' + h + ':' + M + ':' + s;
     },
+    dateFormatmMdal: function(date) {
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? '0' + m : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        let h = date.getHours();
+        h = h < 10 ? '0' + h : h;
+        let M = date.getMinutes();
+        M = M < 10 ? '0' + M : M;
+        return y + '-' + m + '-' + d + ' ' + h + ':' + M;
+    },
+    dateFormatMRHM: function(date) {
+        var m = date.getMonth() + 1;
+        m = m < 10 ? '0' + m : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        let h = date.getHours();
+        h = h < 10 ? '0' + h : h;
+        let M = date.getMinutes();
+        M = M < 10 ? '0' + M : M;
+        return m + '月' + d + '日 ' + h + ':' + M;
+    },
     DateDiff: function(date1, date2) {
         const d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
         const d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());

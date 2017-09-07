@@ -1,8 +1,8 @@
 /*
 * @Author: lxj
 * @Date:   2017-08-17 10:53:21
-* @Last Modified by:   chuxiao
-* @Last Modified time: 2017-08-25 14:06:27
+* @Last Modified by:   lxj
+* @Last Modified time: 2017-09-07 17:58:22
 */
 import types from './types.js';
 import Vue from 'vue';
@@ -19,6 +19,9 @@ const store = new Vuex.Store({
         name: '',
         orderList: [],
         campId: '54797361',
+        subOrder: {},
+        subOrderParms: undefined,
+        // 结算的时候存的项目数据
         orderDetails: {},
         personalCenter: {
             isVip: false,
@@ -77,6 +80,14 @@ const store = new Vuex.Store({
             state.uuid = localStorage.uuid;
             state.phone = localStorage.phone;
             state.name = localStorage.name;
+        },
+        [types.SET_SUBORDERPARMS](state, { params }) {
+            window.localStorage.setItem('subOrderParms', JSON.stringify(params));
+            state.subOrderParms = params;
+        },
+        [types.SET_SUBORDER](state, { order }) {
+            window.localStorage.setItem('subOrder', JSON.stringify(order));
+            state.subOrder = order;
         },
         [types.SET_LOGIN](state, { user }) {
             state.phone = user.phone;
@@ -158,6 +169,16 @@ const store = new Vuex.Store({
                 http.get('/directNet/getOrderList').then(res => {
                     commit(types.GET_ORDER_LIST, res.data);
                     resolve(res.data);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_ORDER_DETAIL]({ commit }, orderId) {
+            return new Promise((resolve, reject) => {
+                http.get('/directNet/getOrderDetail', { orderId }).then(res => {
+                    commit(types.GET_ORDER_DETAIL, res.data);
+                    resolve(res);
                 }).catch(err => {
                     reject(err);
                 });

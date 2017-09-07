@@ -54,6 +54,7 @@ module.exports = {
     "semi": [2, "always"],
     "jsx-quotes": [2, "prefer-double"],
     "object-curly-spacing": [2, "always"],
+    'no-plusplus': 0,
     "space-unary-ops": [2, {
         "words": true,
         "nonwords": true,

@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 10:59:33
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-08-22 16:36:22
+* @Last Modified time: 2017-09-07 17:16:23
 */
 export default {
     LOGIN: 'login',
@@ -23,5 +23,7 @@ export default {
     GET_VIPCARDACCOUNT_DETAIL: 'getVipCardAccountDetail',
     SET_VIPSCHEME: 'setVipScheme',
     GET_CONSUMERUSER: 'getConsumerUser',
-    SET_CONSUMERUSER: 'setConsumerUser'
+    SET_CONSUMERUSER: 'setConsumerUser',
+    SET_SUBORDER: 'setSubOrder',
+    SET_SUBORDERPARMS: 'setSubOrderParms'
 };

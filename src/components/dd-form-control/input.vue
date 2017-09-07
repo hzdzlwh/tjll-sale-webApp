@@ -4,10 +4,11 @@
          class="dd-form-label"
          :for="label"
         >
-            {{ label }}
+            {{ label }}<span v-if='required' class="input-required">*</span>
         </label>
         <input
          class="dd-form-containt"
+         :class='className'
          :type="type"
          :placeholder="placeholder"
          :readonly="readonly"
@@ -48,8 +49,16 @@ export default {
             type: Boolean,
             defalut: false
         },
+        required: {
+            type: Boolean,
+            default: false
+        },
         value: {
             required: true
+        },
+        className: {
+            type: String,
+            default: ''
         }
     },
     methods: {

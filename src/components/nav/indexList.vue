@@ -13,29 +13,29 @@
 </div>
     <TabContainer v-model="active" :swipeable='true'>
   <TabContainerItem id="room">
-    <div class="roomDateContainer"><div class="roomDate" style="border-right: 2px solid #e6e6e6"><span class="roomDate-label">入住</span><span><span class="dateBtn"><!-- react-text: 192 -->10月08日<!-- /react-text --><span>周日</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div><!-- <div class="roomDate-line"></div> --><div class="roomDate"><span class="roomDate-label">退房</span><span><span class="dateBtn"><!-- react-text: 200 -->12月06日<!-- /react-text --><span>周三</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div></div>
+    <div class="roomDateContainer"><div class="roomDate" style="border-right: 2px solid #e6e6e6" @click='openStartDate'><span class="roomDate-label">入住</span><span><span class="dateBtn">{{dateFormatMAndD(startValue)}}<span>{{startWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div><!-- <div class="roomDate-line"></div> --><div class="roomDate" @click='openEndDate'><span class="roomDate-label">退房</span><span><span class="dateBtn">{{dateFormatMAndD(endValue)}}<span>{{endWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div></div>
     <div>
-    <div class="tab-item container" ><div><div class="LazyLoad is-visible roomItem-img"><span ><img src="http://static.dingdandao.com/638eee18a4de381d9e9a4f0cfd34f6cd?imageView2/2/w/608/h/350/q/50"></span></div></div><div class="roomItem-info"><div class="discountInfo-container"><span >微官网排房</span></div><span style="color:#999"><!-- react-text: 200 -->可住<!-- /react-text --><!-- react-text: 201 -->2<!-- /react-text --><!-- react-text: 202 -->人<!-- /react-text --></span></div><div class="roomItem-info" style=" color:#178ce6"><div class="discountInfo-container"><span >¥ 0元/晚</span></div><span class="item-btn" >预订</span></div></div></div>
+    <div class="tab-item container"  v-for='(item, index) in data[0]' @click='addOrder(item, 0)'><div><div class="LazyLoad is-visible roomItem-img"><span ><img :src="`${item.imgUrl}?imageView2/2/w/608/h/350/q/50`"></span></div></div><div class="roomItem-info"><div class="discountInfo-container"><span >{{item.name}}</span></div><span style="color:#999">可住{{item.fitNum}}人</span></div><div class="roomItem-info" style=" color:#178ce6"><div class="discountInfo-container"><span >¥ {{item.price}}元/晚</span></div><span class="item-btn" >{{item.hasNoSale ? '售罄' : '预订'}}</span></div></div></div>
   </TabContainerItem>
   <TabContainerItem id="enter">
     <div class="enterDateContainer">
         <div>
-        <div class=" otherContainer">
+        <div class=" otherContainer" v-for='item in data[1]' @click='addOrder(item, 1)'>
         <div class="item-img">
-        <img src="http://static.dingdandao.com/2b64e732e0f9760048dd7123577827fd?imageView2/1/w/200/h/200/q/50">
+        <img :src="`${item.imgUrl}?imageView2/1/w/200/h/200/q/50`">
         </div>
         <div class="notRoomItem-info">
         <div class="notRoomItem-name">
         <div class="discountInfo-container">
-        <span >大峡谷漂流</span>
+        <span >{{item.name}}</span>
         </div>
-        <span style="color: rgb(153, 153, 153);font-size:0.375rem;"><!-- react-text: 957 -->适用<!-- /react-text --><!-- react-text: 958 -->1<!-- /react-text --><!-- react-text: 959 -->人<!-- /react-text --></span>
+        <span style="color: rgb(153, 153, 153);font-size:0.375rem;">适用{{item.fitNum}}人</span>
         </div>
         <div class="notRoomItem-price">
         <div class="discountInfo-container">
-        <span ><!-- react-text: 963 -->¥&nbsp;<!-- /react-text --><!-- react-text: 964 -->0.01<!-- /react-text --></span>
+        <span >¥&nbsp;{{item.price}}</span>
         </div>
-        <span class="item-btn" >预订</span>
+        <span class="item-btn" >{{item.hasNoSale ? '售罄' : '预订'}}</span>
         </div>
         </div>
         </div>
@@ -45,22 +45,22 @@
   <TabContainerItem id="reset">
     <div class="resetDateContainer">
         <div>
-        <div class=" otherContainer">
+        <div class=" otherContainer" v-for='item in data[2]' @click='addOrder(item, 2)'>
         <div class="item-img">
-        <img src="http://static.dingdandao.com/2b64e732e0f9760048dd7123577827fd?imageView2/1/w/200/h/200/q/50">
+        <img :src="`${item.imgUrl}?imageView2/1/w/200/h/200/q/50`">
         </div>
         <div class="notRoomItem-info">
         <div class="notRoomItem-name">
         <div class="discountInfo-container">
-        <span >大峡谷漂流</span>
+        <span >{{item.name}}</span>
         </div>
 
         </div>
         <div class="notRoomItem-price">
         <div class="discountInfo-container">
-        <span ><!-- react-text: 963 -->¥&nbsp;<!-- /react-text --><!-- react-text: 964 -->0.01<!-- /react-text --></span>
+        <span >¥&nbsp;{{item.price}}</span>
         </div>
-        <span class="item-btn" >预订</span>
+        <span class="item-btn" >{{item.hasNoSale ? '售罄' : '预订'}}</span>
         </div>
         </div>
         </div>
@@ -68,25 +68,109 @@
     </div>
   </TabContainerItem>
 </TabContainer>
+ <DatetimePicker ref="detailStart"
+    type="date"
+    v-model="startValue" year-format="{value} 年"
+    :startDate = 'new Date()'
+  month-format="{value} 月"
+  date-format="{value} 日"
+  @confirm='startDateConfirm'></DatetimePicker>
+  <DatetimePicker ref="detailEnd"
+    type="date"
+    :startDate = 'startValue'
+    v-model="endValue" year-format="{value} 年"
+  month-format="{value} 月"
+  date-format="{value} 日"></DatetimePicker>
+  <!-- 可合并 -->
 </div>
 </template>
 <script>
-import { TabContainer, TabContainerItem } from 'mint-ui';
+import { TabContainer, TabContainerItem, DatetimePicker } from 'mint-ui';
+import util from '@/util/util.js';
+import http from '@/util/http.js';
+import { mapState } from 'vuex';
 
 export default{
     data() {
         return {
-            active: 'room'
+            active: 'room',
+            startValue: new Date(),
+            endValue: new Date(new Date().valueOf() + (1000 * 60 * 60 * 24)),
+            data: []
         };
     },
     components: {
         TabContainer,
-        TabContainerItem
+        TabContainerItem,
+        DatetimePicker
+    },
+    computed: {
+        ...mapState([
+            'campId'
+        ]),
+        startWeek() {
+            return this.getDate(this.startValue);
+        },
+        endWeek() {
+            return this.getDate(this.endValue);
+        }
     },
     methods: {
+        fetchDate() {
+            const parm = {
+                startDate: util.dateFormat(this.startValue),
+                endDate: util.dateFormat(this.endValue)
+            };
+            http.get('/directNet/getCategoryList', parm).then(res => {
+                const data = [];
+                const resData = res.data;
+                data.push(resData[0]);
+                data.push(resData[2]);
+                data.push(resData[1].concat(resData[4]));
+                this.data = data;
+            });
+        },
+        addOrder(data, type) {
+            if (data.hasNoSale) {
+                return;
+            }
+            if (type === 0) {
+                this.$router.push(`/${this.campId}/detail/${data.itemId}?startValue=${util.dateFormat(this.startValue)}&endValue=${util.dateFormat(this.endValue)}`);
+                return;
+            }
+            this.$router.push(`/${this.campId}/detail/${data.itemId}`);
+        },
         changeTab(active) {
             this.active = active;
+        },
+        startDateConfirm() {
+            if (this.startValue.valueOf() <= this.endValue.valueOf()) {
+                this.endValue = new Date(this.startValue.valueOf() + (1000 * 60 * 60 * 24));
+            }
+        },
+        DateDiff() {
+            return util.DateDiff(this.startValue, this.endValue);
+        },
+        dateFormatMAndD(val) {
+            return util.dateFormatMAndD(val);
+        },
+        getDate(val) {
+            if (util.isSameDay(val, new Date())) {
+                return '今天';
+            }
+            const day = val.getDay();
+            const dateList = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            return dateList[day];
+        },
+        openStartDate() {
+            this.$refs.detailStart.open();
+        },
+        openEndDate() {
+            this.$refs.detailEnd.open();
         }
+    },
+    created() {
+        this.fetchDate();
     }
 };
 </script>

@@ -14,7 +14,8 @@
             font-size: 0.4375rem;
             display: inline-block;
             text-align: center;
-            width: 0.53125rem;
+            // width: 0.53125rem;
+            padding: 0 0.15625rem;
             height: 0.53125rem;
             line-height: 0.53125rem;
             border: none;

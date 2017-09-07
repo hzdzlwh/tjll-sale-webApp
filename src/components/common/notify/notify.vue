@@ -79,6 +79,7 @@
     height: 1.375rem;
     display: inline-block;
     background-position: center top;
+    background-repeat: no-repeat;
     }
     .dd-notification-btn {
         width: 25%;
@@ -105,7 +106,7 @@
                 visible: false,
                 title: '',
                 message: '',
-                duration: 4500,
+                duration: 2500,
                 type: '',
                 onClose: null,
                 timer: null,
