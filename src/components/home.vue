@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <carousel></carousel>
-    <div class="process">
-      <img src="../assets/images/process.png">
-    </div>
+      <carousel></carousel>
+      <div class="process">
+        <img src="../assets/images/process.png">
+      </div>
     <div class="tab-container">
       <div class="nav-wrapper">
         <ul class="nav nav-tabs">

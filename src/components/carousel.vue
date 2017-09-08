@@ -3,7 +3,7 @@
         <div class="block">
             <el-carousel height="750px" arrow="never">
                 <el-carousel-item v-for="item in 4" :key="item">
-                    <h3>{{ item }}</h3>
+                    <img src="../assets/images/special.png">
                 </el-carousel-item>
             </el-carousel>
         </div>
