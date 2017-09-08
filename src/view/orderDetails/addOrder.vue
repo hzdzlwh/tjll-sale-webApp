@@ -79,7 +79,7 @@ export default {
     },
     methods: {
         subOrder() {
-            http.get('/directNet/commitDirectOrder', { customerName: this.name, planId: this.orderDetails.planId, remark: this.remark, customerPhone: this.phone }).then(res => {
+            http.get('/directNet/commitDirectOrder', { customerName: this.name, planId: this.orderDetails.planId, remark: this.remark, customerPhone: this.phone, serialNum: this.$route.params.orderId }).then(res => {
                 this.$router.push(`/${this.$route.params.id}/payment/${res.data.orderId}`);
             });
         },

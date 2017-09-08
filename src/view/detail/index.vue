@@ -128,7 +128,7 @@ export default {
             }])
             };
             http.get('/directNet/preDirectOrder', params).then(res => {
-                this.$router.push(`/${this.$route.params.id}/addOrder/${res.data.serialNum}`);
+                this.$router.push(`/${this.$route.params.id}/addOrder/${res.data}`);
             });
         },
         addShopCar() {
