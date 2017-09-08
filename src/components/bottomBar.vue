@@ -12,11 +12,13 @@
                 <p>400-600-3343</p>
                 <p>outing@eluying.com</p>
             </div>
-            <div class="item" style="padding-top:6px;">
+            <div class="item" style="padding-top:6px;text-align:center">
                 <p><img src="../assets/images/public-number.png" style="margin-right:10px;">公众号</p>
+                <img src="../assets/images/public-twocode.png" style="margin-top:14px;">
             </div>
-            <div class="item" style="padding-top:6px;">
+            <div class="item" style="padding-top:6px;text-align:center">
                 <p><img src="../assets/images/subscribe.png" style="margin-right:10px;">订阅号</p>
+                <img src="../assets/images/subscribe-twocode.png" style="margin-top:14px;">
             </div>
             <div class="item bottom-logo">
                 <img src="../assets/images/bottom-logo.png">
