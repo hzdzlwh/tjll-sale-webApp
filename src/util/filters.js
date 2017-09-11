@@ -26,7 +26,7 @@ const numberFormat = (value) => {
  * @returns {string} 格式化后的字符串
  */
 export const dateFormat = (date, fmt) => {
-    if (date === undefined) return '';
+    if (date === undefined || date === null || date.length === 0) return '';
 	return moment(date).format(fmt);
 }
 /**
