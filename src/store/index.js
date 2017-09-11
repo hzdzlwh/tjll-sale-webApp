@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 10:53:21
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-09-07 17:58:22
+* @Last Modified time: 2017-09-11 15:48:56
 */
 import types from './types.js';
 import Vue from 'vue';
@@ -18,7 +18,7 @@ const store = new Vuex.Store({
         uuid: '',
         name: '',
         orderList: [],
-        campId: '54797361',
+        campId: '',
         subOrder: {},
         subOrderParms: undefined,
         // 结算的时候存的项目数据
@@ -100,7 +100,7 @@ const store = new Vuex.Store({
             localStorage.uuid = user.uuid;
             localStorage.phone = user.phone;
             localStorage.name = user.name;
-            localStorage.campId = '54797361';
+            localStorage.campId = user.campId || location.h;
         },
         [types.GET_ORDER_LIST](state, data) {
             state.orderList = data.list;
