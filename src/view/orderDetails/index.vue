@@ -7,7 +7,7 @@
         <header class="order-head">
             <p class="order-head-status">
                 <span class="status">{{ orderDetails.orderState | orderState }}</span>
-                <span class="countdown" v-if="orderDetails.orderState === -1">剩余14分12秒</span>
+                <span class="countdown" v-if="orderDetails.orderState === -1">剩余：{{ this.countDown | secondsFormat }}</span>
             </p>
             <p class="order-head-tips">计划出行：{{ orderDetails.startDate | dateFormat('YYYY-MM-DD') }}</p>
         </header>
@@ -47,6 +47,7 @@
 <script>
 import orderBox from '@/components/orderBox';
 import { mapState } from 'vuex';
+import moment from 'moment';
 
 export default {
     asyncData({ store, route }) {
@@ -55,13 +56,37 @@ export default {
     title() {
         return '订单详情';
     },
+    data() {
+        return {
+            countDown: 0
+        };
+    },
     computed: {
         ...mapState([
             'orderDetails'
         ])
     },
+    created() {
+        if (this.orderDetails.orderState === -1) {
+            this.initCountDown(this.orderDetails.createDate);
+        }
+    },
     components: {
         orderBox
+    },
+    methods: {
+        initCountDown(time) {
+            const createTime = moment(time).format('X');
+            const nowTime = moment().format('X');
+            this.countDown = (createTime - nowTime) + 900;
+            /* eslint no-unused-vars: 0 */
+            let timer = setInterval(() => {
+                this.countDown -= 1;
+                if (this.countDown === 0) {
+                    timer = null;
+                }
+            }, 1000);
+        }
     }
 };
 </script>

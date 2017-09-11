@@ -42,7 +42,7 @@ const moneyFormat = (money) => {
  * @param {number} second 秒
  * @return {string} 格式化后的字符串
  */
-const secondsFormat = (time) => {
+export const secondsFormat = (time) => {
 	time = time || 0
 	let [h, m, s] = [
 		parseInt(time / 3600),
