@@ -40,7 +40,9 @@
             <div v-if='data.type === 0'>
             <h5>配套设施</h5><div class="equipment content-container" style="padding-bottom: 0px;">
             <span class="equipItem" v-if='!data.facilities.length'>暂无说明</span>
-            <span v-for='(item, key, index) in data.facilities' v-if='item.status' class="equipItem"><img src="https://static.dingdandao.com/sale-website/image/checkedIcon.png">{{facilitiesMap[key]}}:{{item.description}}</span></div>
+            <span v-for='(item, key, index) in data.facilities' v-if='item.status' class="equipItem"><img src="https://static.dingdandao.com/sale-website/image/checkedIcon.png">{{facilitiesMap[key]}}:{{item.description}}</span>
+            <span v-for='(item, key, index) in data.extraFacukutues' class="equipItem"><img src="https://static.dingdandao.com/sale-website/image/checkedIcon.png">{{item.name}}</span>
+            </div>
             </div>
             <div v-if='data.type === 0'>
             <h5>相关政策</h5><div class="content-container"><span></span>{{data.policy || '暂无说明'}}</div>
