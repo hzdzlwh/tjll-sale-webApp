@@ -182,8 +182,7 @@ export default {
             return http.get('/directNet/getCategoryList', parm).then(res => {
                 // const data = [];
                 const resData = res.data;
-                this.data = [];
-                this.data.push(resData[0]);
+                this.data[0] = resData[0];
                 // this.data = data;
             });
         },
@@ -286,6 +285,14 @@ export default {
             border-bottom: 1px solid #ddd;
             font-size:0.375rem;
             color: rgb(153, 153, 153);
+            & > span {
+                width: 100%;
+                text-align: center;
+                height: 0.5rem;
+            }
+            &>span:not(last-child){
+                border-right: 1px solid rgb(230, 230, 230);
+            }
             img{
                 margin-right:0.125rem;
                 vertical-align:bottom;
@@ -294,16 +301,12 @@ export default {
         .activeTab{
             color: #178ce6;
         }
-        .tab-border-right{
-            border-right: 1px solid rgb(230, 230, 230);
-            padding: 8px 64px 0;
-            height: 40px;
-        }
-        .tab-border-left{
-            border-left: 1px solid rgb(230, 230, 230);
-            padding: 8px 64px 0;
-            height: 40px;
-        }
+        // .tab-border-right{
+        //     border-right: 1px solid rgb(230, 230, 230);
+        // }
+        // .tab-border-left{
+        //     border-left: 1px solid rgb(230, 230, 230);
+        // }
     }
     .container{
         background-color: #fff;
