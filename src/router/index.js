@@ -44,6 +44,7 @@ const router = new Router({
                 // },
                 {
                     path: 'detail/:nodeId',
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/detail/index')
                 },
                 {
