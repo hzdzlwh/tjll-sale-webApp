@@ -57,7 +57,9 @@ const store = new Vuex.Store({
         },
         consumerList: [],
         roomList: [],
-        roomDetail: {}
+        roomDetail: {},
+        orderProfile: {},
+        shoppingCartCount: 0
     },
     getters: {
         GvipSchemeList(state) {
@@ -152,6 +154,12 @@ const store = new Vuex.Store({
         },
         [types.GET_ROOM_DETAIL](state, data) {
             state.roomDetail = data;
+        },
+        [types.GET_ORDER_PROFILE](state, data) {
+            state.orderProfile = data;
+        },
+        [types.GET_CART_COUNT](state, data) {
+            state.shoppingCartCount = data;
         }
     },
     actions: {
@@ -385,6 +393,26 @@ const store = new Vuex.Store({
             return new Promise((resolve, reject) => {
                 http.post('/directNet/getRoomDetail', { orderId, phone, saveId }).then(res => {
                     commit(types.GET_ROOM_DETAIL, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_ORDER_PROFILE]({ commit }, { orderId }) {
+            return new Promise((resolve, reject) => {
+                http.post('/directNet/getOrderProfile', { orderId }).then(res => {
+                    commit(types.GET_ORDER_PROFILE, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_CART_COUNT]({ commit }) {
+            return new Promise((resolve, reject) => {
+                http.post(' /derectNet/countShoppingCart').then(res => {
+                    commit(types.GET_CART_COUNT, res.data);
                     resolve(res);
                 }).catch(err => {
                     reject(err);

@@ -28,5 +28,7 @@ export default {
     GET_ROOM_LIST: 'getRoomList',
     SET_ROOM: 'setRoom',
     ADD_CHECKINPEOPLE: 'addCheckInPeople',
-    GET_ROOM_DETAIL: 'getRoomDetail'
+    GET_ROOM_DETAIL: 'getRoomDetail',
+    GET_ORDER_PROFILE: 'getOrderProfile',
+    GET_CART_COUNT: 'getCartCount' // 购物车数量
 };
