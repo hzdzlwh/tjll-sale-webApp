@@ -1,6 +1,6 @@
 <template>
     <div class="case">
-        <carousel></carousel>
+        <carousel :propsScreenWidth="screenWidth"></carousel>
         <div class="case-wrapper">
             <div class="classic-case">
                 <h4>
@@ -24,6 +24,26 @@ import contact from './contact';
 import bottomBar from './bottomBar';
 
 export default {
+    data() {
+        return {
+            screenWidth: document.body.clientWidth
+        };
+    },
+    mounted() {
+        const that = this;
+        window.onresize = () => {
+            return (() => {
+                window.screenWidth = document.body.clientWidth;
+                that.screenWidth = window.screenWidth;
+            })();
+        };
+    },
+    watch: {
+        screenWidth(val) {
+            this.screenWidth = val;
+            this.calculateProcessPosition();
+        }
+    },
     components: {
         carousel,
         contact,

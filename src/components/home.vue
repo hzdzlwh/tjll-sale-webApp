@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-      <carousel></carousel>
-      <div class="process">
-        <img src="../assets/images/process.png">
-      </div>
+    <carousel :propsScreenWidth="screenWidth"></carousel>
+    <div class="process">
+      <img class="process-img" src="../assets/images/process.png">
+    </div>
     <div class="tab-container">
       <div class="nav-wrapper">
         <ul class="nav nav-tabs">
@@ -70,7 +70,7 @@
       <img src="../assets/images/server.png">
     </div>
     <div class="special">
-      <img src="../assets/images/special.png">
+      <img class="special-img" src="../assets/images/special.png">
     </div>
     <contact></contact>
     <bottom-bar></bottom-bar>
@@ -81,11 +81,34 @@
 import carousel from './carousel';
 import contact from './contact';
 import bottomBar from './bottomBar';
+import $ from 'jquery';
 export default {
     name: 'home',
     data() {
         return {
+            screenWidth: document.body.clientWidth
         };
+    },
+    mounted() {
+        const that = this;
+        window.onresize = () => {
+            return (() => {
+                window.screenWidth = document.body.clientWidth;
+                that.screenWidth = window.screenWidth;
+            })();
+        };
+    },
+    methods: {
+        calculateProcessPosition() {
+            $('.process-img').css({ 'transform': 'translate(' + (-(1920 - this.screenWidth) / 2) + 'px)' });
+            $('.special-img').css({ 'transform': 'translate(' + (-(1920 - this.screenWidth) / 2) + 'px)' });
+        }
+    },
+    watch: {
+        screenWidth(val) {
+            this.screenWidth = val;
+            this.calculateProcessPosition();
+        }
     },
     components: {
         carousel,
@@ -105,8 +128,8 @@ export default {
     top: 590px;
     z-index: 999;
     img{
-      max-width: 100%;
-      height: auto;
+      /*max-width: 100%;
+      height: auto;*/
     }
   }
   .tab-container{
@@ -167,8 +190,8 @@ export default {
   }
   .special{
     img{
-      max-width: 100%;
-      height: auto;
+      /*max-width: 100%;
+      height: auto;*/
     }
   }
 }
