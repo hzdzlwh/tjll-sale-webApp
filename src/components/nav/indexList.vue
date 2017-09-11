@@ -2,13 +2,13 @@
 <div v-if='data'>
 <div class="tabList" v-if='itemLength > 1'>
     <div class="tab" @click='changeTab("room")' :class='{activeTab: active === "room"}' v-if='data[0] && data[0].length'>
-        <span  class="tab-border-right"> <img class="tabIcon" :src="active === 'room' ? 'https://static.dingdandao.com/sale-website/image/room_active.png' : 'https://static.dingdandao.com/sale-website/image/room.png' ">住宿</span>
+        <span  class="tab-border-right"> <img class="tabIcon" style="width:0.5rem;height:0.328125rem" :src="active === 'room' ? 'https://static.dingdandao.com/sale-website/image/room_active.png' : 'https://static.dingdandao.com/sale-website/image/room.png' ">住宿</span>
     </div>
     <div class="tab" @click='changeTab("enter")' :class='{activeTab: active === "enter"}' v-if='data[1] && data[1].length'>
-        <span   ><img class="tabIcon" :src="active === 'enter' ? 'https://static.dingdandao.com/sale-website/image/entertainment_active.png' : 'https://static.dingdandao.com/sale-website/image/entertainment.png' " >娱乐</span>
+        <span   ><img style="width:0.375rem;height:0.375rem" class="tabIcon" :src="active === 'enter' ? 'https://static.dingdandao.com/sale-website/image/entertainment_active.png' : 'https://static.dingdandao.com/sale-website/image/entertainment.png' " >娱乐</span>
     </div>
     <div class="tab" @click='changeTab("reset")' :class='{activeTab: active === "reset"}' v-if='data[2] && data[2].length'>
-        <span class="tab-border-left"><img class="tabIcon" :src="active === 'reset' ? 'https://static.dingdandao.com/sale-website/image/food_active.png' : 'https://static.dingdandao.com/sale-website/image/food.png' " >餐饮</span>
+        <span class="tab-border-left"><img style="width:0.375rem;height:0.296875rem" class="tabIcon" :src="active === 'reset' ? 'https://static.dingdandao.com/sale-website/image/food_active.png' : 'https://static.dingdandao.com/sale-website/image/food.png' " >餐饮</span>
     </div>
 </div>
     <TabContainer v-model="active" :swipeable='true'>
@@ -72,12 +72,14 @@
     type="date"
     v-model="startValue" year-format="{value} 年"
     :startDate = 'new Date()'
+    :endDate = 'new Date(startValue.valueOf() + 1000 * 60 * 60 * 24 * 365)'
   month-format="{value} 月"
   date-format="{value} 日"
   @confirm='startDateConfirm'></DatetimePicker>
   <DatetimePicker ref="detailEnd"
     type="date"
     :startDate = 'startValue'
+    :endDate = 'new Date(endValue.valueOf() + 1000 * 60 * 60 * 24 * 365)'
     v-model="endValue" year-format="{value} 年"
   month-format="{value} 月"
   date-format="{value} 日"></DatetimePicker>

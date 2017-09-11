@@ -27,6 +27,7 @@
 <script>
 import { Swipe, SwipeItem } from 'mint-ui';
 import http from '@/util/http.js';
+import { mapMutations } from 'vuex';
 
 export default {
     data() {
@@ -43,6 +44,9 @@ export default {
         SwipeItem
     },
     methods: {
+        ...mapMutations([
+            'setTitle'
+        ]),
         closeMask() {
             this.notice = false;
             this.remark = false;
@@ -53,6 +57,7 @@ export default {
         fetchDate() {
             http.get('/directNet/getCampInfo').then(res => {
                 this.data = res.data;
+                this.setTitle(res.data.campName);
             });
         }
     },
