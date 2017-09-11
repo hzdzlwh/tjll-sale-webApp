@@ -20,10 +20,10 @@
         </div>
         <ul class="table" v-if="personalCenter.isVip">
             <li
-             @click="jumpRoute(item.type)"
-             v-for="item in personalCenter.vipUser.accountList"
-             class="table-item"
-             :class="[`status${item.type}`]">
+            @click="jumpRoute(item.type)"
+            v-for="item in personalCenter.vipUser.accountList"
+            class="table-item"
+            :class="[`status${item.type}`]">
                 <i class="item-icon"></i>
                 <ul class="item-info">
                     <li class="item-info-key">{{ item.accountName }}</li>
