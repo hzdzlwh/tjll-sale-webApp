@@ -15,6 +15,7 @@ const router = new Router({
                 {   // 首页
                     path: 'overview',
                     name: 'overview',
+                    meta: { requiresAuth: true },
                     redirect: { name: 'overview_home' },
                     component: () => import('@/view/overview'),
                     children: [
@@ -44,7 +45,7 @@ const router = new Router({
                 // },
                 {
                     path: 'detail/:nodeId',
-                    // meta: { requiresAuth: true },
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/detail/index')
                 },
                 {
