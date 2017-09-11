@@ -15,7 +15,6 @@ const router = new Router({
                 {   // 首页
                     path: 'overview',
                     name: 'overview',
-                    // meta: { requiresAuth: true },
                     redirect: { name: 'overview_home' },
                     component: () => import('@/view/overview'),
                     children: [
@@ -38,14 +37,9 @@ const router = new Router({
                         }
                     ]
                 },
-                // {   name: 'overview_home',
-                //     path: 'home',
-                //     component: () => import('@/view/overview/home')
-
-                // },
                 {
                     path: 'detail/:nodeId',
-                    meta: { requiresAuth: true },
+                    // meta: { requiresAuth: true },
                     component: () => import('@/view/detail/index')
                 },
                 {
@@ -118,10 +112,12 @@ const router = new Router({
                 },
                 {
                     path: 'payment/:orderId',
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/payment/index')
                 },
                 {
                     path: 'addOrder/:orderId',
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/orderDetails/addOrder')
                 },
                 {
@@ -167,6 +163,7 @@ const router = new Router({
                 {
                     path: 'guestList',
                     name: 'guestList',
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/guest/guestList')
                 },
                 {
@@ -178,20 +175,24 @@ const router = new Router({
                 {
                     path: 'guestUpdate/:guestId',
                     name: 'guestUpdate',
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/guest/guestUpdate')
                 },
                 {
                     path: 'guestDetail/:guestId',
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/guest/guestDetail')
                 },
                 {
                     path: 'personalInfo',
                     name: 'personalInfo',
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/personalInfo')
                 },
                 {
                     path: 'fixInfo/:key',
                     name: 'fixInfo',
+                    meta: { requiresAuth: true },
                     component: () => import('@/view/personalInfo/fixInfo')
                 }
             ]
@@ -235,7 +236,11 @@ router.beforeEach(async (to, from, next) => {
     store.state.campId = campId;
     if (requiresAuth) {
         if (!isLogin) {
-            routerPath = { path: `/${campId}/login`, name: 'login', params: { id: campId }, query: { redirect: to.fullPath } };
+            routerPath = {
+                name: 'login',
+                params: { id: campId },
+                query: { redirect: to.fullPath }
+            };
         } else {
             // TODO:
         }
