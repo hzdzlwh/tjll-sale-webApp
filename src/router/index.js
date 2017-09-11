@@ -19,11 +19,11 @@ const router = new Router({
                     redirect: { name: 'overview_home' },
                     component: () => import('@/view/overview'),
                     children: [
-                        {
-                            path: 'home',
-                            name: 'overview_home',
-                            component: () => import('@/view/overview/home')
-                        },
+                        // {
+                        //     path: 'home',
+                        //     name: 'overview_home',
+                        //     component: () => import('@/view/overview/home')
+                        // },
                         {
                             path: 'cart',
                             name: 'overview_cart',
@@ -35,6 +35,11 @@ const router = new Router({
                             component: () => import('@/view/overview/center')
                         }
                     ]
+                },
+                {
+                    path: 'home',
+                    component: () => import('@/view/overview/home')
+
                 },
                 {
                     path: 'detail/:nodeId',

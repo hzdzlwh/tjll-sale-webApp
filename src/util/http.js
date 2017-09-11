@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 11:17:07
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-08-23 14:28:09
+* @Last Modified time: 2017-09-11 14:31:04
 */
 /* eslint-disable */
 // import cookie from 'js-cookie';
@@ -131,7 +131,8 @@ const http = {
     getDataWithToken(data) {
         const result = { ...data };
         // result.timestamp = (new Date()).valueOf();
-        result.campId = data.campId || localStorage.getItem('campId');
+        const campId = location.pathname.split('/')[1];
+        result.campId = data.campId || localStorage.getItem('campId') || campId;
         result.uuid =  data.uuid || localStorage.getItem('uuid');
         result.phone =  data.phone || localStorage.getItem('phone');
         result.terminal = 1;
