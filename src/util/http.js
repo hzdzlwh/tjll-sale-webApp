@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 11:17:07
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-09-11 14:31:04
+* @Last Modified time: 2017-09-11 19:40:58
 */
 /* eslint-disable */
 // import cookie from 'js-cookie';
@@ -82,16 +82,17 @@ const http = {
         })
             .then(res => {
                 if (res.data.code !== 1) {
-                    if (interConfig.notify && res.data.code !== 5) {
+                    if (interConfig.notify && res.data.code !== 11002) {
                         notify.warning(res.data.msg || '内部错误');
                         // vue.notify.warning(res.data.msg || '内部错误');
                         // Message.error(res.data.msg || '内部错误');
-                    } else if (res.data.code === 5 && !logoutErr) {
+                    } else if (res.data.code === 11002 && !logoutErr) {
                         logoutErr = true;
                         window.localStorage.clear();
+                        const campId = window.location.pathname.split('/')[1];
                         Message.error('账号在别处登录。');
                         setTimeout(() => {
-                            window.location.href = '/login.html';
+                            window.location.href = `/${campId}/login`;
                         }, 3000);
                     }
 

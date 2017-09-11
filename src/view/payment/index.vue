@@ -1,13 +1,13 @@
 <template>
 <div>
     
-    <div class="payment-item"><span class="payment-label">需支付</span>￥100.00</div>
+    <div class="payment-item" ><span class="payment-label">需支付</span>￥{{price}}</div>
     <div class="payment-item" v-if='isWeixin'>
     <img src="../../assets/images/weixin.png"  alt="" class="payment-ico"><span>微信支付<div class="payment-tip">微信安全支付</div></span></div>
     <div class="payment-item" v-else>
     <img src="../../assets/images/zhifubao.png"  alt="" class="payment-ico"><span>支付宝支付<div class="payment-tip">支付宝安全支付</div></span></div>
-    <div class="payment-bottom" @click='pay'>
-        {{isWeixin ? '微信' : '支付宝'}}支付：¥100.00
+    <div class="payment-bottom" @click='pay' >
+        {{isWeixin ? '微信' : '支付宝'}}支付：¥{{price}}
     </div>
 </div>
 
@@ -19,8 +19,14 @@ import { isWeixin, wxpayUrl } from '@/util/mobileUtil';
 export default {
     data() {
         return {
-            isWeixin
+            isWeixin,
+            orderDetails: {}
         };
+    },
+    computed: {
+        price() {
+            return this.$route.query.price;
+        }
     },
     methods: {
         pay() {

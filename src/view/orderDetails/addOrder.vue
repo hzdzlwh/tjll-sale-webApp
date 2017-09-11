@@ -2,7 +2,7 @@
     <div class="order" v-if='orderDetails'>
         <section class="order-section">
             <p class="order-section-title">住宿</p>
-            <order-box :bottomBorder="false" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
+            <order-box :bottomBorder="false" :key="index" v-for="(item, index) in orderDetails.orderItems" :data="item" :showButton='false'></order-box>
         </section>
         <section class="order-section">
         <ddInput :label='"联系人"' v-model='name' :required=true :placeholder='"请输入联系人"'></ddInput>
@@ -56,7 +56,7 @@ export default {
     //     return store.dispatch('getOrderDetail', route.params.orderId);
     // },
     title() {
-        return '订单详情';
+        return '填写订单';
     },
     data() {
         return {
@@ -83,7 +83,12 @@ export default {
     methods: {
         subOrder() {
             http.get('/directNet/commitDirectOrder', { customerName: this.name, planId: this.orderDetails.planId, remark: this.remark, customerPhone: this.phone, serialNum: this.$route.params.orderId }).then(res => {
-                this.$router.push(`/${this.$route.params.id}/payment/${res.data.orderId}`);
+                if (this.orderDetails.payment.online) {
+                    // this.$router.push(`/${this.$route.params.id}/orderDetails/${res.data.orderId}`);
+                    this.$router.push(`/${this.$route.params.id}/payment/${res.data.orderId}?price=${this.orderDetails.payment.online}`);
+                    return;
+                }
+                this.$router.push(`/${this.$route.params.id}/orderDetails/${res.data.orderId}`);
             });
         },
         changPrice(flag) {

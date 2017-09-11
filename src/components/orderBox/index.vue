@@ -4,14 +4,14 @@
             <img class="list-item-img" :src="data.imgUrl" alt="bg">
             <div class="list-item-info">
                 <div class="info-top">
-                    <p class="info-top-title">{{ data.name }}</p>
+                    <p class="info-top-title">{{ data.name || data.itemName }}</p>
                     <div class="info-top-price">
                         <p class="price-now">￥{{ data.price }}</p>
-                        <p class="price-original">￥150.00</p>
+                        <p class="price-original" v-if='data.originPrice'>￥{{data.originPrice}}</p>
                     </div>
                 </div>
                 <div class="info-bottom">
-                    <p class="info-bottom-date">{{ data.startDate }} ~ {{ data.endDate }}</p>
+                    <p class="info-bottom-date">{{ data.startDate }} <span v-if='data.endDate'> ~ {{ data.endDate }}</span></p>
                     <p class="info-bottom-count">1晚 {{ data.num }}{{ data.unit }}</p>
                 </div>
             </div>
