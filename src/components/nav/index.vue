@@ -1,7 +1,7 @@
 <template>
 <div v-if='data'>
-    <div class="campInfo"><div><div class="campInfo-notice" ><img class="icon-notice" src="https://static.dingdandao.com/sale-website/image/00CEE7F7-27B8-43DE-9255-B4ED2C921A35@1x.png"><div class="notice-container"><span class="notice-text" style="animation: translateHorizon 13s linear infinite;">{{data.notice}}</span></div></div>
-    <div style="display: none;"><div class="modal-mask"></div><div class="modal-container" style="width: 94%; padding: 0.4rem 0.6rem;"><p class="notice-title"><span></span><span class="notice-title-text">公告</span><span class="notice-close-icon"><img src="https://static.dingdandao.com/sale-website/image/notice-close.png"></span></p><div class="notice-content">{{data.notice}}</div></div></div>
+    <div class="campInfo"><div><div class="campInfo-notice" ><img class="icon-notice" src="https://static.dingdandao.com/sale-website/image/00CEE7F7-27B8-43DE-9255-B4ED2C921A35@1x.png"><div class="notice-container" @click='notice = !notice'><span class="notice-text" style="animation: translateHorizon 13s linear infinite;">{{data.notice}}</span></div></div>
+    <div ><div class="modal-mask"  v-if='notice || remark' @click='closeMask'></div><div v-if='notice'class="modal-container" style="width: 94%; padding: 0.4rem 0.6rem;"><p class="notice-title"><span></span><span class="notice-title-text">公告</span><span class="notice-close-icon" ><img  @click='notice = !notice' src="https://static.dingdandao.com/sale-website/image/notice-close.png"></span></p><div class="notice-content">{{data.notice}}</div></div></div>
     </div>
     <div class="headNav-swipe">
        <Swipe :show-indicators="false" @change="handleChange">
@@ -9,7 +9,18 @@
     </Swipe>
     <span class="headNav-picture-num">{{index + 1}}/{{data.imgUrl.length}}</span>
     </div>
-    <div class="campInfo-container"><div class="campInfo-campName"><article>{{data.campName}}</article><span><!-- react-text: 70 -->查看详情<!-- /react-text --><img src="https://static.dingdandao.com/sale-website/image/detail.png"></span></div><div style="display: none;"><div class="modal-mask"></div><div class="modal-container" style="width: 94%; padding: 0.4rem 0.6rem;"><p class="notice-title"><span></span><span class="notice-title-text">{{data.campName}}</span><span class="notice-close-icon"><img src="https://static.dingdandao.com/sale-website/image/notice-close.png"></span></p><div class="campInfo-remark-content" v-html='data.remark'></div></div></div><div class="campInfo-address"><article><a class="campInfo-mapNav" :href="`https://apis.map.qq.com/tools/poimarker?type=0&marker=coord:${data.coord.lat},${data.coord.lon};coordtype:3;title:${this.data.campName};addr:${data.address}&key=R6LBZ-CMK6X-XMI4Y-ZJYA2-FFDZO-UBB3Z&referer=salesite`"><img class="icon icon-address" src="http://static.dingdandao.com/sale-website/image/addres.png"><span class="campInfo-addressText">{{data.address}}</span></a><a class="campInfo-phone" :href="`tel:${data.phone}`"><img class="icon icon-phone" src="http://static.dingdandao.com/sale-website/image/phone.png"></a></article></div></div>
+    <div class="campInfo-container"><div class="campInfo-campName" @click='remark = true'><article>{{data.campName}}</article><span>查看详情<img src="https://static.dingdandao.com/sale-website/image/detail.png"></span></div>
+    <div v-if='remark'>
+    <div class="modal-container" style="width: 94%; padding: 0.4rem 0.6rem;">
+    <p class="notice-title">
+    <span></span>
+    <span class="notice-title-text">{{data.campName}}</span>
+    <span class="notice-close-icon"><img @click='remark = false' src="https://static.dingdandao.com/sale-website/image/notice-close.png"></span></p>
+    <div class="campInfo-remark-content" v-html='data.remark'></div>
+    </div>
+    </div>
+    <div class="campInfo-address"><article><a class="campInfo-mapNav" :href="`https://apis.map.qq.com/tools/poimarker?type=0&marker=coord:${data.coord.lat},${data.coord.lon};coordtype:3;title:${this.data.campName};addr:${data.address}&key=R6LBZ-CMK6X-XMI4Y-ZJYA2-FFDZO-UBB3Z&referer=salesite`"><img class="icon icon-address" src="http://static.dingdandao.com/sale-website/image/addres.png"><span class="campInfo-addressText">{{data.address}}</span></a><a class="campInfo-phone" :href="`tel:${data.phone}`"><img class="icon icon-phone" src="http://static.dingdandao.com/sale-website/image/phone.png"></a></article></div>
+    </div>
     </div>
     </div>
 </template>
@@ -21,7 +32,10 @@ export default {
     data() {
         return {
             index: 1,
-            data: undefined
+            data: undefined,
+            notice: false,
+            imageMask: false,
+            remark: false
         };
     },
     components: {
@@ -29,6 +43,10 @@ export default {
         SwipeItem
     },
     methods: {
+        closeMask() {
+            this.notice = false;
+            this.remark = false;
+        },
         handleChange(index) {
             this.index = index;
         },

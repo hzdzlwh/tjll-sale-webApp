@@ -2,20 +2,20 @@
 <div>
 <div class="tabList">
     <div class="tab" @click='changeTab("room")' :class='{activeTab: active === "room"}'>
-        <span > <img class="tabIcon" :src="active === 'room' ? 'https://static.dingdandao.com/sale-website/image/room_active.png' : 'https://static.dingdandao.com/sale-website/image/room.png' "><!-- react-text: 176 -->住宿<!-- /react-text --></span>
+        <span > <img class="tabIcon" :src="active === 'room' ? 'https://static.dingdandao.com/sale-website/image/room_active.png' : 'https://static.dingdandao.com/sale-website/image/room.png' ">住宿</span>
     </div>
     <div class="tab" @click='changeTab("enter")' :class='{activeTab: active === "enter"}'>
-        <span  class="tab-border" ><img class="tabIcon" :src="active === 'enter' ? 'https://static.dingdandao.com/sale-website/image/entertainment_active.png' : 'https://static.dingdandao.com/sale-website/image/entertainment.png' " ><!-- react-text: 180 -->娱乐<!-- /react-text --></span>
+        <span  class="tab-border" ><img class="tabIcon" :src="active === 'enter' ? 'https://static.dingdandao.com/sale-website/image/entertainment_active.png' : 'https://static.dingdandao.com/sale-website/image/entertainment.png' " >娱乐</span>
     </div>
     <div class="tab" @click='changeTab("reset")' :class='{activeTab: active === "reset"}'>
-        <span><img class="tabIcon" :src="active === 'reset' ? 'https://static.dingdandao.com/sale-website/image/food_active.png' : 'https://static.dingdandao.com/sale-website/image/food.png' " ><!-- react-text: 184 -->餐饮<!-- /react-text --></span>
+        <span><img class="tabIcon" :src="active === 'reset' ? 'https://static.dingdandao.com/sale-website/image/food_active.png' : 'https://static.dingdandao.com/sale-website/image/food.png' " >餐饮</span>
     </div>
 </div>
     <TabContainer v-model="active" :swipeable='true'>
   <TabContainerItem id="room">
-    <div class="roomDateContainer"><div class="roomDate" style="border-right: 2px solid #e6e6e6" @click='openStartDate'><span class="roomDate-label">入住</span><span><span class="dateBtn">{{dateFormatMAndD(startValue)}}<span>{{startWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div><!-- <div class="roomDate-line"></div> --><div class="roomDate" @click='openEndDate'><span class="roomDate-label">退房</span><span><span class="dateBtn">{{dateFormatMAndD(endValue)}}<span>{{endWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div></div>
+    <div class="roomDateContainer"><div class="roomDate" style="border-right: 2px solid #e6e6e6" @click='openStartDate'><span class="roomDate-label">入住</span><span><span class="dateBtn">{{dateFormatMAndD(startValue)}}<span>{{startWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div><div class="roomDate" @click='openEndDate'><span class="roomDate-label">退房</span><span><span class="dateBtn">{{dateFormatMAndD(endValue)}}<span>{{endWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div></div>
     <div>
-    <div class="tab-item container"  v-for='(item, index) in data[0]' @click='addOrder(item, 0)'><div><div class="LazyLoad is-visible roomItem-img"><span ><img :src="`${item.imgUrl}?imageView2/2/w/608/h/350/q/50`"></span></div></div><div class="roomItem-info"><div class="discountInfo-container"><span >{{item.name}}</span></div><span style="color:#999">可住{{item.fitNum}}人</span></div><div class="roomItem-info" style=" color:#178ce6"><div class="discountInfo-container"><span >¥ {{item.price}}元/晚</span></div><span class="item-btn" >{{item.hasNoSale ? '售罄' : '预订'}}</span></div></div></div>
+    <div class="tab-item container"  v-for='(item, index) in data[0]' @click='addOrder(item, 0)'><div><div class="LazyLoad is-visible roomItem-img"><span ><img :src="`${item.imgUrl}?imageView2/2/w/608/h/350/q/50`"></span></div></div><div class="roomItem-info"><div class="discountInfo-container"><span >{{item.name}} <span class="discount-tag" v-if='item.showDiscount'>item.showDiscount</span></span></div><span style="color:#999">可住{{item.fitNum}}人</span></div><div class="roomItem-info" style=" color:#178ce6"><div class="discountInfo-container"><span >¥ {{item.price}}元/晚<span class="price-del" v-if='item.showDiscount'>¥{{item.originPrice}}元/晚</span></span></div><span class="item-btn " :class='{itemNoMore: item.hasNoSale}' >{{item.hasNoSale ? '售罄' : '预订'}}</span></div></div></div>
   </TabContainerItem>
   <TabContainerItem id="enter">
     <div class="enterDateContainer">
@@ -27,15 +27,15 @@
         <div class="notRoomItem-info">
         <div class="notRoomItem-name">
         <div class="discountInfo-container">
-        <span >{{item.name}}</span>
+        <span >{{item.name}}<span class="discount-tag" v-if='item.showDiscount'>item.showDiscount</span></span>
         </div>
         <span style="color: rgb(153, 153, 153);font-size:0.375rem;">适用{{item.fitNum}}人</span>
         </div>
         <div class="notRoomItem-price">
         <div class="discountInfo-container">
-        <span >¥&nbsp;{{item.price}}</span>
+        <span >¥&nbsp;{{item.price}}<span class="price-del" v-if='item.showDiscount'>¥{{item.originPrice}}</span></span>
         </div>
-        <span class="item-btn" >{{item.hasNoSale ? '售罄' : '预订'}}</span>
+        <span class="item-btn" :class='{itemNoMore: item.hasNoSale}'>{{item.hasNoSale ? '售罄' : '预订'}}</span>
         </div>
         </div>
         </div>
@@ -52,15 +52,15 @@
         <div class="notRoomItem-info">
         <div class="notRoomItem-name">
         <div class="discountInfo-container">
-        <span >{{item.name}}</span>
+        <span >{{item.name}}<span class="discount-tag" v-if='item.showDiscount'>item.showDiscount</span></span>
         </div>
 
         </div>
         <div class="notRoomItem-price">
         <div class="discountInfo-container">
-        <span >¥&nbsp;{{item.price}}</span>
+        <span >¥&nbsp;{{item.price}}<span class="price-del" v-if='item.showDiscount'>¥{{item.originPrice}}</span></span>
         </div>
-        <span class="item-btn" >{{item.hasNoSale ? '售罄' : '预订'}}</span>
+        <span class="item-btn" :class='{itemNoMore: item.hasNoSale}'>{{item.hasNoSale ? '售罄' : '预订'}}</span>
         </div>
         </div>
         </div>
@@ -96,7 +96,8 @@ export default {
             active: 'room',
             startValue: new Date(),
             endValue: new Date(new Date().valueOf() + (1000 * 60 * 60 * 24)),
-            data: []
+            data: [],
+            lazyFlag: true
         };
     },
     components: {
@@ -109,13 +110,47 @@ export default {
             'campId'
         ]),
         startWeek() {
+            // window.console.log('2');
+            // window.console.log(this.lazyFlag);
+            // if (this.lazyFlag) {
+            //     clearTimeout(window.inter);
+            //     window.inter = window.setTimeout(() => this.setLaztFlag(), 800);
+            // }
             return this.getDate(this.startValue);
         },
         endWeek() {
+            // window.console.log('1');
+            // window.console.log(this.lazyFlag);
+            // if (this.lazyFlag) {
+            //     clearTimeout(window.inter);
+            //     window.inter = window.setTimeout(() => this.setLaztFlag(), 800);
+            // }
             return this.getDate(this.endValue);
         }
     },
+    watch: {
+        lazyFlag(val) {
+            if (!val) {
+                this.fetchRoom().then(() => this.lazyFlag = true);
+            }
+        },
+        startValue() {
+            if (this.lazyFlag) {
+                clearTimeout(window.inter);
+                window.inter = window.setTimeout(() => this.setLaztFlag(), 800);
+            }
+        },
+        endValue() {
+            if (this.lazyFlag) {
+                clearTimeout(window.inter);
+                window.inter = window.setTimeout(() => this.setLaztFlag(), 800);
+            }
+        }
+    },
     methods: {
+        setLaztFlag() {
+            this.lazyFlag = false;
+        },
         fetchDate() {
             const parm = {
                 startDate: util.dateFormat(this.startValue),
@@ -128,6 +163,19 @@ export default {
                 data.push(resData[2]);
                 data.push(resData[1].concat(resData[4]));
                 this.data = data;
+            });
+        },
+        fetchRoom() {
+            const parm = {
+                startDate: util.dateFormat(this.startValue),
+                endDate: util.dateFormat(this.endValue)
+            };
+            return http.get('/directNet/getCategoryList', parm).then(res => {
+                // const data = [];
+                const resData = res.data;
+                this.data = [];
+                this.data.push(resData[0]);
+                // this.data = data;
             });
         },
         addOrder(data, type) {
@@ -181,6 +229,9 @@ export default {
         background-color: #fff;
         border-top: 1px solid #e3e3e3;
         border-bottom: 1px solid #e3e3e3;
+        .discountInfo-container{
+            max-width:5.15625rem;
+        }
         .item-img{
             padding-right:0.25rem;
         }

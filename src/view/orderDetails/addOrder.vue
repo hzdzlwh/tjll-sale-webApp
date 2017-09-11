@@ -11,7 +11,7 @@
         <ddInput :label='"备注"' v-model='remark' :placeholder='"请输入备注"'></ddInput>
         </section>
         <section>
-       <div>
+       <div v-if='orderDetails.payment'>
            <div class="order-pay">
                 <div class="order-pay-label">订单金额</div>
                 <div class="order-pay-content" style="color:#49a5f1">¥{{orderDetails.payment.total}}</div>
@@ -37,7 +37,7 @@
        </div>
        </section>
         <div class="order-pay-button">
-            <div class="order-pay-info">实付款:<span>￥{{orderDetails.payment.online}}</span></div>
+            <div class="order-pay-info">实付款:<span>￥{{orderDetails.payment && orderDetails.payment.online}}</span></div>
             <div class="order-pay-sub" @click='subOrder'>提交订单</div>
         </div>
     </div>
@@ -75,7 +75,10 @@ export default {
     computed: {
         ...mapState({
             phone: state => state.phone
-        })
+        }),
+        planId() {
+            return this.orderDetails.planId;
+        }
     },
     methods: {
         subOrder() {
@@ -83,9 +86,11 @@ export default {
                 this.$router.push(`/${this.$route.params.id}/payment/${res.data.orderId}`);
             });
         },
-        changPrice() {
-            if (!this.flag) {
-                return;
+        changPrice(flag) {
+            if (flag === undefined) {
+                if (!this.flag) {
+                    return;
+                }
             }
             let paymentPlan = 0;
             if (this.card) {
@@ -115,6 +120,7 @@ export default {
                     this.game = false;
                 }
                 this.orderDetails = res.data;
+                return res;
             });
         },
         fetchDate() {
@@ -148,7 +154,7 @@ export default {
         },
         planId() {
             this.flag = false;
-            this.changPrice().then(() => this.flag = true);
+            this.changPrice(true).then(() => this.flag = true);
         }
     },
     created() {

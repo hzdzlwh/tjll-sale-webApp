@@ -96,7 +96,7 @@ export default {
     name: 'switch',
     props: {
         value: {
-            type: Number,
+            type: [Number, Boolean],
             default: 0
         },
         label: {
