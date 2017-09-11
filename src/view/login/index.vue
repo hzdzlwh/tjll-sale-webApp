@@ -15,7 +15,7 @@
     <img class="img-code" :src="getCode()" alt="验证码" @click='imgClick'></div>
     <div class="code loginInput">
     <label for="code ">短信验证码</label>
-    <input name="code" v-model='subCode' placeholder="请输入短信验证码" maxlength="6"><div class="getCode" @click='getSubCode'>{{codeText}}</div></div>
+    <input name="code" v-model='subCode' placeholder="请输入短信验证码" maxlength="6"><div class="getCode" :class='{disabled: codeText !== "发送验证码"}' @click='getSubCode'>{{codeText}}</div></div>
     <div class="loginButtom">
     <div class="button" :class='{disabled: !vaild, agree: vaild}' disabled="" @click='subForm'>确定</div></div>
     <!-- <div class="button agree" disabled="">登录</div></div> -->
@@ -35,7 +35,7 @@ import { getAuthorization } from '@/store';
 
 export default {
     title() {
-        return '微官网 - 登录';
+        return '登录';
     },
     beforeRouteEnter(to, from, next) {
         const isLogin = getAuthorization();
@@ -93,7 +93,7 @@ export default {
             return `/ws/user/getCaptcha?phone=${this.phone}&t=${this.t}`;
         },
         getSubCode() {
-            if (this.phone.length !== 11 || !this.code.length) {
+            if (this.phone.length !== 11 || !this.code.length || this.codeText !== '发送验证码') {
                 return false;
             }
             http.get('/user/sendVerify', { captcha: this.code, phone: this.phone }).then(action => {
