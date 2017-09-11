@@ -44,7 +44,7 @@ const router = new Router({
                 // },
                 {
                     path: 'detail/:nodeId',
-                    meta: { requiresAuth: true },
+                    // meta: { requiresAuth: true },
                     component: () => import('@/view/detail/index')
                 },
                 {
@@ -225,14 +225,21 @@ router.beforeEach(async (to, from, next) => {
     let routerPath;
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
     const isLogin = getAuthorization();
+    let campId = to.params.id;
+    if (!campId) {
+        campId = window.localStorage.getItem('campId');
+    } else {
+        window.localStorage.setItem('campId', campId);
+    }
+    store.state.campId = campId;
     if (requiresAuth) {
         if (!isLogin) {
-            routerPath = { name: 'login', params: { id: store.state.campId }, query: { redirect: to.fullPath } };
+            routerPath = { path: `/${campId}/login`, name: 'login', params: { id: campId }, query: { redirect: to.fullPath } };
         } else {
             // TODO:
         }
     } else {
-        // TODO:
+        next();
     }
     next(routerPath);
 });

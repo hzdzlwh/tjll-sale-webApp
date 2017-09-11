@@ -40,7 +40,7 @@
             <div v-if='data.type === 0'>
             <h5>配套设施</h5><div class="equipment content-container" style="padding-bottom: 0px;">
             <span class="equipItem" v-if='!data.facilities.length'>暂无说明</span>
-            <span v-for='(item, key, index) in data.facilities' v-if='item.status'><img src="https://static.dingdandao.com/sale-website/image/checkedIcon.png">{{facilitiesMap[key]}}:{{item}}</span></div>
+            <span v-for='(item, key, index) in data.facilities' v-if='item.status' class="equipItem"><img src="https://static.dingdandao.com/sale-website/image/checkedIcon.png">{{facilitiesMap[key]}}:{{item.description}}</span></div>
             </div>
             <div v-if='data.type === 0'>
             <h5>相关政策</h5><div class="content-container"><span></span>{{data.policy || '暂无说明'}}</div>
@@ -76,6 +76,9 @@ import util from '@/util/util.js';
 import http from '@/util/http';
 
 export default {
+    title() {
+        return '商品详情';
+    },
     data() {
         return {
             index: 1,
@@ -117,7 +120,17 @@ export default {
         numSetpChange(type, id, val) {
             this.chargeUnitTime = val;
         },
+        checklogin() {
+            if (window.localStorage.phone && window.localStorage.uuid) {
+                return true;
+            }
+            return false;
+        },
         subOrder() {
+            if (!this.checklogin()) {
+                this.$router.push(`/${this.$route.params.id}/login?redirect=${encodeURIComponent(this.$route.fullPath)}`);
+                return;
+            }
             const params = { orderItems: JSON.stringify([{
                 endDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.endValue) : util.dateFormat(this.endValue),
                 startDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.startValue) : util.dateFormat(this.startValue),
@@ -132,6 +145,10 @@ export default {
             });
         },
         addShopCar() {
+            if (!this.checklogin()) {
+                this.$router.push(`/${this.$route.params.id}/login?redirect=${encodeURIComponent(this.$route.fullPath)}`);
+                return;
+            }
             http.get('/directNet/addToShoppingCart', {
                 endDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.endValue) : util.dateFormat(this.endValue),
                 startDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.startValue) : util.dateFormat(this.startValue),
