@@ -1,6 +1,6 @@
 <template>
-<div>
-<div class="tabList">
+<div v-if='data'>
+<div class="tabList" v-if='itemLength > 1'>
     <div class="tab" @click='changeTab("room")' :class='{activeTab: active === "room"}' v-if='data[0] && data[0].length'>
         <span  class="tab-border-right"> <img class="tabIcon" :src="active === 'room' ? 'https://static.dingdandao.com/sale-website/image/room_active.png' : 'https://static.dingdandao.com/sale-website/image/room.png' ">住宿</span>
     </div>
@@ -106,6 +106,15 @@ export default {
         DatetimePicker
     },
     computed: {
+        itemLength() {
+            let count = 0;
+            for (let i = 0; i < 3; i ++) {
+                if (this.data[i - 1] && this.data[i - 1].length) {
+                    count ++;
+                }
+            }
+            return count;
+        },
         ...mapState([
             'campId'
         ]),

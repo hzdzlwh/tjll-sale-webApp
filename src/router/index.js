@@ -36,7 +36,7 @@ const router = new Router({
                         }
                     ]
                 },
-                {
+                {   name: 'overview_home',
                     path: 'home',
                     component: () => import('@/view/overview/home')
 
