@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-const NotificationConstructor = Vue.extend(require('./Notify.vue'));
+const NotificationConstructor = Vue.extend(require('./notify.vue'));
 
 let instance;
 
