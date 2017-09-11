@@ -24,5 +24,9 @@ export default {
     SET_VIPSCHEME: 'setVipScheme',
     GET_CONSUMERUSER: 'getConsumerUser',
     SET_CONSUMERUSER: 'setConsumerUser',
-    DELETE_CONSUMERUSER: 'deleteConsumerUser'
+    DELETE_CONSUMERUSER: 'deleteConsumerUser',
+    GET_ROOM_LIST: 'getRoomList',
+    SET_ROOM: 'setRoom',
+    ADD_CHECKINPEOPLE: 'addCheckInPeople',
+    GET_ROOM_DETAIL: 'getRoomDetail'
 };
