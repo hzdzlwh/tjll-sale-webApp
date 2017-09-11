@@ -82,7 +82,7 @@ export default {
             /* eslint no-unused-vars: 0 */
             let timer = setInterval(() => {
                 this.countDown -= 1;
-                if (this.countDown === 0) {
+                if (this.countDown < 1) {
                     timer = null;
                 }
             }, 1000);

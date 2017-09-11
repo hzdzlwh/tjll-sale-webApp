@@ -1,7 +1,7 @@
 <template>
     <header class="title-bar">
-        <i @click="goBack" class="go-back"></i>
-        <p>{{ title }}</p>
+        <i v-if="showGoBack" @click="goBack" class="go-back"></i>
+        <p @click="log">{{ title }}</p>
     </header>
 </template>
 
@@ -12,11 +12,18 @@ export default {
     computed: {
         ...mapState([
             'title'
-        ])
+        ]),
+        showGoBack() {
+            if (!this.$route.name) return true;
+            return !this.$route.name.includes('overview');
+        }
     },
     methods: {
         goBack() {
             this.$router.go(-1);
+        },
+        log() {
+            console.log(this.$route.name.includes('overview'));
         }
     }
 };
