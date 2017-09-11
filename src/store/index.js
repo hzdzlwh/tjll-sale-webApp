@@ -55,7 +55,9 @@ const store = new Vuex.Store({
             recordList: [],
             balance: 0
         },
-        consumerList: []
+        consumerList: [],
+        roomList: [],
+        roomDetail: {}
     },
     getters: {
         GvipSchemeList(state) {
@@ -144,6 +146,12 @@ const store = new Vuex.Store({
         },
         [types.GET_CONSUMERUSER](state, data) {
             state.consumerList = data.list;
+        },
+        [types.GET_ROOM_LIST](state, data) {
+            state.roomList = data.list;
+        },
+        [types.GET_ROOM_DETAIL](state, data) {
+            state.roomDetail = data;
         }
     },
     actions: {
@@ -339,6 +347,44 @@ const store = new Vuex.Store({
             const oprType = 2;
             return new Promise((resolve, reject) => {
                 http.post('/directNet/updateConsumerUser', { oprType, userId }).then(res => {
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_ROOM_LIST]({ commit }, { endDate, roomOrderId, startDate }) {
+            return new Promise((resolve, reject) => {
+                http.post('/directNet/getDirectNetRoomList', { endDate, roomOrderId, startDate }).then(res => {
+                    commit(types.GET_ROOM_LIST, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.SET_ROOM]({ commit }, { roomOrderId, roomId }) {
+            return new Promise((resolve, reject) => {
+                http.post('/directNet/submitSelectRoom', { roomOrderId, roomId }).then(res => {
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.ADD_CHECKINPEOPLE]({ commit }, { id, idCardNum, idCardType, name, phone, roomOrderId }) {
+            return new Promise((resolve, reject) => {
+                http.post('/directNet/addCheckInPeople', { id, idCardNum, idCardType, name, phone, roomOrderId }).then(res => {
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_ROOM_DETAIL]({ commit }, { orderId, phone, saveId }) {
+            return new Promise((resolve, reject) => {
+                http.post('/directNet/getRoomDetail', { orderId, phone, saveId }).then(res => {
+                    commit(types.GET_ROOM_DETAIL, res.data);
                     resolve(res);
                 }).catch(err => {
                     reject(err);
