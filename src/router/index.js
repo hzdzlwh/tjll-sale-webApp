@@ -15,32 +15,33 @@ const router = new Router({
                 {   // 首页
                     path: 'overview',
                     name: 'overview',
-                    meta: { requiresAuth: true },
                     redirect: { name: 'overview_home' },
                     component: () => import('@/view/overview'),
                     children: [
-                        // {
-                        //     path: 'home',
-                        //     name: 'overview_home',
-                        //     component: () => import('@/view/overview/home')
-                        // },
+                        {
+                            path: 'home',
+                            name: 'overview_home',
+                            component: () => import('@/view/overview/home')
+                        },
                         {
                             path: 'cart',
                             name: 'overview_cart',
+                            meta: { requiresAuth: true },
                             component: () => import('@/view/overview/cart')
                         },
                         {
                             path: 'center',
                             name: 'overview_center',
+                            meta: { requiresAuth: true },
                             component: () => import('@/view/overview/center')
                         }
                     ]
                 },
-                {   name: 'overview_home',
-                    path: 'home',
-                    component: () => import('@/view/overview/home')
+                // {   name: 'overview_home',
+                //     path: 'home',
+                //     component: () => import('@/view/overview/home')
 
-                },
+                // },
                 {
                     path: 'detail/:nodeId',
                     component: () => import('@/view/detail/index')
