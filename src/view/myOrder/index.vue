@@ -3,9 +3,9 @@
         <nav class="topbar">
             <ul class="nav-list">
                 <li @click="handleState('all')" class="nav-list-item" :class="{ active: status === 'all'  }">全部</li>
-                <li @click="handleState(3)" class="nav-list-item" :class="{ active: status == 3  }">出行中</li>
                 <li @click="handleState(-1)" class="nav-list-item" :class="{ active: status == -1  }">等待付款</li>
                 <li @click="handleState(2)" class="nav-list-item" :class="{ active: status == 2  }">等待出行</li>
+                <li @click="handleState(3)" class="nav-list-item" :class="{ active: status == 3  }">出行中</li>
                 <li @click="handleState(0)" class="nav-list-item" :class="{ active: status == 0  }">旅途结束</li>
                 <li @click="handleState(1)" class="nav-list-item" :class="{ active: status == 1  }">已取消</li>
             </ul>
