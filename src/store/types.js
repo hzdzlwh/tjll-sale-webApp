@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 10:59:33
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-09-12 17:44:49
+* @Last Modified time: 2017-09-12 19:03:36
 */
 export default {
     LOGIN: 'login',
@@ -33,5 +33,6 @@ export default {
     GET_CART_COUNT: 'getCartCount', // 购物车数量
     GET_CART_LIST: 'getCart', // 购物车列表
     CANCEL_ORDER: 'cancelOrder', // 取消订单
-    SET_CAMPDETAIL: 'setCampDetail'
+    SET_CAMPDETAIL: 'setCampDetail',
+    SET_HOMEINDEX: 'setHomeIndex'
 };

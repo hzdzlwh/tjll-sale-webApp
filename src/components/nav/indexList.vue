@@ -11,7 +11,7 @@
         <span class="tab-border-left"><img style="width:0.375rem;height:0.296875rem" class="tabIcon" :src="active === 'reset' ? 'https://static.dingdandao.com/sale-website/image/food_active.png' : 'https://static.dingdandao.com/sale-website/image/food.png' " >餐饮</span>
     </div>
 </div>
-    <TabContainer v-model="active" :swipeable='true'>
+    <TabContainer :value="active" @change='changeTab' :swipeable='true'>
   <TabContainerItem id="room">
     <div class="roomDateContainer"><div class="roomDate" style="border-right: 2px solid #e6e6e6" @click='openStartDate'><span class="roomDate-label">入住</span><span><span class="dateBtn">{{dateFormatMAndD(startValue)}}<span>{{startWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div><div class="roomDate" @click='openEndDate'><span class="roomDate-label">退房</span><span><span class="dateBtn">{{dateFormatMAndD(endValue)}}<span>{{endWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div></div>
     <div>
@@ -90,12 +90,12 @@
 import { TabContainer, TabContainerItem, DatetimePicker } from 'mint-ui';
 import util from '@/util/util.js';
 import http from '@/util/http.js';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
     data() {
         return {
-            active: 'room',
+            // active: 'room',
             startValue: new Date(),
             endValue: new Date(new Date().valueOf() + (1000 * 60 * 60 * 24)),
             data: [],
@@ -117,9 +117,10 @@ export default {
             }
             return count;
         },
-        ...mapState([
-            'campId'
-        ]),
+        ...mapState({
+            campId: state => state.campId,
+            active: 'homeIndex'
+        }),
         startWeek() {
             // window.console.log('2');
             // window.console.log(this.lazyFlag);
@@ -159,6 +160,9 @@ export default {
         }
     },
     methods: {
+        ...mapMutations([
+            'setHomeIndex'
+        ]),
         setLaztFlag() {
             this.lazyFlag = false;
         },
@@ -199,7 +203,7 @@ export default {
             this.$router.push(`/${this.campId}/detail/${data.itemId}`);
         },
         changeTab(active) {
-            this.active = active;
+            this.setHomeIndex({ homeIndex: active });
         },
         startDateConfirm() {
             if (this.startValue.valueOf() <= this.endValue.valueOf()) {
