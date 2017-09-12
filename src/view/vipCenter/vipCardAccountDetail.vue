@@ -13,7 +13,7 @@
                         <div class="left-date">{{ item.time }}</div>
                     </div>
                     <div class="right" :class="{ green: item.price > 0, red: item.price < 0 }">
-                        {{ item.price > 0 ? '+' : '-' }} {{ item.price }} 个
+                        {{ item.price }} 个
                     </div>
                 </li>
             </ul>

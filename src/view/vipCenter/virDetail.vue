@@ -13,7 +13,7 @@
                         <div class="left-date">{{ item.time }}</div>
                     </div>
                     <div class="right" :class="{ green: item.num > 0, red: item.num < 0 }">
-                        {{ item.num > 0 ? '+' : '-' }} {{ item.num }} 个
+                        {{ item.num }} 个
                     </div>
                 </li>
             </ul>

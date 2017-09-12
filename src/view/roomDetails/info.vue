@@ -6,7 +6,7 @@
                 <p class="number">8801</p>
                 <p class="icon">已入住</p>
             </div>
-            <div class="room-section-main">
+            <div class="room-section-main" v-for="item in roomDetail.list">
                 <div class="people-item">
                     <div class="info">
                         入住人
@@ -58,6 +58,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
     title() {
         return '房间详情';
@@ -78,6 +80,11 @@ export default {
         jumpRouter(name) {
             this.$router.push({ name });
         }
+    },
+    computed: {
+        ...mapState([
+            'roomDetail'
+        ])
     }
 };
 </script>
