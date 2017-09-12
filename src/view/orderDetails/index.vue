@@ -12,7 +12,9 @@
             <p class="order-head-tips" v-if="orderDetails.startDate">计划出行：{{ orderDetails.startDate | dateFormat('YYYY-MM-DD') }}</p>
         </header>
         <section class="order-section">
-            <p class="order-section-title">住宿</p>
+            <p class="order-section-title" v-if="orderDetails.orderType === 0">住宿</p>
+            <p class="order-section-title" v-if="orderDetails.orderType === 1">餐饮</p>
+            <p class="order-section-title" v-if="orderDetails.orderType === 2">娱乐</p>
             <order-box :bottomBorder="false" :showButton="item.type === 0" :saveId="item.saveId" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
         </section>
         <section class="order-section">

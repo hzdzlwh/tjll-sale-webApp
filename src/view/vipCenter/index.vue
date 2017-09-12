@@ -124,7 +124,7 @@ export default {
         }
         &-text {
             color: #fff;
-            font-size: 24px;
+            font-size: 0.375rem;
             flex: 1;
             text-align: right;
         }

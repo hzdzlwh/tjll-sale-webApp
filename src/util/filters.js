@@ -73,7 +73,7 @@ const orderState = (state) => {
     let str
     switch (state) {
         case -1:
-            str = '未支付'
+            str = '等待付款'
             break;
         case 0:
             str = '待处理'
@@ -82,16 +82,16 @@ const orderState = (state) => {
             str = '已关闭'
             break;
         case 2:
-            str = '已预订'
+            str = '等待出行'
             break;
         case 3:
-            str = '进行中'
+            str = '出行中'
             break;
         case 4:
             str = '已取消'
             break;
         case 5:
-            str = '已完成'
+            str = '旅途结束'
             break;
         default:
             str = 'error'

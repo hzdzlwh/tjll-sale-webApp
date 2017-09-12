@@ -12,7 +12,7 @@
                 </div>
                 <div class="info-bottom">
                     <p class="info-bottom-date">{{ data.startDate }} <span v-if='data.endDate'> ~ {{ data.endDate }}</span></p>
-                    <p class="info-bottom-count">1晚 {{ data.num }}{{ data.unit }}</p>
+                    <p class="info-bottom-count">{{ data.num }}{{ data.unit }}</p>
                 </div>
             </div>
         </div>

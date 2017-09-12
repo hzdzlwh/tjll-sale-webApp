@@ -2,7 +2,7 @@
     <div class="account">
         <div class="account-header">
             <p class="title">当前余额</p>
-            <p class="money">{{ vipCardAccountDetail.balance }}个</p>
+            <p class="money">￥{{ vipCardAccountDetail.balance }}</p>
         </div>
         <template v-if="vipCardAccountDetail.recordList.length">
             <div class="account-title">账户明细</div>
@@ -13,7 +13,7 @@
                         <div class="left-date">{{ item.time }}</div>
                     </div>
                     <div class="right" :class="{ green: item.price > 0, red: item.price < 0 }">
-                        {{ item.price }} 个
+                        ￥{{ item.price }}
                     </div>
                 </li>
             </ul>
@@ -29,7 +29,7 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
     title() {
-        return '虚拟币';
+        return '会员卡明细';
     },
     asyncData({ store, route }) {
         return store.dispatch('getMember', route.params.orderId);
