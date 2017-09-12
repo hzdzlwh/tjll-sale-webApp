@@ -1,7 +1,7 @@
 # tuanjiandao
 
 > A Vue.js project
-
+http://beta.booking.dingdandao.com/63791420
 ## Build Setup
 
 ``` bash
