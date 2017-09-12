@@ -2,11 +2,11 @@
 * @Author: lxj
 * @Date:   2017-08-17 13:41:30
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-08-17 13:42:39
+* @Last Modified time: 2017-09-12 10:10:25
 */
-import { store } from '../store/index.js';
+import store from '../store/index.js';
 export function getDirectWebShareDate() {
-    const state = store.getState();
+    const state = store.state;
     const campName = state.campInfo.campName;
     const currentLocation = location.pathname.split('/');
     let name;

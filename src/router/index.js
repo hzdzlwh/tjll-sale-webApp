@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import { getAuthorization } from '@/store';
 import store from '@/store';
+import http from '@/util/http.js';
 
 Vue.use(Router);
 
@@ -233,6 +234,11 @@ router.beforeEach(async (to, from, next) => {
         campId = window.localStorage.getItem('campId');
     } else {
         window.localStorage.setItem('campId', campId);
+    }
+    if (!store.state.campInfo) {
+        http.get('/directNet/getCampInfo').then(res => {
+            store.state.campInfo = res.data;
+        });
     }
     store.state.campId = campId;
     if (requiresAuth) {

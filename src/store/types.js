@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 10:59:33
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-09-07 20:06:08
+* @Last Modified time: 2017-09-12 11:25:54
 */
 export default {
     LOGIN: 'login',

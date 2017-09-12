@@ -76,6 +76,7 @@ import { Swipe, SwipeItem, DatetimePicker } from 'mint-ui';
 import counte from '@/components/common/count/index';
 import util from '@/util/util.js';
 import http from '@/util/http';
+import { mapMutations } from 'vuex';
 
 export default {
     title() {
@@ -119,6 +120,9 @@ export default {
         this.fetchDate();
     },
     methods: {
+        ...mapMutations([
+            'setCampDetail'
+        ]),
         numSetpChange(type, id, val) {
             this.chargeUnitTime = val;
         },
@@ -170,6 +174,7 @@ export default {
             };
             http.get('/directNet/getCategoryDetail', params).then(res => {
                 this.data = res.data;
+                this.setCampDetail({ campDetail: res.data });
                 this.chargeUnitTime = res.data.chargeUnitTime;
                 // this.equipment = res.data.facilities.filter(el => el.status);
             });
