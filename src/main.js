@@ -5,7 +5,8 @@ import App from './App';
 import router from './router';
 import store from '@/store/index';
 import notify from '@/components/common/notify/notify';
-import { initWX } from '@/util/wxsdk.js';
+// import { initWX } from '@/util/wxsdk.js';
+// import { initAppShare } from '@/util/share.js';
 import { DatetimePicker, Popup, Picker } from 'mint-ui';
 import 'mint-ui/lib/style.css';
 
@@ -37,7 +38,8 @@ Object.keys(filters).forEach(key => {
 Vue.use(clickoutside);
 
 Vue.mixin(titleMixin);
-initWX();
+// initWX();
+// initAppShare();
 
 Vue.config.productionTip = false;
 Vue.prototype.$notify = notify;
