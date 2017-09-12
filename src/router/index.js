@@ -233,6 +233,11 @@ router.beforeEach(async (to, from, next) => {
     let routerPath;
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
     const isLogin = getAuthorization();
+    if (!store.state.campInfo) {
+        http.get('/directNet/getCampInfo').then(res => {
+            store.state.campInfo = res.data;
+        });
+    }
     console.log(isLogin);
     let campId = to.params.id;
     if (!campId) {
@@ -240,11 +245,12 @@ router.beforeEach(async (to, from, next) => {
     } else {
         window.localStorage.setItem('campId', campId);
     }
-    if (!store.state.campInfo) {
-        http.get('/directNet/getCampInfo').then(res => {
-            store.state.campInfo = res.data;
-        });
+    if (to.name === 'login' && to.query.phone && to.query.uuid) {
+        window.localStorage.setItem('phone', to.query.phone);
+        window.localStorage.setItem('uuid', to.query.uuid);
+        next({ path: to.query.callBackUrl });
     }
+    // 第三方跳转
     store.state.campId = campId;
     if (requiresAuth) {
         if (!isLogin) {
