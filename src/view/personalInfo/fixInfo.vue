@@ -104,7 +104,14 @@ export default {
     },
     async created() {
         this.getUser().then(() => {
-            this.form = Object.assign({}, this.user);
+            Object.keys(this.user).forEach((key) => {
+                if (key === 'birthday') {
+                    this.form[key] = this.user[key] === null ? '2017-01-01' : this.user[key];
+                    console.log(this.form.birthday);
+                } else {
+                    this.form[key] = this.user[key];
+                }
+            });
         });
     },
     methods: {

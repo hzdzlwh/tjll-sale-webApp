@@ -9,10 +9,14 @@
 
 <script>
 import orderBox from '@/components/orderBox';
+import { mapState } from 'vuex';
 
 export default {
     title() {
         return '房间详情';
+    },
+    asyncData({ store, route }) {
+        return store.dispatch('getOrderDetail', route.params.orderId);
     },
     components: {
         orderBox
@@ -20,6 +24,9 @@ export default {
     mounted() {
     },
     computed: {
+        ...mapState([
+            'getOrderDetail'
+        ]),
         routeName() {
             return this.$route.name;
         }

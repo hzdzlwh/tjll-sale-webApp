@@ -70,31 +70,31 @@ export default {
 .order-list {
     .list-item {
         background: #fff;
-        margin-top: 26px;
-        border-top: 1px solid #e6e6e6;
-        border-bottom: 1px solid #e6e6e6;
+        margin-top: 0.41rem;
+        border-top: 0.02rem solid #e6e6e6;
+        border-bottom: 0.02rem solid #e6e6e6;
         .list-item-head {
-            padding: 0 32px;
+            padding: 0 0.5rem;
             display: flex;
             justify-content: space-between;
-            height: 52px;
-            line-height: 52px;
-            font-size: 22px;
+            height: 0.81rem;
+            line-height: 0.81rem;
+            font-size: 0.34rem;
             color: #999;
         }
         .list-item-section {
             background: #f7f7f7;
-            padding: 12px 32px;
+            padding: 0.19rem 0.5rem;
             display: flex;
             .item-img {
-                height: 100px;
-                width: 100px;
+                height: 1.56rem;
+                width: 1.56rem;
             }
             .item-info {
-                padding-left: 16px;
+                padding-left: 0.25rem;
                 flex: 1;
-                font-size: 22px;
-                line-height: 50px;
+                font-size: 0.34rem;
+                line-height: 0.78rem;
                 &-name {
                     color: #333;
                 }
@@ -103,20 +103,20 @@ export default {
                 }
             }
             .item-count {
-                font-size: 22px;
+                font-size: 0.34rem;
                 text-align: right;
                 line-height: 1.4;
             }
         }
         .list-item-section + .list-item-section {
-            margin-top: 16px;
+            margin-top: 0.25rem;
         }
         .list-item-foot {
-            padding: 0 32px;
+            padding: 0 0.5rem;
             text-align: right;
-            font-size: 22px;
-            height: 52px;
-            line-height: 52px;
+            font-size: 0.34rem;
+            height: 0.81rem;
+            line-height: 0.81rem;
         }
     }
 }

@@ -132,7 +132,7 @@ const router = new Router({
                     component: () => import('@/view/orderDetails')
                 },
                 {   // 房间详情
-                    path: 'roomDetails',
+                    path: 'roomDetails/:orderId',
                     name: 'roomDetails',
                     redirect: { name: 'roomDetails_info' },
                     meta: { requiresAuth: true },
