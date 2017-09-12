@@ -84,8 +84,10 @@ export default {
         subOrder() {
             http.get('/directNet/commitDirectOrder', { customerName: this.name, planId: this.orderDetails.planId, remark: this.remark, customerPhone: this.phone, serialNum: this.$route.params.orderId }).then(res => {
                 if (this.orderDetails.payment.online) {
-                    // this.$router.push(`/${this.$route.params.id}/orderDetails/${res.data.orderId}`);
-                    this.$router.push(`/${this.$route.params.id}/payment/${res.data.orderId}?price=${this.orderDetails.payment.online}`);
+                    this.$router.push(`/${this.$route.params.id}/orderDetails/${res.data.orderId}?render=payment`);
+                    // this.$nextTick(() => {
+                    //     this.$router.push(`/${this.$route.params.id}/payment/${res.data.orderId}?price=${this.orderDetails.payment.online}`);
+                    // });
                     return;
                 }
                 this.$router.push(`/${this.$route.params.id}/orderDetails/${res.data.orderId}`);
