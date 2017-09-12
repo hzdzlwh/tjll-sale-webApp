@@ -758,6 +758,14 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
+babel-polyfill@^6.26.0:
+  version "6.26.0"
+  resolved "https://registry.npmjs.org/babel-polyfill/-/babel-polyfill-6.26.0.tgz#379937abc67d7895970adc621f284cd966cf2153"
+  dependencies:
+    babel-runtime "^6.26.0"
+    core-js "^2.5.0"
+    regenerator-runtime "^0.10.5"
+
 babel-preset-env@^1.3.2:
   version "1.6.0"
   resolved "https://registry.npmjs.org/babel-preset-env/-/babel-preset-env-1.6.0.tgz#2de1c782a780a0a5d605d199c957596da43c44e4"
@@ -824,7 +832,7 @@ babel-register@^6.22.0, babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
+babel-runtime@^6.0.0, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -885,6 +893,12 @@ bcrypt-pbkdf@^1.0.0:
   resolved "https://registry.npmjs.org/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.1.tgz#63bc5dcb61331b92bc05fd528953c33462a06f8d"
   dependencies:
     tweetnacl "^0.14.3"
+
+better-scroll@^1.2.6:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/better-scroll/-/better-scroll-1.3.0.tgz#091564d9074d13d16e46917a1d472e58fad26686"
+  dependencies:
+    babel-runtime "^6.0.0"
 
 big.js@^3.1.3:
   version "3.1.3"
@@ -1662,7 +1676,7 @@ debug@2, debug@2.6.8, debug@^2.1.1, debug@^2.2.0, debug@^2.4.1, debug@^2.4.5, de
   dependencies:
     ms "2.0.0"
 
-debuglog@*, debuglog@^1.0.1:
+debuglog@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/debuglog/-/debuglog-1.0.1.tgz#aa24ffb9ac3df9a2351837cfb2d279360cd78492"
 
@@ -2937,7 +2951,7 @@ import-lazy@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"
 
-imurmurhash@*, imurmurhash@^0.1.4:
+imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
 
@@ -3247,6 +3261,10 @@ isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
 
+iscroll@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.npmjs.org/iscroll/-/iscroll-5.2.0.tgz#d513307088b5b25a4f893af474804468481829c8"
+
 isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
@@ -3499,10 +3517,6 @@ lodash._baseget@^3.0.0:
   version "3.7.2"
   resolved "https://registry.npmjs.org/lodash._baseget/-/lodash._baseget-3.7.2.tgz#1b6ae1d5facf3c25532350a13c1197cb8bb674f4"
 
-lodash._baseindexof@*:
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/lodash._baseindexof/-/lodash._baseindexof-3.1.0.tgz#fe52b53a1c6761e42618d654e4a25789ed61822c"
-
 lodash._baseuniq@~4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/lodash._baseuniq/-/lodash._baseuniq-4.6.0.tgz#0ebb44e456814af7905c6212fa2c9b2d51b841e8"
@@ -3510,27 +3524,9 @@ lodash._baseuniq@~4.6.0:
     lodash._createset "~4.0.0"
     lodash._root "~3.0.0"
 
-lodash._bindcallback@*:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz#e531c27644cf8b57a99e17ed95b35c748789392e"
-
-lodash._cacheindexof@*:
-  version "3.0.2"
-  resolved "https://registry.npmjs.org/lodash._cacheindexof/-/lodash._cacheindexof-3.0.2.tgz#3dc69ac82498d2ee5e3ce56091bafd2adc7bde92"
-
-lodash._createcache@*:
-  version "3.1.2"
-  resolved "https://registry.npmjs.org/lodash._createcache/-/lodash._createcache-3.1.2.tgz#56d6a064017625e79ebca6b8018e17440bdcf093"
-  dependencies:
-    lodash._getnative "^3.0.0"
-
 lodash._createset@~4.0.0:
   version "4.0.3"
   resolved "https://registry.npmjs.org/lodash._createset/-/lodash._createset-4.0.3.tgz#0f4659fbb09d75194fa9e2b88a6644d363c9fe26"
-
-lodash._getnative@*, lodash._getnative@^3.0.0:
-  version "3.9.1"
-  resolved "https://registry.npmjs.org/lodash._getnative/-/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
 
 lodash._root@~3.0.0:
   version "3.0.1"
@@ -3576,10 +3572,6 @@ lodash.memoize@^4.1.2:
 lodash.mergewith@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/lodash.mergewith/-/lodash.mergewith-4.6.0.tgz#150cf0a16791f5903b8891eab154609274bdea55"
-
-lodash.restparam@*:
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
 
 lodash.tail@^4.1.1:
   version "4.1.1"
@@ -4016,7 +4008,7 @@ node-pre-gyp@^0.6.36:
     tar "^2.2.1"
     tar-pack "^3.4.0"
 
-node-sass@^4.5.3:
+node-sass@4.5.3:
   version "4.5.3"
   resolved "https://registry.npmjs.org/node-sass/-/node-sass-4.5.3.tgz#d09c9d1179641239d1b97ffc6231fdcec53e1568"
   dependencies:
@@ -5123,7 +5115,7 @@ readable-stream@~1.1.10:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readdir-scoped-modules@*, readdir-scoped-modules@^1.0.0:
+readdir-scoped-modules@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/readdir-scoped-modules/-/readdir-scoped-modules-1.0.2.tgz#9fafa37d286be5d92cbaebdee030dc9b5f406747"
   dependencies:
@@ -5179,6 +5171,10 @@ reduce-function-call@^1.0.1:
 regenerate@^1.2.1:
   version "1.3.2"
   resolved "https://registry.npmjs.org/regenerate/-/regenerate-1.3.2.tgz#d1941c67bad437e1be76433add5b385f95b19260"
+
+regenerator-runtime@^0.10.5:
+  version "0.10.5"
+  resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
 
 regenerator-runtime@^0.11.0:
   version "0.11.0"
@@ -6107,7 +6103,7 @@ uuid@^3.0.0, uuid@~3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
-validate-npm-package-license@*, validate-npm-package-license@^3.0.1:
+validate-npm-package-license@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/validate-npm-package-license/-/validate-npm-package-license-3.0.1.tgz#2804babe712ad3379459acfbe24746ab2c303fbc"
   dependencies:
