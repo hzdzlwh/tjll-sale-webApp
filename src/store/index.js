@@ -22,7 +22,9 @@ const store = new Vuex.Store({
         subOrder: {},
         subOrderParms: undefined,
         // 结算的时候存的项目数据
-        orderDetails: {},
+        orderDetails: {
+            items: []
+        },
         personalCenter: {
             isVip: false,
             storePhone: '',
@@ -38,7 +40,9 @@ const store = new Vuex.Store({
         vipCenterData: {
             vipSchemeId: 0,
             vipScheme: '',
-            vipLevel: ''
+            vipLevel: '',
+            accountList: [],
+            discountList: []
         },
         accountDetail: {
             recordList: [],
@@ -395,7 +399,7 @@ const store = new Vuex.Store({
         },
         [types.GET_ROOM_DETAIL]({ commit }, { orderId, phone, saveId }) {
             return new Promise((resolve, reject) => {
-                http.post('/directNet/getRoomDetail', { orderId, phone, saveId }).then(res => {
+                http.get('/directNet/getRoomDetail', { orderId, phone, saveId }).then(res => {
                     commit(types.GET_ROOM_DETAIL, res.data);
                     resolve(res);
                 }).catch(err => {
@@ -405,7 +409,7 @@ const store = new Vuex.Store({
         },
         [types.GET_ORDER_PROFILE]({ commit }, { orderId }) {
             return new Promise((resolve, reject) => {
-                http.post('/directNet/getOrderProfile', { orderId }).then(res => {
+                http.get('/directNet/getOrderProfile', { orderId }).then(res => {
                     commit(types.GET_ORDER_PROFILE, res.data);
                     resolve(res);
                 }).catch(err => {
@@ -415,7 +419,7 @@ const store = new Vuex.Store({
         },
         [types.GET_CART_COUNT]({ commit }) {
             return new Promise((resolve, reject) => {
-                http.post('/directNet/countShoppingCart').then(res => {
+                http.get('/directNet/countShoppingCart').then(res => {
                     commit(types.GET_CART_COUNT, res.data);
                     resolve(res);
                 }).catch(err => {

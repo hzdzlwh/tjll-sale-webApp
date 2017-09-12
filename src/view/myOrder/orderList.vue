@@ -18,17 +18,6 @@
                     <p>x{{ item.num }}</p>
                 </div>
             </div>
-            <div class="list-item-section" v-for="item in order.items">
-                <img :src="item.imgUrl" alt="img" class="item-img">
-                <div class="item-info">
-                    <p class="item-info-name">{{ item.name }}</p>
-                    <p class="item-info-date">{{ item.startDate | dateFormat('YYYY-MM-DD') }} - {{ item.startDate | dateFormat('YYYY-MM-DD') }}</p>
-                </div>
-                <div class="item-count">
-                    <p>￥{{ item.price }}</p>
-                    <p>x{{ item.num }}</p>
-                </div>
-            </div>
             <div class="list-item-foot">
                 <span>共计 {{ order.goodsNum }} 件商品</span>
                 合计： ￥{{ order.amount }}

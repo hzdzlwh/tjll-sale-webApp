@@ -13,7 +13,7 @@
         </header>
         <section class="order-section">
             <p class="order-section-title">住宿</p>
-            <order-box :bottomBorder="false" :showButton="item.type === 0" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
+            <order-box :bottomBorder="false" :showButton="item.type === 0" :saveId="item.saveId" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
         </section>
         <section class="order-section">
             <p class="order-section-info"><span class="info">联系人</span>{{ orderDetails.customerName }}</p>

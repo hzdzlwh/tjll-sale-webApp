@@ -140,7 +140,7 @@ const router = new Router({
                     children: [
                         {
                             name: 'roomDetails_info',
-                            path: 'info',
+                            path: 'info/:saveId',
                             component: () => import('@/view/roomDetails/info')
                         },
                         {

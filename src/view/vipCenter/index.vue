@@ -1,26 +1,26 @@
 <template>
     <div class="vipCenter">
-        <router-link :to="{ name: 'nextLevel' }" class="vipCenter-header">
+        <router-link :to="{ name: vipCenterData.nextVipLevelName ? 'nextLevel' : '' }" class="vipCenter-header">
             <i v-if="personalCenter.isVip" class="vip-tip">
                 <img src="~assets/images/v-icon.png" alt="v">
                 <p>{{ vipCenterData.vipLevel }}</p>
             </i>
-            <p class="vipCenter-header-text">下一等级：{{ vipCenterData.nextVipLevelName }}</p>
-            <i class="item-next"></i>
+            <p class="vipCenter-header-text" v-if="vipCenterData.nextVipLevelName">下一等级：{{ vipCenterData.nextVipLevelName }}</p>
+            <i class="item-next" v-if="vipCenterData.nextVipLevelName"></i>
         </router-link>
-        <div class="vipCenter-title">我的权益</div>
+        <div class="vipCenter-title" v-if="vipCenterData.discountList.length > 0">我的权益</div>
         <div class="entry">
             <div v-for="item in vipCenterData.discountList" class="entry-item">
                 <p class="item-name">{{ item.name }}</p>
                 <p class="item-text">{{ item.content }}</p>
             </div>
         </div>
-        <div class="vipCenter-title">我的钱包</div>
+        <div class="vipCenter-title" v-if="vipCenterData.accountList.length > 0">我的钱包</div>
         <div class="entry">
             <div  @click="jumpRoute(item.type)" v-for="item in vipCenterData.accountList" :to="{ name: 'myOrder', params: {} }" class="entry-item">
                 <p class="item-name">{{ item.accountName }}</p>
-                <p class="item-text">{{ item.balance }}</p>
-                <i class="item-next"></i>
+                <p class="item-text">{{ item.type === 3 ? '敬请期待' : item.balance }}</p>
+                <i class="item-next" v-if="item.type !== 3"></i>
             </div>
         </div>
         <div class="vipCenter-title">设置</div>
@@ -39,7 +39,7 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
     title() {
-        return '个人中心';
+        return '会员中心';
     },
     asyncData({ store, route }) {
         return store.dispatch('getMember', route.params.orderId);
@@ -58,6 +58,7 @@ export default {
             'getVipCenterData'
         ]),
         jumpRoute(type) {
+            if (type === 3) return;
             let name;
             switch (type) {
                 case 0:

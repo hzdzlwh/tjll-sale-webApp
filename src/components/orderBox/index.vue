@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="list-button" v-if="showButton">
-            <router-link class="link-button" :to="{ name: 'roomDetails', params: { roomData: data } }">自助选房</router-link>
+            <router-link class="link-button" :to="{ name: 'roomDetails', params: { saveId } }">自助选房</router-link>
         </div>
     </div>
 </template>
@@ -40,6 +40,9 @@ export default {
         data: {
             type: Object,
             required: true
+        },
+        saveId: {
+            type: Number
         }
     },
     methods: {

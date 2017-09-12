@@ -1,7 +1,7 @@
 <template>
     <div class="room">
         <header class="room-head" v-show="routeName !== 'roomDetails_addTraveller'">
-            <order-box :showButton="false" :data="{}"></order-box>
+            <order-box :showButton="false" :data="item"></order-box>
         </header>
         <router-view></router-view>
     </div>
@@ -15,8 +15,10 @@ export default {
     title() {
         return '房间详情';
     },
-    asyncData({ store, route }) {
-        return store.dispatch('getOrderDetail', route.params.orderId);
+    async asyncData({ store, route }) {
+        const data = await store.dispatch('getOrderDetail', route.params.orderId);
+        console.log(data);
+        return store.dispatch('getRoomDetail', { orderId: route.params.orderId, saveId: route.params.saveId });
     },
     components: {
         orderBox
@@ -25,10 +27,14 @@ export default {
     },
     computed: {
         ...mapState([
-            'getOrderDetail'
+            'orderDetails'
         ]),
         routeName() {
             return this.$route.name;
+        },
+        item() {
+            const saveId = parseInt(this.$route.params.saveId);
+            return this.orderDetails.items.filter((item) => item.saveId === saveId)[0];
         }
     }
 };

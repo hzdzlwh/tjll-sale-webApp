@@ -36,7 +36,6 @@
             >
             </dd-form-input>
         </div>
-         <dd-button class="fixInfo-button" value="修改密码"></dd-button>
     </div>
 </template>
 

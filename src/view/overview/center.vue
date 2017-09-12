@@ -27,7 +27,7 @@
                 <i class="item-icon"></i>
                 <ul class="item-info">
                     <li class="item-info-key">{{ item.accountName }}</li>
-                    <li class="item-info-value">{{ item.balance }}</li>
+                    <li class="item-info-value">{{ item.type === 3 ? '尽情期待' : item.balance }}</li>
                 </ul>
             </li>
         </ul>
@@ -70,6 +70,7 @@ export default {
     },
     methods: {
         jumpRoute(type) {
+            if (type === 3) return;
             let name;
             switch (type) {
                 case 0:
@@ -139,6 +140,11 @@ export default {
         }
         &-phone {
             font-size: 0.375rem;
+            background-image: url(~assets/images/phone-s-icon.png);
+            background-repeat: no-repeat;
+            background-position: left center;
+            text-indent: 0.31rem;
+            background-size: 0.2rem 0.38rem;
         }
         .next-icon {
             top: 50%;
