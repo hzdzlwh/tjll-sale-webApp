@@ -2,16 +2,17 @@
 * @Author: lxj
 * @Date:   2017-08-17 13:40:52
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-08-17 13:41:12
+* @Last Modified time: 2017-09-12 10:14:20
 */
-import { callApi } from '../middleware/api';
-import { campId } from '../utils/mobileUtil';
+import http from './http.js';
 import { getDirectWebShareDate } from './share';
 
+const wx = window.wx;
 const appId = 'wxe04af95ab9af57c5';
+const campId = window.location.pathname.split('/')[1];
 
 function getSign(timestamp, noncestr) {
-    return callApi('/pay/getSign4JSApi', {
+    return http.get('/pay/getSign4JSApi', {
         networkNum: campId,
         signType: 1,
         params: {

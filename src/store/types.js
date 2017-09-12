@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 10:59:33
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-09-07 20:06:08
+* @Last Modified time: 2017-09-12 11:22:23
 */
 export default {
     LOGIN: 'login',
@@ -30,5 +30,6 @@ export default {
     ADD_CHECKINPEOPLE: 'addCheckInPeople',
     GET_ROOM_DETAIL: 'getRoomDetail',
     GET_ORDER_PROFILE: 'getOrderProfile',
-    GET_CART_COUNT: 'getCartCount' // 购物车数量
+    GET_CART_COUNT: 'getCartCount', // 购物车数量
+    SET_CAMPDETAIL: 'setCampDetail'
 };
