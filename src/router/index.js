@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import { getAuthorization } from '@/store';
 import store from '@/store';
 import http from '@/util/http.js';
+import { initWX } from '@/util/wxsdk.js';
+import { initAppShare } from '@/util/share.js';
 
 Vue.use(Router);
 
@@ -223,7 +225,10 @@ router.beforeResolve((to, from, next) => {
         });
     }
 });
-
+router.afterEach(reoute => {
+    initWX();
+    initAppShare();
+});
 router.beforeEach(async (to, from, next) => {
     let routerPath;
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
