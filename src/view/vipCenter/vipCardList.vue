@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="card">
-        <ul class="card-list">
+        <div class="card-list">
             <router-link :to="{ name:'vipCardDetail', params: { vipCardId: item.id, card: item } }" :key="item.cardNum" v-for="item in usableList" class="card-list-item">
                 <ul class="left">
                     <li class="left-name">{{ item.name }}</li>
@@ -10,11 +10,11 @@
                     ￥{{ item.balance }}
                 </p>
             </router-link>
-        </ul>
+        </div>
         <template v-if="disableList.length !== 0">
             <div class="card-title">已挂失</div>
-            <ul class="card-list">
-                <li @click="jumpRoute" v-for="item in disableList" class="card-list-item disable">
+            <div class="card-list">
+                <router-link :to="{ name:'vipCardDetail', params: { vipCardId: item.id, card: item } }" v-for="item in disableList" class="card-list-item disable">
                     <ul class="left">
                         <li class="left-name">{{ item.name }}</li>
                         <li class="left-number">{{ item.cardNum }}</li>
@@ -22,8 +22,8 @@
                     <p class="right">
                         ￥{{ item.balance }}
                     </p>
-                </li>
-            </ul>
+                </router-link>
+            </div>
         </template>
     </div>
 </template>

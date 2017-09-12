@@ -34,7 +34,7 @@
             </div>
             <div class="order-section-total">
                 <p class="info">微信付款</p>
-                <p>￥100.00</p>
+                <p>{{ orderDetails.payment.need }}</p>
             </div>
         </section>
         <div class="order-button" v-if="orderDetails.orderState === -1">
