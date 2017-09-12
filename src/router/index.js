@@ -228,6 +228,7 @@ router.beforeEach(async (to, from, next) => {
     let routerPath;
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
     const isLogin = getAuthorization();
+    console.log(isLogin);
     let campId = to.params.id;
     if (!campId) {
         campId = window.localStorage.getItem('campId');

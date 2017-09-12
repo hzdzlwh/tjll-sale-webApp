@@ -1,307 +1,51 @@
 <template>
     <div class="cart">
-        <ul class="cart-list">
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
+        <template v-if="cartList.length > 0">
+            <ul class="cart-list">
+                <li class="cart-list-item" v-for="item in cartList">
+                    <div class="select active"></div>
+                    <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
+                    <div class="container">
+                        <div class="container-title">
+                            标准家庭房
+                            <span class="container-title-icon">会员9.5折</span>
+                        </div>
+                        <div class="container-date">2016-10-08~2016-10-08</div>
                     </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
+                    <div class="control">
+                        <div class="control-total">
+                            <p class="control-total-label">
+                                合计:
+                            </p>
+                            <p class="control-total-count">
+                                ￥400
+                            </p>
+                        </div>
+                        <div class="control-content">
+                            <div class="control-content-decrease"></div>
+                            <div class="control-content-count">111</div>
+                            <div class="control-content-increase"></div>
+                        </div>
                     </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
+                </li>
+            </ul>
+            <div class="cart-box">
+                <div class="cart-box-total">
+                    <div class="all active">全选</div>
+                    <div class="total">
+                        <div class="total-label">总计:</div>
+                        <div class="total-price">￥99999</div>
                     </div>
                 </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-list-item">
-                <div class="select active"></div>
-                <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
-                <div class="container">
-                    <div class="container-title">
-                        标准家庭房
-                        <span class="container-title-icon">会员9.5折</span>
-                    </div>
-                    <div class="container-date">2016-10-08~2016-10-08</div>
-                </div>
-                <div class="control">
-                    <div class="control-total">
-                        <p class="control-total-label">
-                            合计:
-                        </p>
-                        <p class="control-total-count">
-                            ￥400
-                        </p>
-                    </div>
-                    <div class="control-content">
-                        <div class="control-content-decrease"></div>
-                        <div class="control-content-count">111</div>
-                        <div class="control-content-increase"></div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <div class="cart-box">
-            <div class="cart-box-total">
-                <div class="all active">全选</div>
-                <div class="total">
-                    <div class="total-label">总计:</div>
-                    <div class="total-price">￥99999</div>
-                </div>
+                <div class="cart-box-buy">购买</div>
             </div>
-            <div class="cart-box-buy">购买</div>
-        </div>
+        </template>
+        <h1 v-else>购物车是空的，请快去挑选喜爱的商品吧</h1>
     </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 
 export default {
     title() {
@@ -310,6 +54,20 @@ export default {
     data() {
         return {
         };
+    },
+    asyncData({ store }) {
+        return store.dispatch('getCart');
+    },
+    computed: {
+        ...mapState([
+            'cartList',
+            'shoppingCartCount'
+        ])
+    },
+    methods: {
+        ...mapActions([
+            'getCart'
+        ])
     }
 };
 </script>

@@ -9,11 +9,11 @@
                 <span class="status">{{ orderDetails.orderState | orderState }}</span>
                 <span class="countdown" v-if="orderDetails.orderState === -1">剩余：{{ this.countDown | secondsFormat }}</span>
             </p>
-            <p class="order-head-tips">计划出行：{{ orderDetails.startDate | dateFormat('YYYY-MM-DD') }}</p>
+            <p class="order-head-tips" v-if="orderDetails.startDate">计划出行：{{ orderDetails.startDate | dateFormat('YYYY-MM-DD') }}</p>
         </header>
         <section class="order-section">
             <p class="order-section-title">住宿</p>
-            <order-box :bottomBorder="false" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
+            <order-box :bottomBorder="false" :showButton="item.type === 0" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
         </section>
         <section class="order-section">
             <p class="order-section-info"><span class="info">联系人</span>{{ orderDetails.customerName }}</p>

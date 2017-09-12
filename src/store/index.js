@@ -62,7 +62,8 @@ const store = new Vuex.Store({
         roomList: [],
         roomDetail: {},
         orderProfile: {},
-        shoppingCartCount: 0
+        shoppingCartCount: 0,
+        cartList: []
     },
     getters: {
         GvipSchemeList(state) {
@@ -166,6 +167,9 @@ const store = new Vuex.Store({
         },
         [types.GET_CART_COUNT](state, data) {
             state.shoppingCartCount = data;
+        },
+        [types.GET_CART_LIST](state, data) {
+            state.cartList = data.list;
         }
     },
     actions: {
@@ -417,8 +421,18 @@ const store = new Vuex.Store({
         },
         [types.GET_CART_COUNT]({ commit }) {
             return new Promise((resolve, reject) => {
-                http.post(' /derectNet/countShoppingCart').then(res => {
+                http.post('/directNet/countShoppingCart').then(res => {
                     commit(types.GET_CART_COUNT, res.data);
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.GET_CART_LIST]({ commit }) {
+            return new Promise((resolve, reject) => {
+                http.post('/directNet/getShoppingCart').then(res => {
+                    commit(types.GET_CART, res.data);
                     resolve(res);
                 }).catch(err => {
                     reject(err);
@@ -434,5 +448,5 @@ export const getAuthorization = () => {
     if (!store.state.uuid) {
         store.commit('getAuthorization');
     }
-    return store.state.uuid;
+    return localStorage.uuid;
 };
