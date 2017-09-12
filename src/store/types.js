@@ -30,5 +30,6 @@ export default {
     ADD_CHECKINPEOPLE: 'addCheckInPeople',
     GET_ROOM_DETAIL: 'getRoomDetail',
     GET_ORDER_PROFILE: 'getOrderProfile',
-    GET_CART_COUNT: 'getCartCount' // 购物车数量
+    GET_CART_COUNT: 'getCartCount', // 购物车数量
+    GET_CART_LIST: 'getCart' // 购物车列表
 };

@@ -7,6 +7,7 @@
         <router-link :to="{ name: 'overview_cart', params: {} }" class="footerbar-item">
             <i class="footerbar-item-icon cart"></i>
             <p class="footerbar-item-name">购物车</p>
+            <span class="badge" v-show="shoppingCartCount > 0">{{ shoppingCartCount }}</span> 
         </router-link>
         <router-link :to="{ name: 'overview_center', params: {} }" class="footerbar-item">
             <i class="footerbar-item-icon center"></i>
@@ -16,7 +17,22 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
+    created() {
+        this.getCartCount();
+    },
+    methods: {
+        ...mapActions([
+            'getCartCount'
+        ])
+    },
+    computed: {
+        ...mapState([
+            'shoppingCartCount'
+        ])
+    }
 };
 </script>
 
@@ -41,6 +57,7 @@ export default {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
             &-icon {
                 width: 0.66rem;
                 height: 0.66rem;
@@ -72,4 +89,18 @@ export default {
             }
         }
     }
+.badge {
+    background-color: #f44336;
+    border-radius: 100%;
+    position: absolute;
+    color: #fff;
+    width: 26px;
+    height: 26px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 26px;
+    left: 50%;
+    margin-left: 8px;
+    top: 12px;
+}
 </style>

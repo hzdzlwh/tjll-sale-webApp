@@ -48,6 +48,7 @@
                 <i class="item-phone">17777777777</i>
             </a>
         </div>
+        <dd-button class="logout" @click="logout" value="退出登录"></dd-button>
     </div>
 </template>
 
@@ -87,6 +88,10 @@ export default {
                     break;
             }
             this.$router.push({ name });
+        },
+        logout() {
+            localStorage.clear();
+            this.$router.push({ name: 'overview_home' });
         }
     }
 };
@@ -148,3 +153,13 @@ export default {
     }
 }
 </style>
+
+<style lang="scss">
+.logout {
+    .common-button {
+        border-color: #49a5f1 !important;
+        color: #49a5f1 !important;
+    }
+}
+</style>
+
