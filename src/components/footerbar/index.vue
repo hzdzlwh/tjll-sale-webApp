@@ -1,15 +1,15 @@
 <template>
     <footer class="footerbar">
-        <router-link :to="{ name: 'overview_home', params: {} }" class="footerbar-item">
+        <router-link :class="{ active: routerName === 'overview_home' }" :to="{ name: 'overview_home', params: {} }" class="footerbar-item">
             <i class="footerbar-item-icon home"></i>
             <p class="footerbar-item-name">首页</p>
         </router-link>
-        <router-link :to="{ name: 'overview_cart', params: {} }" class="footerbar-item">
+        <router-link :class="{ active: routerName === 'overview_cart' }" :to="{ name: 'overview_cart', params: {} }" class="footerbar-item">
             <i class="footerbar-item-icon cart"></i>
             <p class="footerbar-item-name">购物车</p>
-            <span class="badge" v-show="shoppingCartCount > 0">{{ shoppingCartCount }}</span> 
+            <span class="badge" v-show="shoppingCartCount > 0">{{ shoppingCartCount }}</span>
         </router-link>
-        <router-link :to="{ name: 'overview_center', params: {} }" class="footerbar-item">
+        <router-link :class="{ active: routerName === 'overview_center' }" :to="{ name: 'overview_center', params: {} }" class="footerbar-item">
             <i class="footerbar-item-icon center"></i>
             <p class="footerbar-item-name">个人中心</p>
         </router-link>
@@ -31,7 +31,10 @@ export default {
     computed: {
         ...mapState([
             'shoppingCartCount'
-        ])
+        ]),
+        routerName() {
+            return this.$route.name;
+        }
     }
 };
 </script>
@@ -75,6 +78,18 @@ export default {
                 }
             }
         }
+        .active {
+            color: #178ce6;
+            .home {
+                background-image: url(~assets/images/home-blue.png);
+            }
+            .cart {
+                background-image: url(~assets/images/cart-blue.png);
+            }
+            .center {
+                background-image: url(~assets/images/center-blue.png);
+            }
+        }
         &-item + &-item {
             position: relative;
             &::before {
@@ -94,13 +109,13 @@ export default {
     border-radius: 100%;
     position: absolute;
     color: #fff;
-    width: 26px;
-    height: 26px;
-    font-size: 18px;
+    width: 0.4063rem;
+    height: 0.4063rem;
+    font-size: 0.2813rem;
     text-align: center;
-    line-height: 26px;
+    line-height: 0.4063rem;
     left: 50%;
-    margin-left: 8px;
-    top: 12px;
+    margin-left: 0.125rem;
+    top: 0.1875rem;
 }
 </style>
