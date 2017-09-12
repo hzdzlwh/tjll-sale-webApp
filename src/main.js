@@ -4,6 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from '@/store/index';
+import 'babel-polyfill';
 import notify from '@/components/common/notify/notify';
 // import { initWX } from '@/util/wxsdk.js';
 // import { initAppShare } from '@/util/share.js';
