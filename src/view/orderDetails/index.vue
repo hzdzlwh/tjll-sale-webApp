@@ -38,7 +38,7 @@
             </div>
         </section>
         <div class="order-button" v-if="orderDetails.orderState === -1">
-            <div class="order-button-cancel">取消订单</div>
+            <div class="order-button-cancel" @click="handleOrder">取消订单</div>
             <div class="order-button-pay">去支付</div>
         </div>
     </div>
@@ -46,7 +46,7 @@
 
 <script>
 import orderBox from '@/components/orderBox';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import moment from 'moment';
 
 export default {
@@ -75,6 +75,9 @@ export default {
         orderBox
     },
     methods: {
+        ...mapActions([
+            'cancelOrder'
+        ]),
         initCountDown(time) {
             const createTime = moment(time).format('X');
             const nowTime = moment().format('X');
@@ -86,6 +89,11 @@ export default {
                     timer = null;
                 }
             }, 1000);
+        },
+        handleOrder() {
+            this.cancelOrder(this.orderDetails.orderId).then(() => {
+                this.$router.push({ name: 'myOrder' });
+            });
         }
     }
 };

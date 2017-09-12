@@ -31,5 +31,6 @@ export default {
     GET_ROOM_DETAIL: 'getRoomDetail',
     GET_ORDER_PROFILE: 'getOrderProfile',
     GET_CART_COUNT: 'getCartCount', // 购物车数量
-    GET_CART_LIST: 'getCart' // 购物车列表
+    GET_CART_LIST: 'getCart', // 购物车列表
+    CANCEL_ORDER: 'cancelOrder' // 取消订单
 };

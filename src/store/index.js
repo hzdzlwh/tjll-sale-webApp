@@ -436,6 +436,15 @@ const store = new Vuex.Store({
                     reject(err);
                 });
             });
+        },
+        [types.CANCEL_ORDER]({ commit }, orderId) {
+            return new Promise((resolve, reject) => {
+                http.post('/directNet/cancelDirectOrder', { orderId }).then(res => {
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
         }
     }
 });
