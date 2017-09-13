@@ -376,7 +376,10 @@ a {
             color: #333;
             font-size: 0.4375rem;
             .name {
-                width: 1.5625rem;
+                width: 2.5rem;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
             }
             .id {
                 flex: 1;

@@ -5,7 +5,7 @@
                 {{ personalCenter.vipUser.name }}
                 <i class="vip-tip">
                     <img src="~assets/images/v-icon.png" alt="v">
-                    <p>{{ personalCenter.vipUser.vipLevel }}</p>
+                    <p>{{ personalCenter.vipUser.vipLevel || '普通会员' }}</p>
                 </i>
             </div>
             <div class="personal-phone">{{ phone }}</div>
@@ -27,7 +27,7 @@
                 <i class="item-icon"></i>
                 <ul class="item-info">
                     <li class="item-info-key">{{ item.accountName }}</li>
-                    <li class="item-info-value">{{ item.type === 3 ? '尽情期待' : item.balance }}</li>
+                    <li class="item-info-value">{{ item.type === 3 ? '敬请期待' : item.balance }}</li>
                 </ul>
             </li>
         </ul>
@@ -45,7 +45,7 @@
             <a href="tel:17777777777" class="entry-item">
                 <i class="item-icon item-icon-phone"></i>
                 <p class="item-name">联系我们</p>
-                <i class="item-phone">17777777777</i>
+                <i class="item-phone">{{ personalCenter.storePhone }}</i>
             </a>
         </div>
         <dd-button class="logout" @click="logout" value="退出登录"></dd-button>
@@ -168,4 +168,3 @@ export default {
     }
 }
 </style>
-
