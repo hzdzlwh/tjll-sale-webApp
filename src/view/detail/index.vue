@@ -64,7 +64,8 @@
   @confirm='startDateConfirm'></DatetimePicker>
   <DatetimePicker ref="detailEnd"
     type="date"
-    :startDate = 'startValue'
+    :startDate = 'new Date(startValue.valueOf() + 1000 * 60 * 60 * 24)'
+    :endDate = 'new Date(endValue.valueOf() + 1000 * 60 * 60 * 24 * 365)'
     v-model="endValue" year-format="{value} 年"
   month-format="{value} 月"
   date-format="{value} 日"></DatetimePicker>
