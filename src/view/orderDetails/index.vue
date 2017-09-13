@@ -78,6 +78,13 @@ export default {
         if (this.orderDetails.orderState === -1) {
             this.initCountDown(this.orderDetails.createDate);
         }
+        try {
+            if (this.$route.query.render === 'payment') {
+                this.pay();
+            }
+        } catch (e) {
+            console.log(e);
+        }
     },
     components: {
         orderBox

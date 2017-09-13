@@ -440,7 +440,7 @@ const store = new Vuex.Store({
         [types.GET_CART_LIST]({ commit }) {
             return new Promise((resolve, reject) => {
                 http.post('/directNet/getShoppingCart').then(res => {
-                    commit(types.GET_CART, res.data);
+                    commit(types.GET_CART_LIST, res.data);
                     resolve(res);
                 }).catch(err => {
                     reject(err);
