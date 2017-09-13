@@ -16,7 +16,7 @@
         <span class="discount-tag" v-if='data.showDiscount'>{{data.showDiscount}}</span>
         </div>
         <div class="detail-discountInfo-container">
-        <span class="price">￥<b>{{data.price}}/晚</b></span></div>
+        <span class="price">￥<b>{{data.price}}<span v-if='data.type === 0'>/晚</span></b></span></div>
         </h3>
         <h4 v-if='data.type === 0'>
         <span>

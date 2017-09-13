@@ -11,12 +11,13 @@
     </div>
     <div class="campInfo-container"><div class="campInfo-campName" @click='remark = true'><article>{{data.campName}}</article><span>查看详情<img src="https://static.dingdandao.com/sale-website/image/detail.png"></span></div>
     <div v-if='remark'>
-    <div class="modal-container" style="width: 94%; padding: 0.4rem 0.6rem;">
+    <div class="modal-container" style="width: 94%; padding: 0.4rem 0.6rem;overflow:hidden">
     <p class="notice-title">
     <span></span>
     <span class="notice-title-text">{{data.campName}}</span>
     <span class="notice-close-icon"><img @click='remark = false' src="https://static.dingdandao.com/sale-website/image/notice-close.png"></span></p>
-    <div class="campInfo-remark-content" v-html='data.remark'></div>
+    <div class="campInfo-remark-content" v-html='data.remark' style="max-height: 4.6875rem;
+    overflow-y: scroll;"></div>
     </div>
     </div>
     <div class="campInfo-address"><article><a class="campInfo-mapNav" :href="`https://apis.map.qq.com/tools/poimarker?type=0&marker=coord:${data.coord.lat},${data.coord.lon};coordtype:3;title:${this.data.campName};addr:${data.address}&key=R6LBZ-CMK6X-XMI4Y-ZJYA2-FFDZO-UBB3Z&referer=salesite`"><img class="icon icon-address" src="http://static.dingdandao.com/sale-website/image/addres.png"><span class="campInfo-addressText">{{data.address}}</span></a><a class="campInfo-phone" :href="`tel:${data.phone}`"><img class="icon icon-phone" src="http://static.dingdandao.com/sale-website/image/phone.png"></a></article></div>
@@ -32,7 +33,7 @@ import { mapMutations } from 'vuex';
 export default {
     data() {
         return {
-            index: 1,
+            index: 0,
             data: undefined,
             notice: false,
             imageMask: false,

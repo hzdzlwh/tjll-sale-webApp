@@ -78,7 +78,8 @@ export default {
             }
             this.login({ params: {
                 code: this.subCode,
-                phone: this.phone
+                phone: this.phone,
+                campId: this.$route.params.id
             } }).then(() => {
                 this.$router.push(this.$route.query.redirect || { name: 'overview' });
             });
