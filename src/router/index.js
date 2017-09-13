@@ -136,7 +136,7 @@ const router = new Router({
                     component: () => import('@/view/orderDetails')
                 },
                 {   // 房间详情
-                    path: 'roomDetails/:orderId',
+                    path: 'roomDetails/:orderId/:saveId',
                     name: 'roomDetails',
                     redirect: { name: 'roomDetails_info' },
                     meta: { requiresAuth: true },
@@ -144,17 +144,17 @@ const router = new Router({
                     children: [
                         {
                             name: 'roomDetails_info',
-                            path: 'info/:saveId',
+                            path: 'info',
                             component: () => import('@/view/roomDetails/info')
                         },
                         {
                             name: 'roomDetails_room',
-                            path: 'room/:saveId',
+                            path: 'room/:roomOrderId',
                             component: () => import('@/view/roomDetails/room')
                         },
                         {
                             name: 'roomDetails_addTraveller',
-                            path: 'addTraveller/:saveId',
+                            path: 'addTraveller/:roomOrderId',
                             component: () => import('@/view/roomDetails/addTraveller')
                         }
                     ]

@@ -12,9 +12,9 @@
             <p class="order-head-tips" v-if="orderDetails.startDate">计划出行：{{ orderDetails.startDate | dateFormat('YYYY-MM-DD') }}</p>
         </header>
         <section class="order-section">
-            <p class="order-section-title" v-if="orderDetails.orderType === 0">住宿</p>
-            <p class="order-section-title" v-if="orderDetails.orderType === 1">餐饮</p>
-            <p class="order-section-title" v-if="orderDetails.orderType === 2">娱乐</p>
+            <p class="order-section-title" v-if="orderDetails.items[0].type === 0">住宿</p>
+            <p class="order-section-title" v-if="orderDetails.items[0].type === 1">餐饮</p>
+            <p class="order-section-title" v-if="orderDetails.items[0].type === 2">娱乐</p>
             <order-box :bottomBorder="false" :showButton="orderDetails.orderState !== 1" :saveId="item.saveId" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
         </section>
         <section class="order-section">
@@ -32,7 +32,7 @@
             </div>
             <div class="order-section-bill" v-for="paid in orderDetails.payment.paid">
                 <p class="info">{{ paid.name }}</p>
-                <p>-￥{{ paid.fee }}</p>
+                <p>￥-{{ paid.fee }}</p>
             </div>
             <!-- <div class="order-section-total" v-if="!(orderDetails.orderState === -1 || orderDetails.orderState === 1)">
                 <p class="info">{{isWeixin ? '微信' : '支付宝'}}付款</p>

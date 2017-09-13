@@ -3,15 +3,15 @@
         <div class="traveller-form">
             <div class="traveller-form-item">
                 <label class="form-label form-label-required" for="name">姓名</label>
-                <input class="form-input" :value="value.name" @input="onChange($event, 'name')" type="text" placeholder="请确保证与证件姓名一致">
+                <input :readonly="readonly" class="form-input" :value="value.name" @input="onChange($event, 'name')" type="text" placeholder="请确保证与证件姓名一致">
             </div>
             <div class="traveller-form-item">
                 <label class="form-label" for="telephone">手机号</label>
-                <input class="form-input" :value="value.phone" @input="onChange($event, 'phone')" type="number" placeholder="请输入正确的手机号">
+                <input :readonly="readonly" class="form-input" :value="value.phone" @input="onChange($event, 'phone')" type="number" placeholder="请输入正确的手机号">
             </div>
             <div class="traveller-form-item" v-clickoutside="closeBox">
                 <label class="form-label form-label-required" for="certificate">证件类型</label>
-                <input @click="toggleBox" class="form-input" type="text" readonly :value="value.idCardType | idCardType">
+                <p @click="toggleBox" :readonly="readonly" class="form-input" type="text">{{value.idCardType | idCardType}}</p>
                 <i class="form-icon"></i>
                 <transition name="fade">
                     <ul v-show="showBox" class="select-list" @click="selectType">
@@ -25,7 +25,7 @@
             </div>
             <div class="traveller-form-item">
                 <label class="form-label form-label-required" for="certificate">证件号</label>
-                <input class="form-input" :value="value.idCardNum" @input="onChange($event, 'idCardNum')" type="number" placeholder="请输入证件号">
+                <input :readonly="readonly" class="form-input" :value="value.idCardNum" @input="onChange($event, 'idCardNum')" type="number" placeholder="请输入证件号">
             </div>
         </div>
     </div>
@@ -50,6 +50,10 @@ export default {
         value: {
             type: Object,
             required: true
+        },
+        readonly: {
+            type: Boolean,
+            defalut: false
         }
     },
     data() {
@@ -88,7 +92,9 @@ export default {
             }
         },
         toggleBox() {
-            this.showBox = !this.showBox;
+            if (!this.readonly) {
+                this.showBox = !this.showBox;
+            }
         },
         selectType($event) {
             const idType = $event.target.getAttribute('label');
@@ -111,4 +117,20 @@ export default {
 </script>
 
 <style lang="scss">
+[readonly] {
+    background: #cecece;
+    color: #fff;
+    &::-webkit-input-placeholder { /* WebKit browsers */
+        color: #fff;
+    }
+    &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #fff;
+    }
+    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #fff;
+    }
+    &:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #fff;
+    }
+}
 </style>

@@ -9,17 +9,17 @@
                 <p class="icon icon-cancel" v-if="item.roomOrderState === 2">已退房</p>
                 <p class="icon icon-cancel" v-if="item.roomOrderState === 3">已取消</p>
             </div>
-            <div class="room-section-main">
-                <div class="people-item" v-for="guest in item.idCardList">
-                    <div class="info">
+            <div class="room-section-main" v-clickoutside="showNull">
+                <div class="people-item" @click="showDelete(guest.id)" v-for="guest in item.idCardList">
+                    <div class="info" @click="deleteGuest(guest.id)" :class="{ 'info-delete': show === guest.id }">
                         入住人
                     </div>
                     <div class="main">
-                        秋丽 445************624
+                        <span>{{ guest.name | textLengthFormat(4) }}</span> {{ guest.idCardNum }}
                     </div>
                 </div>
                 <div class="people-item">
-                    <div class="info info-add" @click="handleTraveller('add')">
+                    <div class="info info-add" @click="handleTraveller('add', item.roomOrderId)">
                         添加入住人
                     </div>
                 </div>
@@ -59,6 +59,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { MessageBox } from 'mint-ui';
 
 export default {
     title() {
@@ -66,19 +67,43 @@ export default {
     },
     data() {
         return {
+            show: null
         };
     },
     methods: {
         chooseRoom(name) {
             this.$router.push({ name });
         },
-        handleTraveller(condition) {
+        handleTraveller(condition, roomOrderId) {
             if (condition === 'add') {
-                this.jumpRouter('roomDetails_addTraveller');
+                this.$router.push({ name: 'roomDetails_addTraveller', params: { roomOrderId } });
             }
         },
         jumpRouter(name) {
             this.$router.push({ name });
+        },
+        showDelete(id) {
+            if (this.show === null) {
+                this.show = id;
+            } else {
+                this.show = null;
+            }
+        },
+        deleteGuest(id) {
+            if (this.show && this.show === id) {
+                MessageBox({
+                    title: '提示',
+                    message: '是否删除',
+                    showCancelButton: true
+                }).then(action => {
+                    if (action === 'confirm') {
+                        // TODO
+                    }
+                });
+            }
+        },
+        showNull() {
+            this.show = null;
         }
     },
     computed: {
@@ -159,6 +184,10 @@ export default {
                 }
                 .main {
                     flex: 1;
+                    display: flex;
+                    span {
+                        width: 1.41rem;
+                    }
                 }
             }
             .people-item + .people-item {

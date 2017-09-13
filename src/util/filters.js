@@ -65,6 +65,17 @@ export const strLengthFormat = (str, length) => {
 }
 
 /**
+ * 字符串长度格式化
+ * @param  {string} str
+ * @param  {number} length 需要的长度
+ * @return {string}        格式化后的字符串
+ */
+export const textLengthFormat = (str, length) => {
+    if (str.length > length) return str.substr(0,length) + '...';
+	return str;
+}
+
+/**
  * 订单状态格式化
  * @param  {string} state
  * @return {string}
@@ -155,5 +166,6 @@ export default {
     payState,
     idCardType,
     coverFormat,
-    labelToValue
+    labelToValue,
+    textLengthFormat
 }

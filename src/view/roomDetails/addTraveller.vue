@@ -1,6 +1,6 @@
 <template>
     <div class="addTraveller">
-        <traveller-form v-model="formData"></traveller-form>
+        <traveller-form :readonly="readonly" v-model="formData"></traveller-form>
         <div class="traveller-control">
             <div class="traveller-control-checkbox active">
                 <div class="icon"></div>
@@ -9,20 +9,22 @@
         </div>
         <p class="traveller-title">选择常客</p>
         <ul class="traveller-section">
-            <li @click="selectGuest(item, index)" class="traveller-section-item" v-for="(item, index) in consumerList">
+            <li @click="selectGuest(item)" :key="item.id" class="traveller-section-item" v-for="item in consumerList">
                 <p class="name">{{ item.name }}</p>
-                <p class="id">{{ item.idCardNum }}<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon" v-if="index === i"></p>
+                <p class="id">{{ item.idCardNum }}<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon" v-if="item.id === id"></p>
             </li>
         </ul>
         <div class="addTraveller-confirm">
-            <router-link class="addTraveller-confirm-button" :to="{ name: '', params: {} }">确定</router-link>
+            <div @click="addGuest" class="addTraveller-confirm-button">确定</div>
         </div>
     </div>
 </template>
 
 <script>
 import travellerForm from '@/components/travellerForm';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
+import { guestForm } from '@/util/form-rule';
+import Notify from '@/components/common/notify/notify.js';
 
 export default {
     title: '入住人',
@@ -37,28 +39,53 @@ export default {
                 name: '',
                 idCardType: ''
             },
-            i: null
+            id: null
         };
     },
     components: {
         travellerForm
     },
     methods: {
-        selectGuest(item, index) {
-            if (this.i === index) {
-                Object.keys(this.formData).forEach((key) => {
-                    this.fromData[key] = '';
+        ...mapActions([
+            'addCheckInPeople'
+        ]),
+        selectGuest({ id }) {
+            if (this.id === id) {
+                this.id = null;
+            } else {
+                this.id = id;
+            }
+        },
+        addGuest() {
+            if (this.id) {
+                this.addCheckInPeople({ id: this.id, roomOrderId: this.$route.params.roomOrderId }).then(() => {
+                    this.$router.push({ name: 'roomDetails_info' });
                 });
             } else {
-                this.formData = item;
-                this.i = index;
+                const res = guestForm(this.formData);
+                if (typeof res === 'string') {
+                    Notify({
+                        message: res,
+                        type: 'warning',
+                        duration: 2000
+                    });
+                } else {
+                    this.formData.roomOrderId = this.$route.params.roomOrderId;
+                    this.addCheckInPeople(this.formData).then(() => {
+                        this.$router.push({ name: 'roomDetails_info' });
+                    });
+                }
             }
         }
     },
     computed: {
         ...mapState([
             'consumerList'
-        ])
+        ]),
+        readonly() {
+            /* eslint no-unneeded-ternary: 0 */
+            return this.id === null ? false : true;
+        }
     }
 };
 </script>
