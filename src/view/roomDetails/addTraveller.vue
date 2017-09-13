@@ -9,9 +9,9 @@
         </div>
         <p class="traveller-title">选择常客</p>
         <ul class="traveller-section">
-            <li class="traveller-section-item active">
-                <p class="name">秋丽</p>
-                <p class="id">330111111111111111<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon"></p>
+            <li class="traveller-section-item active" v-for="item in consumerList">
+                <p class="name">{{ item.name }}</p>
+                <p class="id">{{ item.idCardNum }}<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon"></p>
             </li>
         </ul>
         <div class="addTraveller-confirm">
@@ -22,10 +22,14 @@
 
 <script>
 import travellerForm from '@/components/travellerForm';
+import { mapState } from 'vuex';
 
 export default {
     title() {
         return '入住人';
+    },
+    asyncData({ store }) {
+        return store.dispatch('getConsumerUser');
     },
     data() {
         return {
@@ -41,6 +45,11 @@ export default {
         travellerForm
     },
     methods: {
+    },
+    computed: {
+        ...mapState([
+            'consumerList'
+        ])
     }
 };
 </script>

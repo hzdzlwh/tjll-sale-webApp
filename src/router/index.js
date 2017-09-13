@@ -149,12 +149,12 @@ const router = new Router({
                         },
                         {
                             name: 'roomDetails_room',
-                            path: 'room',
+                            path: 'room/:saveId',
                             component: () => import('@/view/roomDetails/room')
                         },
                         {
                             name: 'roomDetails_addTraveller',
-                            path: 'addTraveller',
+                            path: 'addTraveller/:saveId',
                             component: () => import('@/view/roomDetails/addTraveller')
                         }
                     ]

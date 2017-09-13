@@ -1,13 +1,16 @@
 <template>
     <section class="room-info">
-        <div class="room-section">
-            <div class="room-section-title" @click="chooseRoom('roomDetails_room')">
+        <div class="room-section" v-for="item in roomDetail.list">
+            <div class="room-section-title" @click.self="chooseRoom('roomDetails_room')">
                 <p class="info">房号</p>
-                <p class="number">8801</p>
-                <p class="icon">已入住</p>
+                <p class="number">{{ item.roomNum || (item.selectAble ? '自助选房' : '自动排房') }}</p>
+                <p class="icon icon-choose" v-if="item.roomOrderState === 0 && item.selectAble"><!-- 未入住 --></p>
+                <p class="icon" v-if="item.roomOrderState === 1">已入住</p>
+                <p class="icon icon-cancel" v-if="item.roomOrderState === 2">已退房</p>
+                <p class="icon icon-cancel" v-if="item.roomOrderState === 3">已取消</p>
             </div>
-            <div class="room-section-main" v-for="item in roomDetail.list">
-                <div class="people-item">
+            <div class="room-section-main">
+                <div class="people-item" v-for="guest in item.idCardList">
                     <div class="info">
                         入住人
                     </div>
@@ -16,11 +19,8 @@
                     </div>
                 </div>
                 <div class="people-item">
-                    <div class="info">
-                        入住人
-                    </div>
-                    <div class="main">
-                        秋丽 445************624
+                    <div class="info info-add" @click="handleTraveller('add')">
+                        添加入住人
                     </div>
                 </div>
             </div>
