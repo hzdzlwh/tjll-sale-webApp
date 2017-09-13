@@ -34,16 +34,16 @@
                 <p class="info">{{ paid.name }}</p>
                 <p>-￥{{ paid.fee }}</p>
             </div>
-            <div class="order-section-total" v-if="!(orderDetails.orderState === -1 || orderDetails.orderState === 1)">
+            <!-- <div class="order-section-total" v-if="!(orderDetails.orderState === -1 || orderDetails.orderState === 1)">
                 <p class="info">{{isWeixin ? '微信' : '支付宝'}}付款</p>
                 <p>{{ orderDetails.payment.need }}</p>
-            </div>
+            </div> -->
         </section>
         <div class="order-button" v-if="orderDetails.orderState === -1">
             <div class="order-button-cancel" @click="handleOrder">取消订单</div>
-            <!-- <div class="order-button-pay" @click="pay">
+            <div class="order-button-pay" @click="pay">
                 {{isWeixin ? '微信' : '支付宝'}}支付
-            </div> -->
+            </div>
         </div>
     </div>
 </template>
