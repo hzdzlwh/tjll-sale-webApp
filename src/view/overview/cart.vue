@@ -1,16 +1,16 @@
 <template>
     <div class="cart">
-        <template v-if="cartList.length > 0">
+        <template v-if="shoppingCartCount > 0">
             <ul class="cart-list">
                 <li class="cart-list-item" v-for="item in cartList">
                     <div class="select active"></div>
-                    <img class="product" src="http://www.murphycx.top/static/img/avatar.231fd8d.jpg" alt="">
+                    <img class="product" :src="item.item.imgUrl" alt="">
                     <div class="container">
                         <div class="container-title">
-                            标准家庭房
-                            <span class="container-title-icon">会员9.5折</span>
+                            <p>{{ item.item.itemName }}</p>
+                            <span class="container-title-icon" v-show="item.item.discount">{{ item.item.discount }}</span>
                         </div>
-                        <div class="container-date">2016-10-08~2016-10-08</div>
+                        <div class="container-date">{{ item.item.startDate }}~<span v-if="item.item.type === 0">{{item.item.endDate}}</span></div>
                     </div>
                     <div class="control">
                         <div class="control-total">
@@ -18,18 +18,18 @@
                                 合计:
                             </p>
                             <p class="control-total-count">
-                                ￥400
+                                ￥{{ item.item.price * item.item.num }}
                             </p>
                         </div>
                         <div class="control-content">
-                            <div class="control-content-decrease"></div>
-                            <div class="control-content-count">111</div>
-                            <div class="control-content-increase"></div>
+                            <div @click="decrease(item.cartId, item.item.num)" class="control-content-decrease"></div>
+                            <div class="control-content-count">{{ item.item.num }}</div>
+                            <div @click="increase(item.cartId, item.item.num)" class="control-content-increase"></div>
                         </div>
                     </div>
                 </li>
             </ul>
-            <div class="cart-box">
+            <!-- <div class="cart-box">
                 <div class="cart-box-total">
                     <div class="all active">全选</div>
                     <div class="total">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="cart-box-buy">购买</div>
-            </div>
+            </div> -->
         </template>
         <h1 v-else>购物车是空的，请快去挑选喜爱的商品吧</h1>
     </div>
@@ -66,8 +66,24 @@ export default {
     },
     methods: {
         ...mapActions([
-            'getCart'
-        ])
+            'getCart',
+            'setCartCount',
+            'getCartCount'
+        ]),
+        increase(cartId, num) {
+            num ++;
+            this.setCartCount({ cartId, num }).then(() => {
+                this.getCart();
+                this.getCartCount();
+            });
+        },
+        decrease(cartId, num) {
+            num --;
+            this.setCartCount({ cartId, num }).then(() => {
+                this.getCart();
+                this.getCartCount();
+            });
+        }
     }
 };
 </script>
@@ -111,6 +127,12 @@ export default {
                     color: #666;
                     display: flex;
                     align-items: center;
+                    p {
+                        white-space: nowrap;
+                        width: 50%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
                     &-icon {
                         padding: 0 0.0625rem;
                         margin-left: 0.375rem;

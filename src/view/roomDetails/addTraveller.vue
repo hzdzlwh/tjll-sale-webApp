@@ -9,9 +9,9 @@
         </div>
         <p class="traveller-title">选择常客</p>
         <ul class="traveller-section">
-            <li class="traveller-section-item active" v-for="item in consumerList">
+            <li @click="selectGuest(item, index)" class="traveller-section-item" v-for="(item, index) in consumerList">
                 <p class="name">{{ item.name }}</p>
-                <p class="id">{{ item.idCardNum }}<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon"></p>
+                <p class="id">{{ item.idCardNum }}<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon" v-if="index === i"></p>
             </li>
         </ul>
         <div class="addTraveller-confirm">
@@ -25,9 +25,7 @@ import travellerForm from '@/components/travellerForm';
 import { mapState } from 'vuex';
 
 export default {
-    title() {
-        return '入住人';
-    },
+    title: '入住人',
     asyncData({ store }) {
         return store.dispatch('getConsumerUser');
     },
@@ -38,13 +36,24 @@ export default {
                 idCardNum: '',
                 name: '',
                 idCardType: ''
-            }
+            },
+            i: null
         };
     },
     components: {
         travellerForm
     },
     methods: {
+        selectGuest(item, index) {
+            if (this.i === index) {
+                Object.keys(this.formData).forEach((key) => {
+                    this.fromData[key] = '';
+                });
+            } else {
+                this.formData = item;
+                this.i = index;
+            }
+        }
     },
     computed: {
         ...mapState([

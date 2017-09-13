@@ -440,7 +440,7 @@ const store = new Vuex.Store({
         [types.GET_CART_LIST]({ commit }) {
             return new Promise((resolve, reject) => {
                 http.post('/directNet/getShoppingCart').then(res => {
-                    commit(types.GET_CART, res.data);
+                    commit(types.GET_CART_LIST, res.data);
                     resolve(res);
                 }).catch(err => {
                     reject(err);
@@ -450,6 +450,15 @@ const store = new Vuex.Store({
         [types.CANCEL_ORDER]({ commit }, orderId) {
             return new Promise((resolve, reject) => {
                 http.post('/directNet/cancelDirectOrder', { orderId }).then(res => {
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+        },
+        [types.SET_CART_COUNT]({ commit }, { cartId, num }) {
+            return new Promise((resolve, reject) => {
+                http.post('/directNet/modifyShoppingCart', { cartId, num }).then(res => {
                     resolve(res);
                 }).catch(err => {
                     reject(err);

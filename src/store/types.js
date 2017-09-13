@@ -34,5 +34,6 @@ export default {
     GET_CART_LIST: 'getCart', // 购物车列表
     CANCEL_ORDER: 'cancelOrder', // 取消订单
     SET_CAMPDETAIL: 'setCampDetail',
-    SET_HOMEINDEX: 'setHomeIndex'
+    SET_HOMEINDEX: 'setHomeIndex',
+    SET_CART_COUNT: 'setCartCount'
 };

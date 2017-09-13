@@ -6,7 +6,7 @@
                 <li @click="handleState(-1)" class="nav-list-item" :class="{ active: status == -1  }">等待付款</li>
                 <li @click="handleState(2)" class="nav-list-item" :class="{ active: status == 2  }">等待出行</li>
                 <li @click="handleState(3)" class="nav-list-item" :class="{ active: status == 3  }">出行中</li>
-                <li @click="handleState(0)" class="nav-list-item" :class="{ active: status == 0  }">旅途结束</li>
+                <li @click="handleState(5)" class="nav-list-item" :class="{ active: status == 5  }">旅途结束</li>
                 <li @click="handleState(1)" class="nav-list-item" :class="{ active: status == 1  }">已取消</li>
             </ul>
             <span class="line"></span>

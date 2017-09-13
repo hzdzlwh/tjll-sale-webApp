@@ -79,7 +79,7 @@ const orderState = (state) => {
             str = '待处理'
             break;
         case 1:
-            str = '已关闭'
+            str = '已取消'
             break;
         case 2:
             str = '等待出行'
