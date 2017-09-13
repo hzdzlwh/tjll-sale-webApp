@@ -185,7 +185,7 @@ export default {
                 startDate: util.dateFormat(this.startValue),
                 endDate: util.dateFormat(this.endValue)
             };
-            return http.get('/directNet/getCategoryList', parm).then(res => {
+            return http.get('/directNet/getCategoryList', parm, { loading: false }).then(res => {
                 // const data = [];
                 const resData = res.data;
                 this.data[0] = resData[0];
