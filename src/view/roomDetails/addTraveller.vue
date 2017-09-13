@@ -9,7 +9,7 @@
         </div>
         <p class="traveller-title">选择常客</p>
         <ul class="traveller-section">
-            <li class="traveller-section-item active" v-for="item in consumerList">
+            <li @click="selectGuest(item, index)" class="traveller-section-item active" v-for="(item, index) in consumerList">
                 <p class="name">{{ item.name }}</p>
                 <p class="id">{{ item.idCardNum }}<img src="~assets/images/choose-icon@1x.png" alt="choose" class="choose-icon"></p>
             </li>
@@ -45,6 +45,9 @@ export default {
         travellerForm
     },
     methods: {
+        selectGuest(item) {
+            this.formData = item;
+        }
     },
     computed: {
         ...mapState([

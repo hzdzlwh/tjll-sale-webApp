@@ -455,6 +455,15 @@ const store = new Vuex.Store({
                     reject(err);
                 });
             });
+        },
+        [types.SET_CART_COUNT]({ commit }, { cartId, num }) {
+            return new Promise((resolve, reject) => {
+                http.post('/directNet/modifyShoppingCart', { cartId, num }).then(res => {
+                    resolve(res);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
         }
     }
 });

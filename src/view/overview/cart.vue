@@ -22,14 +22,14 @@
                             </p>
                         </div>
                         <div class="control-content">
-                            <div class="control-content-decrease"></div>
+                            <div @click="decrease(item.cartId, item.item.num)" class="control-content-decrease"></div>
                             <div class="control-content-count">{{ item.item.num }}</div>
-                            <div class="control-content-increase"></div>
+                            <div @click="increase(item.cartId, item.item.num)" class="control-content-increase"></div>
                         </div>
                     </div>
                 </li>
             </ul>
-            <div class="cart-box">
+            <!-- <div class="cart-box">
                 <div class="cart-box-total">
                     <div class="all active">全选</div>
                     <div class="total">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="cart-box-buy">购买</div>
-            </div>
+            </div> -->
         </template>
         <h1 v-else>购物车是空的，请快去挑选喜爱的商品吧</h1>
     </div>
@@ -66,8 +66,24 @@ export default {
     },
     methods: {
         ...mapActions([
-            'getCart'
-        ])
+            'getCart',
+            'setCartCount',
+            'getCartCount'
+        ]),
+        increase(cartId, num) {
+            num ++;
+            this.setCartCount({ cartId, num }).then(() => {
+                this.getCart();
+                this.getCartCount();
+            });
+        },
+        decrease(cartId, num) {
+            num --;
+            this.setCartCount({ cartId, num }).then(() => {
+                this.getCart();
+                this.getCartCount();
+            });
+        }
     }
 };
 </script>
