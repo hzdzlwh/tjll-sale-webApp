@@ -155,14 +155,14 @@ export default {
                 this.$router.push(`/${this.$route.params.id}/login?redirect=${encodeURIComponent(this.$route.fullPath)}`);
                 return;
             }
-            http.get('/directNet/addToShoppingCart', {
+            http.get('/directNet/addToShoppingCart', { item: JSON.stringify({
                 endDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.endValue) : util.dateFormat(this.endValue),
                 startDate: (this.data.type === 1 || this.data.type === 4) ? util.dateFormatmMdal(this.startValue) : util.dateFormat(this.startValue),
                 itemId: this.$route.params.nodeId,
                 num: this.num,
                 timeAmount: this.chargeUnitTime,
                 type: this.data.type
-            }).then(() => {
+            }) }).then(() => {
                 this.$notify.success('成功加入购物车');
             });
         },

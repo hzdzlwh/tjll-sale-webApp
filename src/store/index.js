@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 10:53:21
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-09-12 11:22:27
+* @Last Modified time: 2017-09-12 19:09:07
 */
 import types from './types.js';
 import Vue from 'vue';
@@ -23,6 +23,7 @@ const store = new Vuex.Store({
         campInfo: undefined,
         campDetail: undefined,
         // 微信分享的数据
+        homeIndex: 'room',
         subOrderParms: undefined,
         // 结算的时候存的项目数据
         orderDetails: {
@@ -87,6 +88,9 @@ const store = new Vuex.Store({
     mutations: {
         setTitle(state, title) {
             state.title = title;
+        },
+        [types.SET_HOMEINDEX](state, { homeIndex }) {
+            state.homeIndex = homeIndex;
         },
         [types.SET_CAMPDETAIL](state, { campDetail }) {
             state.campDetail = campDetail;
