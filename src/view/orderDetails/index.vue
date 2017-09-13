@@ -34,14 +34,16 @@
                 <p class="info">{{ paid.name }}</p>
                 <p>-￥{{ paid.fee }}</p>
             </div>
-            <div class="order-section-total">
-                <p class="info">微信付款</p>
+            <div class="order-section-total" v-if="!(orderDetails.orderState === -1 || orderDetails.orderState === 1)">
+                <p class="info">{{isWeixin ? '微信' : '支付宝'}}付款</p>
                 <p>{{ orderDetails.payment.need }}</p>
             </div>
         </section>
         <div class="order-button" v-if="orderDetails.orderState === -1">
             <div class="order-button-cancel" @click="handleOrder">取消订单</div>
-            <div class="order-button-pay">去支付</div>
+            <div class="order-button-pay" @click="pay">
+                {{isWeixin ? '微信' : '支付宝'}}支付
+            </div>
         </div>
     </div>
 </template>
@@ -50,6 +52,9 @@
 import orderBox from '@/components/orderBox';
 import { mapState, mapActions } from 'vuex';
 import moment from 'moment';
+import { isWeixin, wxpayUrl } from '@/util/mobileUtil';
+import http from '@/util/http';
+
 
 export default {
     asyncData({ store, route }) {
@@ -60,7 +65,8 @@ export default {
     },
     data() {
         return {
-            countDown: 0
+            countDown: 0,
+            isWeixin
         };
     },
     computed: {
@@ -95,6 +101,20 @@ export default {
         handleOrder() {
             this.cancelOrder(this.orderDetails.orderId).then(() => {
                 this.$router.push({ name: 'myOrder' });
+            });
+        },
+        pay() {
+            http.get('/directNet/payDirectOrder', { orderId: this.$route.params.orderId, payType: isWeixin ? 1 : 0 }).then(res => {
+                if (this.isWeixin) {
+                    window.location.href = wxpayUrl + res.data.html;
+                    return;
+                }
+                window.localStorage.setItem('phone', res.data.customerPhone);
+                window.localStorage.setItem('uuid', res.data.uuid);
+                const div = document.createElement('div');
+                div.innerHTML = res.data.html;
+                document.body.appendChild(div);
+                document.forms.alipaysubmit.submit();
             });
         }
     }
