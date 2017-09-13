@@ -2,7 +2,7 @@
 * @Author: lxj
 * @Date:   2017-08-17 11:17:07
 * @Last Modified by:   lxj
-* @Last Modified time: 2017-09-11 19:40:58
+* @Last Modified time: 2017-09-13 15:18:38
 */
 /* eslint-disable */
 // import cookie from 'js-cookie';
@@ -90,7 +90,7 @@ const http = {
                         logoutErr = true;
                         window.localStorage.clear();
                         const campId = window.location.pathname.split('/')[1];
-                        Message.error('账号在别处登录。');
+                        Message.error('请登陆');
                         setTimeout(() => {
                             window.location.href = `/${campId}/login`;
                         }, 3000);
