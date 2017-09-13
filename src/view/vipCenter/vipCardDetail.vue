@@ -14,7 +14,7 @@
         </div>
         <div class="entry">
             <router-link :to="{ name: 'vipCardAccountDetail', params: {} }" class="entry-item">
-                <p class="item-label">会员卡明细</p>
+                <p class="item-label">会员卡余额明细</p>
                 <i class="item-next"></i>
             </router-link>
             <router-link :to="{ name: 'vipCardDesc', params: {} }" class="entry-item">

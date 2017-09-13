@@ -14,7 +14,7 @@
                 <p class="text">{{ item.content }}</p>
             </li>
         </ul>
-        <template v-if="vipCardDetail.thresholdFee">
+        <template v-if="vipCardDetail.thresholdFee !== undefined">
             <div class="cardDesc-title">使用规则</div>
             <div class="cardDesc-list">
                 <li class="cardDesc-list-item">
@@ -49,14 +49,14 @@ export default {
 .cardDesc {
     margin-bottom: 1.5625rem;
     &-title {
-        height: 0.9375rem;
-        font-size: 0.375rem;
+        height: 0.94rem;
+        font-size: 0.38rem;
         color: #666;
-        padding: 0.375rem 0.5rem 0;
+        padding: 0.38rem 0.5rem 0;
     }
     &-list {
-        padding: 24px 32px;
-        font-size: 24px;
+        padding: 0.38rem 0.5rem;
+        font-size: 0.38rem;
         background-color: #fff;
         border-top: 1px solid #e6e6e6;
         border-bottom: 1px solid #e6e6e6;
@@ -64,16 +64,16 @@ export default {
             display: flex;
             color: #333;
             .label {
-                width: 100px;
+                width: 1.56rem;
                 color: #999;
-                margin-right: 24px;
+                margin-right: 0.38rem;
             }
             .text {
                 flex: 1;
             }
         }
         &-item + &-item {
-            margin-top: 24px;
+            margin-top: 0.38rem;
         }
     }
 }

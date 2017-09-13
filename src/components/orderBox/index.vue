@@ -11,12 +11,12 @@
                     </div>
                 </div>
                 <div class="info-bottom">
-                    <p class="info-bottom-date">{{ data.startDate }} <span v-if='data.endDate'> ~ {{ data.endDate }}</span></p>
-                    <p class="info-bottom-count">{{ data.num }}{{ data.unit }}</p>
+                    <p class="info-bottom-date">{{ data.startDate }} <span v-if='data.type === 0'> ~ {{ data.endDate }}</span></p>
+                    <p class="info-bottom-count">数量：{{ data.num }}{{ data.unit }}</p>
                 </div>
             </div>
         </div>
-        <div class="list-button" v-if="showButton">
+        <div class="list-button" v-if="showButton && data.type === 0">
             <router-link class="link-button" :to="{ name: 'roomDetails', params: { saveId } }">自助选房</router-link>
         </div>
     </div>

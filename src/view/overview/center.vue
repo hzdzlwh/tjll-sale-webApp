@@ -12,7 +12,7 @@
             <i class="next-icon"></i>
         </router-link>
         <div class="entry" v-if="personalCenter.isVip">
-            <router-link :to="{ name: 'vipCenter', params: {} }" class="entry-item">
+            <router-link :to="{ name: 'vipCenter', params: {}}" class="entry-item">
                 <i class="item-icon item-icon-vip"></i>
                 <p class="item-name">会员中心</p>
                 <i class="item-next"></i>
@@ -32,12 +32,12 @@
             </li>
         </ul>
         <div class="entry">
-            <router-link :to="{ name: 'myOrder', params: { orderStatus: 'all' } }" class="entry-item">
+            <router-link :to="{ name: 'myOrder', params: { orderStatus: 'all', render: 'overview_center' } }" class="entry-item">
                 <i class="item-icon item-icon-order"></i>
                 <p class="item-name">我的订单</p>
                 <i class="item-next"></i>
             </router-link>
-            <router-link :to="{ name: 'guestList', params: {} }" class="entry-item">
+            <router-link :to="{ name: 'guestList', params: { render: 'overview_center' } }" class="entry-item">
                 <i class="item-icon item-icon-people"></i>
                 <p class="item-name">常用旅客</p>
                 <i class="item-next"></i>

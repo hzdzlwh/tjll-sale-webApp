@@ -115,6 +115,7 @@ const router = new Router({
                 },
                 {
                     path: 'payment/:orderId',
+                    name: 'payment',
                     meta: { requiresAuth: true },
                     component: () => import('@/view/payment/index')
                 },

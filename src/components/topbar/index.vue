@@ -20,10 +20,16 @@ export default {
     },
     methods: {
         goBack() {
-            this.$router.go(-1);
+            const render = this.$route.query.render || this.$route.params.render;
+            const params = this.$route.params;
+            if (render) {
+                this.$router.push({ name: render, params });
+            } else {
+                this.$router.go(-1);
+            }
         },
         log() {
-            console.log(this.$route.name.includes('overview'));
+            console.log(this.$route.params.render);
         }
     }
 };
