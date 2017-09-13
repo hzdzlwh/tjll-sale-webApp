@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         goBack() {
-            const render = this.$route.query.render;
+            const render = this.$route.query.render || this.$route.params.render;
             const params = this.$route.params;
             if (render) {
                 this.$router.push({ name: render, params });
@@ -29,7 +29,7 @@ export default {
             }
         },
         log() {
-            console.log();
+            console.log(this.$route.params.render);
         }
     }
 };

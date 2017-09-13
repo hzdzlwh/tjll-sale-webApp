@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         handleState(orderStatus) {
-            this.$router.push({ name: 'myOrder_list', params: { orderStatus } });
+            this.$router.push({ name: 'myOrder_list', params: { orderStatus }, query: { render: 'overview_center' } });
         }
     },
     computed: {

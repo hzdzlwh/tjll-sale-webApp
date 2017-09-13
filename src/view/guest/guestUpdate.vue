@@ -81,7 +81,7 @@ export default {
             });
         },
         jumpRoute(name) {
-            this.$router.push({ name });
+            this.$router.push({ name, query: { render: 'overview_center' } });
         }
     },
     created() {

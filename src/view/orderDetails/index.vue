@@ -15,7 +15,7 @@
             <p class="order-section-title" v-if="orderDetails.orderType === 0">住宿</p>
             <p class="order-section-title" v-if="orderDetails.orderType === 1">餐饮</p>
             <p class="order-section-title" v-if="orderDetails.orderType === 2">娱乐</p>
-            <order-box :bottomBorder="false" :showButton="item.type === 0" :saveId="item.saveId" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
+            <order-box :bottomBorder="false" :showButton="orderDetails.orderState !== 1" :saveId="item.saveId" :key="index" v-for="(item, index) in orderDetails.items" :data="item"></order-box>
         </section>
         <section class="order-section">
             <p class="order-section-info"><span class="info">联系人</span>{{ orderDetails.customerName }}</p>
