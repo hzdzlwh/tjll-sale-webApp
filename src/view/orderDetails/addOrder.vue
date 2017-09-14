@@ -7,7 +7,7 @@
         <section class="order-section">
         <ddInput :label='"联系人"' v-model='name' :required=true :placeholder='"请输入联系人"'></ddInput>
         <ddInput :label='"手机号"' v-model='phone' :readonly=true :className='"phoneDisabeld"' :required=true :placeholder='"请输入手机号"'></ddInput>
-        <ddSelect :label='"会员方案"' v-model='orderDetails.planId' :list='discountList' v-if='orderDetails.planId === null'></ddSelect>
+        <ddSelect :label='"会员方案"' v-model='orderDetails.planId' :list='discountList' v-if='orderDetails.planId !== null'></ddSelect>
         <ddInput :label='"备注"' v-model='remark' :placeholder='"请输入备注"'></ddInput>
         </section>
         <section>
