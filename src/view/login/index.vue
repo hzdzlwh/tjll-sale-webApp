@@ -8,7 +8,7 @@
     </nav>
     <div class="telephone loginInput">
     <label for="telephone">手机号</label>
-    <input name="telephone" type="Number" maxlength="11" placeholder="请输入手机号码" v-model='phone'></div>
+    <input name="telephone" type="tel" maxlength=11 placeholder="请输入手机号码" v-model='phone'></div>
     <div class="captcha-container loginInput" v-if='phone && phone.length === 11'>
     <label for="captcha-container">图形验证码</label>
     <input type="text" ref='code' class="captcha" placeholder="请输入4位数验证码" name="captcha-container" @input='getImgCode'>
