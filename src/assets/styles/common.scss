@@ -556,3 +556,32 @@ a {
         border-left: 1px solid #e6e6e6;
     }
 }
+
+h1 {
+    position: fixed;
+    font-size: 0.34rem;
+    color: #666;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate3d(-50%, -50%, 0);
+    font-weight: normal;
+}
+
+.mint-msgbox {
+    width: 70% !important;
+    .mint-msgbox-title {
+        font-size: 0.38rem;
+        line-height: 2;
+    }
+    .mint-msgbox-message {
+        font-size: 0.34rem;
+        line-height: 0.75rem;
+    }
+    .mint-msgbox-btns {
+        font-size: 0.34rem;
+        line-height: 0.94rem;
+        height: 0.94rem;
+    }
+}

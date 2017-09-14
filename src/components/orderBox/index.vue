@@ -12,7 +12,7 @@
                 </div>
                 <div class="info-bottom">
                     <p class="info-bottom-date">{{ data.startDate }} <span v-if='data.type === 0'> ~ {{ data.endDate }}</span></p>
-                    <p class="info-bottom-count">数量：{{ data.num }}{{ data.unit }}</p>
+                    <p class="info-bottom-count"><span v-if='data.type !== 0'>数量：</span>{{ data.num }}{{ data.unit }}</p>
                 </div>
             </div>
         </div>
@@ -77,6 +77,7 @@ export default {
             .info-top {
                 display: flex;
                 justify-content: space-between;
+                line-height: 1.5;
                 .info-top-title {
                     font-size: 0.4375rem;
                     color: #333;
