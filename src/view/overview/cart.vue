@@ -18,7 +18,7 @@
                                 合计:
                             </p>
                             <p class="control-total-count">
-                                ￥{{ item.item.price * item.item.num }}
+                                ￥{{ (item.item.price * item.item.num).toFixed(2) }}
                             </p>
                         </div>
                         <div class="control-content">
@@ -86,7 +86,7 @@ export default {
             this.select.forEach(el => {
                 totalPrice += el.item.price * el.item.num;
             });
-            totalPrice.toFixed(2);
+            totalPrice = totalPrice.toFixed(2);
             return totalPrice;
         }
     },
@@ -99,17 +99,19 @@ export default {
         increase(cartId, num) {
             num ++;
             this.setCartCount({ cartId, num }).then(() => {
-                this.getCart();
+                this.getCart().then(() => {
+                    this.refreshSelect();
+                });
                 this.getCartCount();
-                this.refreshSelect();
             });
         },
         decrease(cartId, num) {
             num --;
             this.setCartCount({ cartId, num }).then(() => {
-                this.getCart();
+                this.getCart().then(() => {
+                    this.refreshSelect();
+                });
                 this.getCartCount();
-                this.refreshSelect();
             });
         },
         selectProduct(item) { // 选择商品
@@ -132,7 +134,8 @@ export default {
             this.select.forEach((item, index) => {
                 const cartId = item.cartId;
                 const res = this.cartList.find(el => el.cartId === cartId);
-                this.select[index] = res;
+                // this.select[index] = res;
+                this.$set(this.select, index, res);
             });
         }
     }
