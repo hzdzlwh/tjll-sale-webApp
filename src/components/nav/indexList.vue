@@ -15,7 +15,7 @@
   <TabContainerItem id="room">
     <div class="roomDateContainer"><div class="roomDate" style="border-right: 2px solid #e6e6e6" @click='openStartDate'><span class="roomDate-label">入住</span><span><span class="dateBtn">{{dateFormatMAndD(startValue)}}<span>{{startWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div><div class="roomDate" @click='openEndDate'><span class="roomDate-label">退房</span><span><span class="dateBtn">{{dateFormatMAndD(endValue)}}<span>{{endWeek}}</span></span></span><img class="roomDate-icon" src="https://static.dingdandao.com/sale-website/image/arrowRight.png"></div></div>
     <div>
-    <div class="tab-item container"  v-for='(item, index) in data[0]' @click='addOrder(item, 0)'><div><div class="LazyLoad is-visible roomItem-img"><span ><img :src="`${item.imgUrl}?imageView2/2/w/608/h/350/q/50`"></span></div></div><div class="roomItem-info"><div class="discountInfo-container"><span >{{item.name}} <span class="discount-tag" v-if='item.showDiscount'>item.showDiscount</span></span></div><span style="color:#999">可住{{item.fitNum}}人</span></div><div class="roomItem-info" style=" color:#178ce6"><div class="discountInfo-container"><span >¥ {{item.price}}元/晚<span class="price-del" v-if='item.showDiscount'>¥{{item.originPrice}}元/晚</span></span></div><span class="item-btn " :class='{itemNoMore: item.hasNoSale}' >{{item.hasNoSale ? '售罄' : '预订'}}</span></div></div></div>
+    <div class="tab-item container"  v-for='(item, index) in data[0]' @click='addOrder(item, 0)'><div><div class="LazyLoad is-visible roomItem-img"><span ><img :src="`${item.imgUrl}?imageView2/2/w/608/h/350/q/50`"></span></div></div><div class="roomItem-info"><div class="discountInfo-container"><span >{{item.name}} <span class="discount-tag" v-if='item.showDiscount'>{{item.showDiscount}}</span></span></div><span style="color:#999">可住{{item.fitNum}}人</span></div><div class="roomItem-info" style=" color:#178ce6"><div class="discountInfo-container"><span >¥ {{item.price}}元/晚<span class="price-del" v-if='item.showDiscount'>¥{{item.originPrice}}元/晚</span></span></div><span class="item-btn " :class='{itemNoMore: item.hasNoSale}' >{{item.hasNoSale ? '售罄' : '预订'}}</span></div></div></div>
   </TabContainerItem>
   <TabContainerItem id="enter">
     <div class="enterDateContainer">
@@ -27,7 +27,7 @@
         <div class="notRoomItem-info">
         <div class="notRoomItem-name">
         <div class="discountInfo-container">
-        <span >{{item.name}}<span class="discount-tag" v-if='item.showDiscount'>item.showDiscount</span></span>
+        <span >{{item.name}}<span class="discount-tag" v-if='item.showDiscount'>{{item.showDiscount}}</span></span>
         </div>
         <span style="color: rgb(153, 153, 153);font-size:0.375rem;">适用{{item.fitNum}}人</span>
         </div>
@@ -52,7 +52,7 @@
         <div class="notRoomItem-info">
         <div class="notRoomItem-name">
         <div class="discountInfo-container">
-        <span >{{item.name}}<span class="discount-tag" v-if='item.showDiscount'>item.showDiscount</span></span>
+        <span >{{item.name}}<span class="discount-tag" v-if='item.showDiscount'>{{item.showDiscount}}</span></span>
         </div>
 
         </div>
