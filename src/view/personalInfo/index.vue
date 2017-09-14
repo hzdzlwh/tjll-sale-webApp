@@ -19,7 +19,7 @@
             </dd-form-input>
             <dd-form-input
             readonly
-            label="身份证"
+            label="证件号"
             icon
             :value="user.idCardNum  | coverFormat"
             placeholder="未填写"
