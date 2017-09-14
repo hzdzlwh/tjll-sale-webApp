@@ -7,7 +7,7 @@
         <section class="order-section">
         <ddInput :label='"联系人"' v-model='name' :required=true :placeholder='"请输入联系人"'></ddInput>
         <ddInput :label='"手机号"' v-model='phone' :readonly=true :className='"phoneDisabeld"' :required=true :placeholder='"请输入手机号"'></ddInput>
-        <ddSelect :label='"会员方案"' v-model='orderDetails.planId' :list='discountList'></ddSelect>
+        <ddSelect :label='"会员方案"' v-model='orderDetails.planId' :list='discountList' v-if='orderDetails.planId === null'></ddSelect>
         <ddInput :label='"备注"' v-model='remark' :placeholder='"请输入备注"'></ddInput>
         </section>
         <section>
@@ -18,8 +18,8 @@
                 <div class="order-pay-check"></div>
            </div>
            <div class="order-pay" v-if='orderDetails.payment.game'>
-                <div class="order-pay-label">星球币</div>
-                <div class="order-pay-content" >共500个，可使用500个</div>
+                <div class="order-pay-label">{{orderDetails.payment.game.accountName}}币</div>
+                <div class="order-pay-content" >共{{orderDetails.payment.game.lastNum}}个，可使用{{orderDetails.payment.game.ableFee}}个</div>
                 <div class="order-pay-check"><swich v-model='game'></swich></div>
            </div>
            <div class="order-pay" v-if='orderDetails.payment.member'>

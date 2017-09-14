@@ -75,11 +75,12 @@
         background: url(../../../assets/images/notify/warn.png);
     }
     span[class^="dd-icon"] {
-            width: 50px;
-    height: 1.375rem;
-    display: inline-block;
-    background-position: center top;
-    background-repeat: no-repeat;
+        width: 0.78125rem;
+        height: 1.375rem;
+        display: inline-block;
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: 0.25125rem 1.275rem;
     }
     .dd-notification-btn {
         width: 25%;
