@@ -1,7 +1,7 @@
 <template>
     <section class="room-info">
         <div class="room-section" v-for="item in roomDetail.list">
-            <div class="room-section-title" @click="chooseRoom('roomDetails_room', item.roomOrderId)">
+            <div class="room-section-title" :class="{ unselect: item.selectAble }" @click="chooseRoom('roomDetails_room', item.roomOrderId)">
                 <p class="info">房号</p>
                 <p class="number">{{ item.roomNum || (item.selectAble ? '自助选房' : '自动排房') }}</p>
                 <p class="icon icon-choose" v-if="item.roomOrderState === 0 && item.selectAble"><!-- 未入住 --></p>
@@ -204,6 +204,6 @@ export default {
     }
 }
 .unselect {
-    background: #e6e6e6;
+    background: #efefef;
 }
 </style>

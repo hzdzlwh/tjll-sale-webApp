@@ -22,7 +22,9 @@ export default {
         goBack() {
             const render = this.$route.query.render || this.$route.params.render;
             const params = this.$route.params;
-            if (render) {
+            if (this.$route.name === 'login') {
+                this.$router.push({ name: 'overview_home' });
+            } else if (render) {
                 this.$router.push({ name: render, params });
             } else {
                 this.$router.go(-1);
