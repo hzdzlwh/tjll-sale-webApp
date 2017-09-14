@@ -7,7 +7,7 @@
                     <p class="info-top-title">{{ data.name || data.itemName }}</p>
                     <div class="info-top-price">
                         <p class="price-now">￥{{ data.price }}</p>
-                        <p class="price-original" v-if='data.originPrice'>￥{{data.originPrice}}</p>
+                        <p class="price-original">{{data.originPrice ? '￥'+data.originPrice : '' }}</p>
                     </div>
                 </div>
                 <div class="info-bottom">
@@ -77,7 +77,6 @@ export default {
             .info-top {
                 display: flex;
                 justify-content: space-between;
-                line-height: 1.5;
                 .info-top-title {
                     font-size: 0.4375rem;
                     color: #333;
@@ -87,10 +86,12 @@ export default {
                     text-align: right;
                     .price-now {
                         color: #333;
+                        height: 0.44rem;
                     }
                     .price-original {
                         color: #bbb;
                         text-decoration: line-through;
+                        height: 0.44rem;
                     }
                 }
             }
