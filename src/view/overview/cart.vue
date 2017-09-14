@@ -34,7 +34,7 @@
                     <div class="all" @click="selectAll" :class="{ active: all }">全选</div>
                     <div class="total">
                         <div class="total-label">总计:</div>
-                        <div class="total-price">￥99999</div>
+                        <div class="total-price">￥{{ totalPrice }}</div>
                     </div>
                 </div>
                 <div class="cart-box-buy">购买</div>
@@ -64,7 +64,7 @@ export default {
             'cartList',
             'shoppingCartCount'
         ]),
-        active() {
+        active() { // active 维护数组
             const arr = [];
             this.cartList.forEach(item => {
                 const res = this.select.findIndex(el => el.cartId === item.cartId);
@@ -76,10 +76,18 @@ export default {
             });
             return arr;
         },
-        all() {
+        all() { // 是否全部选中
             if (this.cartList.length === 0) return false;
             const res = this.select.length === this.cartList.length;
             return res;
+        },
+        totalPrice() {  // 总价
+            let totalPrice = 0;
+            this.select.forEach(el => {
+                totalPrice += el.item.price * el.item.num;
+            });
+            totalPrice.toFixed(2);
+            return totalPrice;
         }
     },
     methods: {
@@ -93,6 +101,7 @@ export default {
             this.setCartCount({ cartId, num }).then(() => {
                 this.getCart();
                 this.getCartCount();
+                this.refreshSelect();
             });
         },
         decrease(cartId, num) {
@@ -100,9 +109,10 @@ export default {
             this.setCartCount({ cartId, num }).then(() => {
                 this.getCart();
                 this.getCartCount();
+                this.refreshSelect();
             });
         },
-        selectProduct(item) {
+        selectProduct(item) { // 选择商品
             const res = this.select.findIndex((element) => element.cartId === item.cartId);
             console.log(res);
             if (res === -1) {
@@ -111,12 +121,19 @@ export default {
                 this.select.splice(res, 1);
             }
         },
-        selectAll() {
+        selectAll() { // 选中全部
             if (this.all) {
                 this.select = [];
             } else {
                 this.select = [].concat(this.cartList);
             }
+        },
+        refreshSelect() {
+            this.select.forEach((item, index) => {
+                const cartId = item.cartId;
+                const res = this.cartList.find(el => el.cartId === cartId);
+                this.select[index] = res;
+            });
         }
     }
 };

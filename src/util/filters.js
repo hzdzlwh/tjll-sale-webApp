@@ -139,6 +139,7 @@ const idCardType = (state) => {
 export const coverFormat = (str) => {
     if (!str) return;
     if (!parseInt(str)) return str;
+    if (str.length < 9) return str;
     const header = str.slice(0, 3);
     const footer = str.slice(-4);
     const bodyLength = str.length - 7;
