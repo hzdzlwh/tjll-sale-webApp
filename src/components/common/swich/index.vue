@@ -44,7 +44,7 @@ $checkedColor: #fff!important;
         position: absolute;
         font-size: 0.375rem;
         top: 0px;
-        left: 0;
+        right: 0;
         @include borderRadius(0.75rem);
         background-color: #fff;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
@@ -55,7 +55,7 @@ $checkedColor: #fff!important;
         border-color: #e2e2e2;
         background-color: $checkedColor;
         &:before {
-            left: 0.5625rem;
+            right: 0.5625rem;
             background-color: #fff;
             color:#999;
             content: ' ';
@@ -64,28 +64,28 @@ $checkedColor: #fff!important;
     &.dd-switch-animbg {
         transition: background-color ease $duration;
         &:before {
-            transition: left 0.3s;
+            transition: right 0.3s;
         }
         &:checked {
             /*box-shadow: #dfdfdf 0 0 0 0 inset;*/
             background-color: $checkedColor;
             transition: border-color $duration, background-color ease $duration;
             &:before {
-                transition: left 0.3s;
+                transition: right 0.3s;
             }
         }
     }
     &.dd-switch-anim {
         transition: border cubic-bezier(0, 0, 0, 1) $duration, cubic-bezier(0, 0, 0, 1) $duration;
         &:before {
-            transition: left 0.3s;
+            transition: right 0.3s;
         }
         &:checked {
             /*box-shadow: $checkedColor 0 0 0 16px inset;*/
             background-color: $checkedColor;
             transition: border ease $duration,  ease $duration, background-color ease $duration*3;
             &:before {
-                transition: left 0.3s;
+                transition: right 0.3s;
             }
         }
     }
