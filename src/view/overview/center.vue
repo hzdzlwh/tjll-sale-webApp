@@ -1,9 +1,9 @@
 <template>
     <div class="center">
-        <router-link v-if="personalCenter.isVip" :to="{ name: 'personalInfo', params: {} }" class="personal">
+        <router-link :to="{ name: 'personalInfo', params: {} }" class="personal">
             <div class="personal-name">
-                {{ personalCenter.vipUser.name }}
-                <i class="vip-tip">
+                {{ personalCenter.vipUser.name || '游客' }}
+                <i class="vip-tip" v-if="personalCenter.isVip">
                     <img src="~assets/images/v-icon.png" alt="v">
                     <p>{{ personalCenter.vipUser.vipLevel || '普通会员' }}</p>
                 </i>

@@ -2,7 +2,7 @@
     <div class="addTraveller">
         <traveller-form :readonly="readonly" v-model="formData"></traveller-form>
         <div class="traveller-control">
-            <div class="traveller-control-checkbox active">
+            <div @click="keepGuest = !keepGuest" class="traveller-control-checkbox" :class="{ active: keepGuest }">
                 <div class="icon"></div>
                 保存为常客
             </div>
@@ -39,7 +39,8 @@ export default {
                 name: '',
                 idCardType: ''
             },
-            id: null
+            id: null,
+            keepGuest: false
         };
     },
     components: {
@@ -47,7 +48,8 @@ export default {
     },
     methods: {
         ...mapActions([
-            'addCheckInPeople'
+            'addCheckInPeople',
+            'setConsumerUser'
         ]),
         selectGuest({ id }) {
             if (this.id === id) {
@@ -71,6 +73,9 @@ export default {
                     });
                 } else {
                     this.formData.roomOrderId = this.$route.params.roomOrderId;
+                    if (this.keepGuest) {
+                        this.setConsumerUser(this.formData);
+                    }
                     this.addCheckInPeople(this.formData).then(() => {
                         this.$router.push({ name: 'roomDetails_info' });
                     });

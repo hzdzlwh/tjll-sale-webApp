@@ -12,9 +12,25 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
     title() {
         return '自助选房';
+    },
+    created() {
+        this.getRoomList({ roomOrderId: this.$route.params.roomOrderId, startDate: this.roomDetail.startDate, endDate: this.roomDetail.endDate });
+    },
+    methods: {
+        ...mapActions([
+            'getRoomList',
+            'getRoomDetail'
+        ])
+    },
+    computed: {
+        ...mapState([
+            'roomDetail'
+        ])
     }
 };
 </script>

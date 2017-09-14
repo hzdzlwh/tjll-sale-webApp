@@ -6,14 +6,13 @@
         >
             {{ label }}
         </label>
-        <input
+        <div
          class="dd-form-containt"
-         type="text"
          :placeholder="placeholder"
-         readonly="true"
-         :value="key"
          @click="toggleList"
         >
+        {{ key }}
+        </div>
         <i class="dd-form-icon"></i>
         <transition name="fade">
             <div v-show="showList" class="scrollWrap" ref="scrollWrap">

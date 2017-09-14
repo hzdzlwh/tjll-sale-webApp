@@ -17,8 +17,11 @@
         <template v-if="vipCardDetail.thresholdFee !== undefined">
             <div class="cardDesc-title">使用规则</div>
             <div class="cardDesc-list">
-                <li class="cardDesc-list-item">
+                <li class="cardDesc-list-item" v-if="vipCardDetail.thresholdFee !== null">
                     账户余额小于等于{{ vipCardDetail.thresholdFee }}元时不可使用
+                </li>
+                <li class="cardDesc-list-item" v-else>
+                    无限制
                 </li>
             </div>
         </template>

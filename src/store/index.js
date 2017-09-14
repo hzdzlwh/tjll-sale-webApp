@@ -381,7 +381,7 @@ const store = new Vuex.Store({
         },
         [types.GET_ROOM_LIST]({ commit }, { endDate, roomOrderId, startDate }) {
             return new Promise((resolve, reject) => {
-                http.post('/directNet/getDirectNetRoomList', { endDate, roomOrderId, startDate }).then(res => {
+                http.get('/directNet/getDirectNetRoomList', { endDate, roomOrderId, startDate }).then(res => {
                     commit(types.GET_ROOM_LIST, res.data);
                     resolve(res);
                 }).catch(err => {

@@ -8,17 +8,17 @@
             label="姓名"></dd-form-input>
             <dd-form-input
             v-model="form.phone"
-            :maxlength="11"
+            :maxlength="20"
             placeholder="请输入正确的手机号"
             label="手机号"></dd-form-input>
             <dd-form-select
             v-model="form.idCardType"
-            :maxlength="15"
+            :maxlength="20"
             :list="idCardList"
             label="姓名"></dd-form-select>
             <dd-form-input
             v-model="form.idCardNum"
-            :maxlength="18"
+            :maxlength="20"
             label="证件号"></dd-form-input>
         </div>
         <!-- <div class="button agree"  >确定</div> -->

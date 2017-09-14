@@ -7,7 +7,7 @@
             </div>
             <div class="traveller-form-item">
                 <label class="form-label" for="telephone">手机号</label>
-                <input :readonly="readonly" class="form-input" :value="value.phone" @input="onChange($event, 'phone')" type="number" placeholder="请输入正确的手机号">
+                <input :readonly="readonly" class="form-input" :value="value.phone" @input="onChange($event, 'phone')" type="text" maxlength="20" placeholder="请输入正确的手机号">
             </div>
             <div class="traveller-form-item" v-clickoutside="closeBox">
                 <label class="form-label form-label-required" for="certificate">证件类型</label>
@@ -25,7 +25,7 @@
             </div>
             <div class="traveller-form-item">
                 <label class="form-label form-label-required" for="certificate">证件号</label>
-                <input :readonly="readonly" class="form-input" :value="value.idCardNum" @input="onChange($event, 'idCardNum')" type="number" placeholder="请输入证件号">
+                <input :readonly="readonly" class="form-input" :value="value.idCardNum" @input="onChange($event, 'idCardNum')" maxlength="20" type="text" placeholder="请输入证件号">
             </div>
         </div>
     </div>
@@ -74,11 +74,11 @@ export default {
                     this.formData[key] = $event.target.value;
                     break;
                 case 'phone':
-                    $event.target.value = strLengthFormat($event.target.value, 11);
+                    $event.target.value = strLengthFormat($event.target.value, 20);
                     this.formData[key] = $event.target.value;
                     break;
                 case 'idCardNum':
-                    $event.target.value = strLengthFormat($event.target.value, 18);
+                    $event.target.value = strLengthFormat($event.target.value, 20);
                     this.formData[key] = $event.target.value;
                     break;
                 default:

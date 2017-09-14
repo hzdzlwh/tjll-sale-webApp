@@ -1,7 +1,7 @@
 <template>
     <section class="room-info">
         <div class="room-section" v-for="item in roomDetail.list">
-            <div class="room-section-title" @click.self="chooseRoom('roomDetails_room')">
+            <div class="room-section-title" @click="chooseRoom('roomDetails_room', item.roomOrderId)">
                 <p class="info">房号</p>
                 <p class="number">{{ item.roomNum || (item.selectAble ? '自助选房' : '自动排房') }}</p>
                 <p class="icon icon-choose" v-if="item.roomOrderState === 0 && item.selectAble"><!-- 未入住 --></p>
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="room-section">
+        <!-- <div class="room-section">
             <div class="room-section-title" @click="chooseRoom('roomDetails_room')">
                 <p class="info">房号</p>
                 <p class="number">自助选房</p>
@@ -53,7 +53,7 @@
                 <p class="number">8801</p>
                 <p class="icon icon-cancel">已入住</p>
             </div>
-        </div>
+        </div> -->
     </section>
 </template>
 
@@ -71,8 +71,8 @@ export default {
         };
     },
     methods: {
-        chooseRoom(name) {
-            this.$router.push({ name });
+        chooseRoom(name, roomOrderId) {
+            this.$router.push({ name, params: { roomOrderId } });
         },
         handleTraveller(condition, roomOrderId) {
             if (condition === 'add') {
